@@ -1,0 +1,746 @@
+/*****************************************/
+/****************************CUPRINS CSS*/
+/***********1. GENERAL****/
+/***********2. FIRST NAVBAR*/
+/***********3. SECOND NAVBAR*/
+/***********4. INFO BOXES (format)*/
+/***********5. NEWSPAPERS (format)*/
+/***********6. OVERPAGE (format)*/
+/***********7. FOOTER         **/
+/***********8. IN-PAGE REDIRECT ANIMATION**/
+/***********9. SUBPAGES**/
+/***********10. BIG-PIC-STYLE**/
+/***********11. Publicatii - 3rd side menu**/
+/***********12. MOBILE SIZING**/
+
+/*****************************************/
+/***********1. GENERAL****/
+/*****************************************/
+html,body{
+    margin: 0;
+    padding: 0;
+    z-index: 1;
+    overflow-x: hidden;
+    background: rgb(242,242,242);
+
+    scroll-behavior: smooth;
+
+    /*general colors*/
+    /*--redcolor: #ec6b76;*/
+    --redcolor: rgb(166,166,166);
+    --bluecolor: #182268;/* #4a8bec;*/
+    --lightgrey: rgb(166,166,166);
+    --darkblue:  #182268;
+
+    /*fonts*/
+    --text-size: 1rem;
+}
+body *{
+    position: relative;
+}
+
+
+a{
+    color: white;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/*****************************************/
+/***********2. FIRST NAVBAR****/
+/*****************************************/
+#stNavbar{
+    height: 7vw;
+    width: 100%;
+    /*background: #1e2a84;*/
+    background: var(--lightgrey);
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    position: fixed;
+    z-index: 5;
+    transition: 300ms;
+    -o-transition: 300ms;
+    -moz-transition: 300ms;
+    -webkit-transition: 300ms;
+}
+
+#stNavbar >*{
+    margin-right: 2vw;
+    margin-left: 3vw;
+}
+
+.stNavbarBtn{
+    padding: .5vw;
+    text-align: center;
+}
+.stNavbarBtn{
+    transition: 500ms;
+    font-size: 1vw;
+    color: #182268;
+}
+
+.stNavbarBtn:hover{
+    color: #ef4135;
+}
+
+#activePage{
+    border: 1px solid white;
+    font-style: italic;
+    border-radius: .3vw;
+    pointer-events: none;
+}
+
+.stNavbarLogo{
+    height: 100%;
+}
+
+.stNavbarLogo img{
+    height: 100%;
+}
+
+.languages-container{
+    align-self: center;
+    margin-top: 1vw;
+    color: white;
+    display: flex;
+    align-items: center;
+}
+
+button,
+button:focus,
+button:active{
+    border:1px solid black;
+    background:none;
+    outline:none;
+    padding:0;
+}
+
+.languages-container button{
+    background: transparent;
+    height: 1vw;
+    width: 1.6vw;
+    margin-right: 1vw;
+    cursor: pointer;
+    border: .2vw solid transparent;
+    border-radius: 1vw;
+}
+
+.languages-container button:nth-of-type(1){
+    background: url("../media/RO.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.languages-container button:nth-of-type(2){
+    background: url("../media/EN.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.languages-container button:nth-of-type(3){
+    background: url("../media/FR.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/*****************************************/
+/***********2. SECOND NAVBAR****/
+/*****************************************/
+
+#ndNavbar{
+    height: 3.5vw;
+    top:7vw;
+    width: 100%;
+    background: var(--darkblue);
+
+    margin-bottom: 10cm;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    position: fixed;
+
+    z-index: 3;
+
+    transition: 300ms;
+    -o-transition: 300ms;
+    -moz-transition: 300ms;
+    -webkit-transition: 300ms;
+}
+
+#ndNavbar a{
+    font-size: calc(var(--text-size) * 0.9);
+    transition: 500ms;
+    padding: 1vw;
+    z-index: 5;
+    cursor: pointer;
+    color: rgb(166,166,166);
+}
+
+#ndNavbar a:hover {
+    font-size: calc(var(--text-size) * 1.1);
+}
+
+#slider{
+    height: 1px;
+
+    background: linear-gradient(to right,transparent,white,transparent);
+
+    margin-top: 1.5vw;
+    position: absolute;
+    left: 1cm;
+
+    transition: 400ms;
+    -o-transition: 400ms;
+    -moz-transition: 400ms;
+    -webkit-transition: 400ms;
+}
+
+/*****************************************/
+/***********4. INFO BOXES****/
+/*****************************************/
+.infoBox{
+    margin: 10vw;
+    margin-top: 1vw;
+    margin-bottom: 1vw;
+    padding-bottom: 2.5vw;
+    border: 2px solid transparent;
+}
+
+.subpage{
+    margin-top: 14vw;
+    min-height: 95vh;
+}
+
+.infoHeader{
+    max-width: 50vw;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    padding-top: 2vw;
+    padding-bottom: 4vw;
+
+    z-index: 1;
+
+    position: relative;
+    font-size: calc(var(--text-size) + 1.5rem);
+    font-weight: bold;
+
+    border-radius: 1vw;
+    background: var(--redcolor);
+    color: white;
+    text-align: center;
+}
+
+iframe{
+    border-radius: 2vw;
+    width: 60%;
+    height: 40vh;
+}
+
+
+
+.infoText{
+    width: 80%;
+    z-index: 2;
+    padding: 2vw;
+    margin: auto;
+    margin-top: -2vw;
+    border-radius: 2vw;
+    background: white;
+    border: .2vw solid var(--redcolor);
+    text-align: center;
+    /*opacity: 0;*/
+
+    font-size: calc(var(--text-size));
+}
+
+@keyframes come-from-left{
+    0%{opacity: 0; transform: translateX(-30%);}
+    100%{opacity: 1; transform: translateX(0);}
+}
+
+@keyframes come-from-right{
+    0%{opacity: 0; transform: translateX(+30%);}
+    100%{opacity: 1; transform: translateX(0);}
+}
+
+
+.infoText >a, .infoText >p,.bookpair >a, .bookpair >p{
+    display: block;
+    margin: .4vw;
+    text-align: left;
+    font-size: calc(var(--text-size) * 1.2);
+    padding: .3vw;
+    border-radius: .5vw;
+}
+.infoText a,.bookpair a{
+    font-style: italic;
+    transition: 500ms;
+    color:#182268;
+}
+
+.infoText a:hover{
+    color: #ef4135;
+}
+
+.infoText .btn{
+    padding: .5vw;
+    max-width: 40%;
+    text-align: center;
+    font-weight: bold;
+    display: inline-block;
+    border-radius: .5vw;
+
+    cursor: pointer;
+
+}
+.infoText .btn:hover{
+    color: black;
+    background: #d4deff;
+}
+.right .infoHeader{
+    right: 0;
+    margin-left: auto;
+    text-align: center;
+    /*padding-right: 5vw;*/
+}
+.infoText .subtitle{
+    font-size: calc(var(--text-size) * 1.3);
+}
+
+.icon{
+    width: 2.5vw;
+    height: auto;
+    display: inline-block;
+    margin: .5vw;
+    transition: 500ms;
+    cursor: pointer;
+}
+.icon:hover{
+    opacity: .5;
+}
+
+.infoText>.infoPic{
+    width: 10vw;
+    height: auto;
+}
+
+#slideshow-container{
+    width: 100%;
+    transform: translateY(-30%);
+    height: 20vw;
+    overflow: hidden;
+}
+#slideshow-container>img{
+    position: absolute;
+    width: 100%;
+    height: auto;
+    transform: translateX(100%);
+    filter: brightness(85%);
+    transition: 2s;
+}
+#slideshow-container #activeImg{
+    transform: translateX(0);
+}
+
+.bookpair{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+
+    margin-bottom: 5vw;
+}
+
+.bookpair >p{
+    max-width: 50%;
+
+    text-align: justify;
+}
+
+.bookpair>img{
+    width: 15vw;
+}
+
+
+/*COLORS - LEFT*/
+.left .infoHeader{
+    background: var(--redcolor);
+    color: white;
+}
+.left .infoText{
+    background: white;
+    border: .2vw solid var(--redcolor);
+}
+.left .infoText a, .left .infoText>p, .bookpair>p{
+    color:#182268;
+}
+.left .infoText .btn{
+    border: .2vw solid var(--bluecolor);
+    color:#182268;
+}
+.left .infoText .btn:hover{
+    color:black;
+}
+
+/*COLORS - RIGHT*/
+.right .infoHeader{
+    color: white;
+    background: var(--bluecolor);
+}
+.right .infoText{
+    background: white;
+    border: .2vw solid var(--bluecolor);
+}
+.right .infoText a, .right .infoText>p{
+    color:#182268;
+}
+.right .infoText .btn{
+    border: .2vw solid var(--redcolor);
+}
+.right .infoText .btn:hover{
+    color:black;
+    background: #fdd4d9;
+}
+
+/*overall*/
+
+.infoText a:hover{
+    color: #ef4135;
+}
+
+.infoText >.spaced{
+    margin-left: 2vw;
+    color: red;
+}
+
+
+/*****************************************/
+/***********5. NEWSPAPERS*/
+/*****************************************/
+
+.newspaper-container{
+    min-height: 5vw;
+    width: 80vw;
+
+    margin-left: 10vw;
+
+    display: flex;
+    justify-content: space-around;
+
+    margin-bottom: 10vw;
+}
+
+.newspaper{
+    --spacing: 2.5vw;
+
+    width: 30vw;
+
+    border-radius: 2.5vw;
+    border: .2vw solid transparent;
+
+    background: white;
+
+    padding-bottom: var(--spacing);
+}
+
+.newspaper .spaced{
+    margin-left: calc(var(--spacing)*2);
+}
+.newspaper h2{
+    text-align: center;
+    font-size: calc(var(--text-size) + 0.5rem);
+    margin-left: calc(80/100 * var(--spacing));
+    margin-right: calc(80/100 * var(--spacing));
+}
+.newspaper hr{
+    border: .1vw solid rgb(242,242,242);
+    background: rgb(210,210,210);
+    margin-left: calc(var(--spacing) * 2);
+    margin-right: calc(var(--spacing) * 2);
+}
+.newspaper p:nth-child(1){
+    margin-top: var(--spacing);
+}
+.newspaper p{
+    font-size: calc(var(--text-size));
+    margin-left: var(--spacing);
+    margin-right: var(--spacing);
+}
+
+.newspaper img{
+    width: 45%;
+
+    margin-left: 50%;
+    transform: translateX(-50%);
+
+    border-radius: 1vw;
+}
+
+/*colors*/
+
+/*red*/
+.newspaper-container .red{
+    border: .2vw solid var(--redcolor);
+}
+
+/*blue*/
+.newspaper-container .blue{
+    border: .2vw solid var(--bluecolor);
+}
+
+
+/*****************************************/
+/***********6. OVERPAGE****/
+/*****************************************/
+
+.overpage{
+    --bg-color: rgb(230,230,230);
+
+    background: var(--bg-color);
+
+    width: 100%;
+
+    min-height: 10vw;
+    margin-top: 30vw;
+    padding-bottom: 10vw;
+
+}
+
+.overpage::before{
+    content: "";
+
+    position: absolute;
+    height: 10vw;
+    width: 100%;
+
+    background: var(--bg-color);
+
+    border-radius: 100% 0 0 0;
+
+    transform: translateY(-100%);
+}
+
+
+.overpage h1,.overpage p{
+    text-align: center;
+}
+.overpage h1{
+    font-size: calc(var(--text-size) + 1rem);
+}
+
+.overpage p{
+    font-size: calc(var(--text-size));
+}
+
+.hv{
+    border: none;
+    height: 1px;
+    background: black;
+    width: 4vw;
+    margin-top: 5vw;
+    margin-bottom: 5vw;
+    transform: rotate(90deg);
+}
+
+.overpage iframe{
+    height: 20vw;
+    width: 40vw;
+
+    border-radius: 2.5vw;
+
+    margin-left: 50%;
+    transform: translateX(-50%);
+}
+
+
+/*****************************************/
+/***********7. FOOTER****/
+/*****************************************/
+
+footer{
+    height: 15vw;
+    background: #182268;
+    color: white;
+    display: grid;
+    grid-template-columns: repeat(3,calc(100vw /3));
+    grid-template-rows: 12vw 3vw;
+
+    align-content: center;
+
+
+}
+footer >div, footer >p{
+    text-align: center;
+}
+footer>div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    flex-direction: column;
+}
+footer h3{
+    display: block;
+    font-size: 1vw;
+}
+footer div a,footer div p{
+    color: white;
+    display: block;
+    transition: 500ms;
+    margin: 0;
+    font-size: 1rem;
+}
+footer div a:hover {
+    color: #ef4135;
+}
+footer >p{
+    grid-column: span 5;
+    margin-left: 5vw;
+    margin-right: 5vw;
+    border-top: 2px solid #e4ac22;
+    padding-top: .5vw;
+    font-size: 1vw;
+    cursor: default;
+}
+footer div:nth-of-type(2){
+    padding-top: 1.5vw;
+    transition: 500ms;
+    cursor: pointer;
+}
+footer div:nth-of-type(2) img{
+    width: 10vw;
+
+}
+footer div:nth-of-type(2):hover{
+    transform: scale(.8);
+}
+
+/*****************************************/
+/***********8. IN-PAGE REDIRECT ANIMATION****/
+/*****************************************/
+
+@keyframes land {
+    0%{
+        box-shadow: 0 0 0 0 black;
+    }
+    25%{
+        box-shadow: 0 0 .7vw .3vw black;
+    }
+    50%{
+        box-shadow: 0 0 .1vw .1vw black;
+    }
+    75%{
+        box-shadow: 0 0 .7vw .3vw black;
+    }
+    100%{
+        box-shadow: 0 0 0 0 black;
+    }
+}
+
+
+/*****************************************/
+/***********9. SUBPAGES**/
+/*****************************************/
+.subpage{
+    transition: 500ms;
+    -o-transition: 500ms;
+    -moz-transition: 500ms;
+    -webkit-transition: 500ms;
+    opacity: 0;
+}
+
+
+/*****************************************/
+/***********10. BIG-PIC-STYLE**/
+/*****************************************/
+
+.big-pic{
+    width: 50%;
+    margin-left: 50%;
+    transform: translateX(-50%);
+}
+
+
+/*****************************************/
+/***********11. Publicatii - 3rd side menu**/
+/*****************************************/
+
+.thirdMenu {
+    width: 11.5vw;
+    position: fixed;
+    z-index: 2;
+
+    left: 1vw;
+    top: 25vh;
+
+    background: #182268;
+    overflow-x: hidden;
+    border-radius: 2.5vw;
+    padding: 2vw .2vw 1vw .2vw;
+
+    border: .1vw solid rgb(242,242,242);
+
+    text-align: center;
+
+    transition: 500ms;
+    -o-transition: 500ms;
+    -moz-transition: 500ms;
+    -webkit-transition: 500ms;
+}
+
+
+.thirdMenu a {
+    font-size: 1vw;
+    color: #a7a7a7;
+    display: inline-block;
+    text-align: center;
+    line-height: 1vw;
+    margin-bottom: 2vw;
+    cursor: pointer;
+
+    min-width: 60%;
+
+    transition: 300ms;
+    -o-transition: 300ms;
+    -moz-transition: 300ms;
+    -webkit-transition: 300ms;
+
+}
+
+.thirdMenu a:hover {
+    color: #f1f1f1;
+}
+
+/*****************************************/
+/***********12. MOBILE SIZING**/
+/*****************************************/
+
+@media only screen and (max-width: 800px) {
+    /*BODY*/
+    /*NAVBAR(S)*/
+    .stNavbarBtn{
+        font-size: 1.5vw;
+    }
+    .languages-container{
+        display: none;
+    }
+    #slider {
+        display: none;
+    }
+
+    /*FOOTER*/
+    #footer{
+        height: 45vw;
+    }
+    footer >p{
+        font-size: 3vw;
+    }
+    footer div:nth-of-type(2) img{
+        width: 20vw;
+        transform: translateY(-10%)
+    }
+}

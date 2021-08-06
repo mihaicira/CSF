@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300&display=swap');
+.members-container{
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-evenly;
+
+    flex-direction: column;
+
+    gap: 4vw;
+}
+
+.person{
+    height: 15vw;
+    width: 40vw;
+
+    display: flex;
+
+    gap: 1vw;
+
+    justify-content: left;
+    align-items: center;
+
+}
+
+.person >img{
+    height: 100%;
+    width: auto;
+
+    border-radius: 1vw;
+}
+
+.person>.person-text{
+    text-align: left;
+}
+
+.person-text>p{
+    text-align: left;
+}
+
+.person-text>p>a{
+    color: var(--darkblue);
+    transition: 400ms;
+    -o-transition: 400ms;
+    -webkit-transition: 400ms;
+    -moz-transition: 400ms;
+}
+.person-text>p>a:hover{
+    color: #167a8f;
+}
+
+
+.person-text>p:nth-of-type(1){
+    font-weight: 900;
+    color: var(--darkblue);
+}
+
+.person-text>p:nth-of-type(2){
+    font-style: italic;
+}
+
+.person-text>p:nth-of-type(3){
+    font-family: 'Merriweather', serif;
+}

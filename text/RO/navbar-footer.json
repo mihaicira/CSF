@@ -1,0 +1,62 @@
+{
+  "stNavbar": [
+    ["../","Despre noi"],
+    ["evenimente.html","Evenimente"],
+    ["publicatii.html","Publicatii"],
+    ["cercetare.html","Cercetare"],
+    ["parteneri.html","Parteneri"],
+    ["asociatia.html","Asociatia de studii francofone DF"],
+    ["contact.html","Contact"]
+  ],
+  "ndNavbar":
+  {
+    "index": [
+      ["#istoric","Istoric"],
+      ["#descriere si obiective","Descriere si obiective"],
+      ["#membri","Membri"],
+      ["#statut","Statut"]
+    ],
+    "evenimente": [
+      ["#CIEFT","CIEFT"],
+      ["#colloques de linguistique chronologie","Colocviile franco-române de lingvistică"],
+      ["#mese rotunde","Mese rotunde"],
+      ["#sustineri de teze doctorale","Sustineri de teze doctorale"],
+      ["#colocvii studentesti","Colocvii studentesti"],
+      ["#galerie","Galerie"]
+    ],
+    "publicatii": [
+      ["#dialogues francophones","Dialogues francophones"],
+      ["#agapes francophones","Agapes francophones"],
+      ["#actele colocviilor franco romane","Actele colocviilor franco-române de lingvistică"],
+      ["#traduceri","Traduceri"],
+      ["#publicatii ale membrilor","Publicatii ale membrilor"]
+    ],
+    "cercetare": [
+      ["#proiecte de cercetare","Proiecte de cercetare"],
+      ["#stagii de cercetare","Stagii de cercetare"],
+      ["#articole de indexare","Articole de indexare în baze de date internaționale"]
+    ],
+    "parteneri": [
+      ["#test","testing !!"]
+    ],
+    "asociatia": [
+      ["#descriere si obiective","Descriere si obiective"]
+    ],
+    "contact": [
+      ["#contact","Contact"]
+    ],
+    "propunere": ["prev","Înapoi"],
+    "dbobj": "Panel"
+  },
+  "footer": [
+    ["index.html","Despre noi"],
+    ["evenimente.html","Evenimente"],
+    ["publicatii.html","Publicatii"],
+    ["cercetare.html","Cercetare"],
+    ["parteneri.html","Parteneri"],
+    ["asociatia.html","Portal CSF"],
+    ["contact.html","Contact"],
+    ["credits.html","Credite"]
+  ]
+
+}
