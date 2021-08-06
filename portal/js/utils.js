@@ -16,7 +16,7 @@ const createNewUser = (data) =>{
         id: userId,
         email: "none",
         password: "none",
-        nume: "none",
+        nume: data.nume,
         rankDF:{
             id: 909,
             name: RANKS["999"]
@@ -31,8 +31,58 @@ const createNewUser = (data) =>{
         finishedByMe:[]
     }
 
-    database.ref('users/'+userId).set(User)
+    database.ref('users').once("value")
+        .then((snapshot)=>{
+            const USERS = snapshot.val()
+            USERS.push(User)
+            let updates = {}
+            updates["/users"] = USERS
+            database.ref().update(updates)
+        })
+    return true;
 }
+
+const sessionStorageLogIn = (email,pass)=>{
+    let data = {
+        isLogged: "false",
+        account:{
+            email:email,
+            password:pass
+        }
+    }
+    window.sessionStorage.setItem("accountStatus",data)
+}
+
+const sessionStorageLogOut = ()=>{
+    let data = {
+        isLogged: "false",
+        account:null
+    }
+    window.sessionStorage.setItem("accountStatus",data)
+}
+
+const logIn = (data) => {
+    //param = un dictionar cu doua keys: mail & pass
+    //verifica daca exista mailul respectiv in baza de date. Daca exista, verifica parolele.
+    database.ref("users").once('value')
+        .then((snapshot)=>{
+            const Users = snapshot.val()
+            let USER_FOUND = false
+            Users.forEach((user)=>{
+                if(user.email === data.email)
+                    if(user.password === data.password){
+                        USER_FOUND = true
+                        console.log("found")
+                    }
+            })
+            if(!USER_FOUND){
+                console.log("not found")
+            }
+        })
+}
+
+const dict = {"email":"admin@admin","password":"None"}
+const dict2 = {"email":"admin@admin","password":"admin@admin"}
 
 function minimizeNavbar(){
     document.getElementById("header-first-line").style.height = "7vh";
