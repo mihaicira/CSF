@@ -1,12 +1,4 @@
-const generateId = ()=>{
-    //returneaza un string de 10 caractere, fiecare caracter fiind un element random din multimea {0...9,a...Z}
-    const numbers = "0123456789"
-    const lowerCase = "abcdefghijklmnopqrstuvwxyz"
-    const upperCase = lowerCase.toUpperCase()
-    const randomness = numbers + lowerCase + upperCase
-
-    return "pass";
-}
+const generateId = ()=>{return Date.now()}
 
 const createNewUser = (data) =>{
     //param data = dictionar care contine datele preluate din formularul de Sign Up
@@ -14,8 +6,8 @@ const createNewUser = (data) =>{
 
     const User = {
         id: userId,
-        email: "none",
-        password: "none",
+        email: data.email,
+        password: data.password,
         nume: data.nume,
         rankDF:{
             id: 909,
@@ -83,6 +75,13 @@ const logIn = (data) => {
 
 const dict = {"email":"admin@admin","password":"None"}
 const dict2 = {"email":"admin@admin","password":"admin@admin"}
+
+function validateEmail(email) {
+    // true daca adresa de email este valida
+    // false altfel
+    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(String(email).toLowerCase());
+}
 
 function minimizeNavbar(){
     document.getElementById("header-first-line").style.height = "7vh";

@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+
+a{
+    text-decoration: none;
+    color:#696969;
+}
+
+.login-container{
+    color:#696969;
+    width: max-content;
+    height: 65vh;
+    display:flex;
+    align-items: center;
+
+    position: relative;
+
+    justify-content: space-evenly;
+    flex-direction: column;
+    border: .2vh solid #182268;
+    background: white;
+    border-radius: 1vh;
+    -webkit-box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.39);
+    box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.39);
+    padding: 2vw;
+
+    margin-left: 50%;
+    transform: translateX(-50%);
+
+    margin-top: 5vh;
+}
+
+.login-container *{
+    font-family: 'Roboto', sans-serif;
+}
+
+.login-container input{
+
+    min-width: 16vw;
+    display:block;
+    margin:2vh;
+    padding: 1.5vh .5vh;
+    font-size: 2vh;
+    font-weight: 400;
+    border-width: 0 0 .3vh 0;
+    border-color:#696969;
+    outline: none;
+    transition:border-color 0.2s;
+}
+
+.login-container input[type="text"],
+.login-container input[type="password"]{
+    padding: 1.5vh .5vh 1.5vh 3vh;
+}
+
+.login-container input:focus{
+    border-color: #696969;
+}
+
+#form-error{
+    color: red;
+    font-size: 1.5vh;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    font-weight: bold;
+    right: 0;
+    left: 0;
+    transition: 400ms;
+    -o-transition: 400ms;
+    -moz-transition: 400ms;
+    -webkit-transition: 400ms;
+    opacity: 0;
+}
+
+.login-container .submit-btn{
+    font-size: 1.7vh;
+    width: 80%;
+    color:white;
+    display: block;
+    position: relative;
+    border-width: 0 0 0 0;
+    z-index: 1;
+    border-radius: 25vh;
+    overflow: hidden;
+    margin: 0 auto;
+    margin-top: 5vh;
+    margin-top: 5vh;
+    background: #041CF6;
+    background: linear-gradient(left, #4BB6E4, #041CF6);
+    background: -webkit-linear-gradient(left, #4BB6E4, #041CF6);
+    cursor: pointer;
+}
+
+.login-container h1{
+    font-size: 3vh;
+
+
+}
+.login-container p{
+    font-size: 1.6vh;
+
+}
+
+.placeholder-icon {
+    position: absolute;
+    width: 2.2vh;
+    transform: translateY(-275%) translateX(100%) ;
+}
+
+.placeholder-iconlock {
+    position: absolute;
+    width: 1.8vh;
+    transform: translateY(-300%) translateX(125%) ;
+}
+
+.placeholder-iconname {
+    position: absolute;
+    width: 2vh;
+    transform: translateY(-305%) translateX(110%) ;
+}
