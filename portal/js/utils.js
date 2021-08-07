@@ -10,12 +10,12 @@ const createNewUser = (data) =>{
         password: data.password,
         nume: data.nume,
         rankDF:{
-            id: 909,
-            name: RANKS["999"]
+            id: 999,
+            nume: RANKS["999"]
         },
         rankAF:{
-            id: 909,
-            name: RANKS["999"]
+            id: 999,
+            nume: RANKS["999"]
         },
         contributions:[],
         evals:[],
@@ -34,20 +34,20 @@ const createNewUser = (data) =>{
     return true;
 }
 
-const sessionStorageLogIn = (email,pass)=>{
-    let data = {
-        isLogged: "false",
+const sessionStorageLogIn = (data)=>{
+    let sessionData = {
+        isLogged: true,
         account:{
-            email:email,
-            password:pass
+            email:data.email,
+            password:data.password
         }
     }
-    window.sessionStorage.setItem("accountStatus",data)
+    window.sessionStorage.setItem("accountStatus",sessionData)
 }
 
 const sessionStorageLogOut = ()=>{
     let data = {
-        isLogged: "false",
+        isLogged: false,
         account:null
     }
     window.sessionStorage.setItem("accountStatus",data)
@@ -64,6 +64,8 @@ const logIn = (data) => {
                 if(user.email === data.email)
                     if(user.password === data.password){
                         USER_FOUND = true
+                        sessionStorageLogIn(data)
+                        window.location.href="./index.html"
                         console.log("found")
                     }
             })
@@ -71,6 +73,14 @@ const logIn = (data) => {
                 console.log("not found")
             }
         })
+}
+
+const isUserLoggedIn = ()=>{
+    // true daca este logat / false altfel
+    if (window.sessionStorage.getItem("accountStatus") === null)
+        return false
+    else
+        return window.sessionStorage.getItem("accountStatus").isLogged
 }
 
 const dict = {"email":"admin@admin","password":"None"}

@@ -4,7 +4,34 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/membri.css">
+<style>
+    .member{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10vh;
+        margin: 0;
+        padding: 0;
+    }
+    .member>p{
+        margin: 1vh;
+        padding: 0;
+    }
+    .member>*:nth-of-type(1){
+        color: black;
+    }
+    .member>*:nth-of-type(2){
+        color: red;
+    }
+    .member>*:nth-of-type(3){
+        color: green;
+    }
+</style>
+
 </head>
+
+
 <body>
 
 <section class="header-container">
@@ -16,6 +43,20 @@
     </div>
 </section>
 
+<section>
+    <h1>ceva</h1>
+    <h2>4</h2>
+    <div id="members-container">
+        <div class="member"><p>nume prenume</p><p>redactor sef DF</p><p>evaluator DF</p></div>
+
+        <div class="member"><p>nume prenume</p><p>redactor sef DF</p><p>evaluator DF</p></div>
+
+        <div class="member"><p>nume prenume</p><p>redactor sef DF</p><p>evaluator DF</p></div>
+    </div>
+
+
+</section>
+
 <!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
 
@@ -25,7 +66,7 @@
 <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-database.js"></script>
 <script src="../src/jquery-3.6.0.min.js"></script>
 <script src="js/firebaseConfig.js"></script>
-<script src="js/each/membri.js"></script>
+<script src="js/each/members.js"></script>
 <script src="js/const.js"></script>
 <script src="js/utils.js"></script>
 <script src="js/headerChange.js"></script>

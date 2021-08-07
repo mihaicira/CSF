@@ -120,3 +120,43 @@ a{
     width: 2vh;
     transform: translateY(-305%) translateX(110%) ;
 }
+
+#loadingAnimation{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 500ms;
+    -o-transition: 500ms;
+    -moz-transition: 500ms;
+    -webkit-transition: 500ms;
+    margin-top: 2vh;
+    opacity: 0;
+}
+
+#loadingAnim>#smallPart{
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: 2s rotateRight linear infinite;
+}
+#loadingAnim>#bigPart{
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: 2s rotateLeft linear infinite;
+}
+
+@keyframes rotateLeft {
+    from{
+        transform: rotateZ(0deg);
+    }
+    to{
+        transform: rotateZ(360deg)
+    }
+}
+@keyframes rotateRight {
+    from{
+        transform: rotateZ(0deg);
+    }
+    to{
+        transform: rotateZ(-360deg)
+    }
+}

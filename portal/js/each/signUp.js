@@ -31,11 +31,17 @@ function signUp(){
                 blinkError(LoginSignupErrors[4])
             }
             else{
-                createNewUser({
+                let accountData = {
                     email:email,
                     password: $.MD5(password),
                     nume: nume
-                })
+                }
+                document.getElementById("loadingAnimation").style.opacity="1"
+                createNewUser(accountData)
+                setTimeout(()=>{
+                    logIn(accountData)
+                },2000)
+
             }
         })
 
