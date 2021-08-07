@@ -42,7 +42,8 @@ const sessionStorageLogIn = (data)=>{
             password:data.password
         }
     }
-    window.sessionStorage.setItem("accountStatus",sessionData)
+    window.sessionStorage.setItem("accountStatus",JSON.stringify(sessionData))
+
 }
 
 const sessionStorageLogOut = ()=>{
@@ -50,8 +51,10 @@ const sessionStorageLogOut = ()=>{
         isLogged: false,
         account:null
     }
-    window.sessionStorage.setItem("accountStatus",data)
+    window.sessionStorage.setItem("accountStatus",JSON.stringify(data))
+    //let obj = JSON.parse(...)
 }
+
 
 const logIn = (data) => {
     //param = un dictionar cu doua keys: mail & pass
@@ -77,6 +80,9 @@ const logIn = (data) => {
 
 const isUserLoggedIn = ()=>{
     // true daca este logat / false altfel
+
+    //document.getElementById("connect-status").innerText = "blabla"
+
     if (window.sessionStorage.getItem("accountStatus") === null)
         return false
     else
