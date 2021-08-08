@@ -34,25 +34,30 @@ const createNewUser = (data) =>{
     return true;
 }
 
-const sessionStorageLogIn = (data)=>{
-    let sessionData = {
+const localStorageLogIn = (data)=>{
+    let localData = {
         isLogged: true,
         account:{
             email:data.email,
             password:data.password
         }
     }
-    window.sessionStorage.setItem("accountStatus",JSON.stringify(sessionData))
+    window.localStorage.setItem("accountStatus",JSON.stringify(localData))
 
 }
 
-const sessionStorageLogOut = ()=>{
+const localStorageLogOut = ()=>{
     let data = {
         isLogged: false,
         account:null
     }
-    window.sessionStorage.setItem("accountStatus",JSON.stringify(data))
+    window.localStorage.setItem("accountStatus",JSON.stringify(data))
     //let obj = JSON.parse(...)
+}
+
+const LogOut = ()=>{
+    localStorageLogOut()
+    window.location.reload()
 }
 
 
@@ -67,13 +72,13 @@ const logIn = (data) => {
                 if(user.email === data.email)
                     if(user.password === data.password){
                         USER_FOUND = true
-                        sessionStorageLogIn(data)
+                        localStorageLogIn(data)
                         window.location.href="./index.html"
                         console.log("found")
                     }
             })
             if(!USER_FOUND){
-                console.log("not found")
+                blinkError(LoginSignupErrors[5])
             }
         })
 }
@@ -81,12 +86,15 @@ const logIn = (data) => {
 const isUserLoggedIn = ()=>{
     // true daca este logat / false altfel
 
-    //document.getElementById("connect-status").innerText = "blabla"
-
-    if (window.sessionStorage.getItem("accountStatus") === null)
+    if(JSON.parse(window.localStorage.getItem("accountStatus"))=== null ){
+        // verificam daca are ceva in local storage, daca nu are nimic punem isLogged=false si return false
+        localStorageLogOut()
         return false
+    }
+
     else
-        return window.sessionStorage.getItem("accountStatus").isLogged
+        // stim ca accountStatus nu e null deci in isLogged poate fi ori true ori fals, returnam oricare ar fi
+        return JSON.parse(window.localStorage.getItem("accountStatus")).isLogged
 }
 
 const dict = {"email":"admin@admin","password":"None"}
@@ -110,4 +118,22 @@ function maximizeNavbar(){
     document.getElementById("header-second-line").style.height= "8vh";
     document.getElementById("header-second-line").style.top= "12vh";
 }
+
+function blinkError(err){
+    //folosit la formularele de login / sign up, afiseaza erori in functie de caz
+    let blink = document.getElementById("form-error")
+    blink.innerText = err
+    blink.style.opacity = "1"
+    setTimeout(()=>{
+        blink.style.opacity = "0"
+        setTimeout(()=>{
+            blink.style.opacity = "1"
+            setTimeout(()=>{
+                blink.style.opacity = "0"
+            },1500)
+        },700)
+    },1500)
+}
+
+
 

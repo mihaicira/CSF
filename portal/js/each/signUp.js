@@ -50,18 +50,3 @@ function signUp(){
     return false;
 }
 
-function blinkError(err){
-    let blink = document.getElementById("form-error")
-    blink.innerText = err
-    blink.style.opacity = "1"
-    setTimeout(()=>{
-        blink.style.opacity = "0"
-        setTimeout(()=>{
-            blink.style.opacity = "1"
-            setTimeout(()=>{
-                blink.style.opacity = "0"
-            },1500)
-            },700)
-    },1500)
-
-}

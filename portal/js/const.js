@@ -17,5 +17,6 @@ const LoginSignupErrors = {
     1: "Password is too short",
     2: "Passwords do not match",
     3: "Email address is not valid",
-    4: "There already is an account with this email address"
+    4: "There already is an account with this email address",
+    5: "Incorrect data. Try again"
 }

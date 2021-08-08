@@ -1,5 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<!-- scriptul asta verificam daca userul este deja logat si nu mai lasam pagina sa se incarce si il trimitem la index in caz ca e logat -->
+<script>    function alreadySignedIn(){        if(JSON.parse(window.localStorage.getItem("accountStatus")).isLogged)            window.location.href="index.html"    }    alreadySignedIn()</script>
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -11,20 +15,20 @@
 <section class="header-container">
     <div id="header-first-line"><img src="../media/logo-csf-cropped.png"></div>
     <div id="header-second-line">
-        <button href="">buton 1</button>
-        <button href="">buton 1</button>
-        <button href="">buton 1</button>
+        <button onclick="window.location.href='/CSF-main/index.html'">Acasa </button>
     </div>
 </section>
 
 <section class="login-container">
     <h1>Welcome</h1>
-    <form action="#" method="post">
+    <form onsubmit="return signIn()" method="post" id="login-form">
         <input type="text" name="email" placeholder="Email" required/>
         <svg class="placeholder-icon"  viewBox="0 0 7 7" fill="none" xmlns="http://www.w3.org/2000/svg">            <g clip-path="url(#clip0)">                <path d="M4.07666 3.10655L6.14998 4.41727V1.74048L4.07666 3.10655Z" fill="#696969"/>                <path d="M0 1.74048V4.41727L2.07332 3.10655L0 1.74048Z" fill="#696969"/>                <path d="M5.76532 0.960938H0.384074C0.192271 0.960938 0.0400586 1.10393 0.0112305 1.28804L3.0747 3.30639L6.13817 1.28804C6.10934 1.10393 5.95713 0.960938 5.76532 0.960938Z" fill="#696969"/>                <path d="M3.72426 3.33864L3.18037 3.69688C3.14808 3.71802 3.11156 3.7284 3.07466 3.7284C3.03776 3.7284 3.00125 3.71802 2.96896 3.69688L2.42507 3.33826L0.0119629 4.86461C0.0415598 5.04719 0.193004 5.18902 0.384038 5.18902H5.76529C5.95632 5.18902 6.10777 5.04719 6.13736 4.86461L3.72426 3.33864Z" fill="#696969"/>            </g>            <defs>                <clipPath id="clip0">                    <rect width="6.15" height="6.15" fill="white"/>                </clipPath>            </defs>        </svg>
 
-        <input type="text" name="password" placeholder="Password" required/>
+        <input type="password" name="password" placeholder="Password" required/>
         <svg class="placeholder-iconlock" viewBox="0 0 6 7" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 0C2.33672 0 1.76367 0.247146 1.40625 0.647837C1.04883 1.04853 0.9 1.56806 0.9 2.12861V2.42308H1.8V2.12861C1.8 1.70373 1.91719 1.36929 2.10938 1.15264C2.30156 0.935998 2.56289 0.807692 3 0.807692C3.43828 0.807692 3.69844 0.928636 3.89063 1.14423C4.08281 1.35983 4.2 1.69847 4.2 2.12861V2.42308H5.1V2.12861C5.1 1.5649 4.9418 1.04011 4.58438 0.639423C4.22695 0.238732 3.66211 0 3 0ZM0.9 2.69231C0.403125 2.69231 0 3.05409 0 3.5V6.19231C0 6.63822 0.403125 7 0.9 7H5.1C5.59688 7 6 6.63822 6 6.19231V3.5C6 3.05409 5.59688 2.69231 5.1 2.69231H0.9ZM3 4.03846C3.33164 4.03846 3.6 4.2793 3.6 4.57692C3.6 4.77569 3.4793 4.94606 3.3 5.03966V5.65385C3.3 5.80213 3.16523 5.92308 3 5.92308C2.83477 5.92308 2.7 5.80213 2.7 5.65385V5.03966C2.5207 4.94606 2.4 4.77569 2.4 4.57692C2.4 4.2793 2.66836 4.03846 3 4.03846Z" fill="#696969"/></svg>
+
+        <p id="form-error">nothing to see here</p>
         <input type="submit" name="loginBtn" id="login-btn" value="LOGIN" class="submit-btn"/>
     </form>
     <p><a href="forgotpassword.html"><b>Forgot password?</b></a></p>
@@ -36,13 +40,18 @@
 
 <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
+
+
+
 <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-analytics.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-database.js"></script>
 <script src="../src/jquery-3.6.0.min.js"></script>
 <script src="js/firebaseConfig.js"></script>
+<script src="../src/jquery.md5.min.js"></script>
 <script src="js/const.js"></script>
 <script src="js/utils.js"></script>
 <script src="js/headerChange.js"></script>
+<script src="js/each/signIn.js"></script>
 
 </body>
 </html>
