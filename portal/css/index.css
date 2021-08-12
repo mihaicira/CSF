@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+
+
+
+.info-container{
+    color: #000000;
+    width: 50%;
+    height: 25vh;
+    display:flex;
+    align-items: center;
+    position: relative;
+    justify-content: space-evenly;
+    flex-direction: column;
+    border: .2vh solid #182268;
+    background: white;
+    border-radius: 3vh;
+    -webkit-box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.39);
+    box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.39);
+
+    padding: 7vh 3vh 3vh 3vh ;
+
+    margin-left: 50%;
+    transform: translateX(-50%);
+
+    margin-top: 10vh;
+    margin-bottom: 10vh;
+}
+
+.info-container *{
+    font-family: 'Roboto', sans-serif;
+}
+
+
+.info-container .articol-btn{
+    font-size: 2vh;
+    font-style: italic;
+    width: auto;
+    color: #222222;
+    display: block;
+    position: relative;
+    padding: 1.4vh;
+    border-radius: 25vh;
+    border: .1vh solid black;
+    background: #eaeaea;
+    cursor: pointer;
+
+    transition: 400ms;
+    -o-transition: 400ms;
+    -webkit-transition: 400ms;
+    -moz-transition: 400ms;
+
+}
+.info-container .articol-btn:hover{
+    color: #022b4f;
+    background: whitesmoke;
+    box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.39);
+
+}
+
+.revista{
+    color: #000000;
+    width: auto;
+    display:flex;
+    align-items: center;
+    position: absolute;
+    border: .4vh solid #14217a;
+    background: #f6f6f6;
+    border-radius: 5vh;
+    -webkit-box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.39);
+    box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.39);
+    padding: 1.5vw;
+    font-size: 3vh;
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    top: 0;
+    transform: translateY(-50%);
+}
+
+.info-container .contact{
+    color: #000962;
+    text-decoration: none;
+    font-style: italic;
+    transition: 400ms;
+    -o-transition: 400ms;
+    -webkit-transition: 400ms;
+    -moz-transition: 400ms;
+}
+.info-container .contact:hover{
+    color: #ef4135;
+
+}
+
+
+.info-container .protocol{
+    color: #4c90c3;
+    font-style: italic;
+    cursor: pointer;
+
+    transition: 400ms;
+    -o-transition: 400ms;
+    -webkit-transition: 400ms;
+    -moz-transition: 400ms;
+}
+
+.info-container .protocol:hover{
+    color: #75d1f8;
+}
+
+.info-container *:not(.revista){
+    font-size: 2vh;
+    text-align: center;
+}

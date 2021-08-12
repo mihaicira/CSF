@@ -5,7 +5,7 @@
     ["publicatii.html","Publicatii"],
     ["cercetare.html","Cercetare"],
     ["parteneri.html","Parteneri"],
-    ["asociatia.html","Asociatia de studii francofone DF"],
+    ["../portal/index.html","Portal"],
     ["contact.html","Contact"]
   ],
   "ndNavbar":
@@ -39,9 +39,6 @@
     "parteneri": [
       ["#test","testing !!"]
     ],
-    "asociatia": [
-      ["#descriere si obiective","Descriere si obiective"]
-    ],
     "contact": [
       ["#contact","Contact"]
     ],
@@ -54,7 +51,7 @@
     ["publicatii.html","Publicatii"],
     ["cercetare.html","Cercetare"],
     ["parteneri.html","Parteneri"],
-    ["asociatia.html","Portal CSF"],
+    ["../portal/index.html","Portal CSF"],
     ["contact.html","Contact"],
     ["credits.html","Credite"]
   ]
