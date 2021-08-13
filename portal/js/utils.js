@@ -34,11 +34,11 @@ const localStorageLogIn = (data)=>{
         isLogged: true,
         account:{
             email:data.email,
-            password:data.password
+            password:data.password,
+            rank:data.rank
         }
     }
     window.localStorage.setItem("accountStatus",JSON.stringify(localData))
-
 }
 
 const localStorageLogOut = ()=>{
@@ -55,8 +55,7 @@ const LogOut = ()=>{
     window.location.reload()
 }
 
-
-const logIn = (data) => {
+const logIn = (data,login=true) => {
     //param = un dictionar cu doua keys: mail & pass
     //verifica daca exista mailul respectiv in baza de date. Daca exista, verifica parolele.
     database.ref("users").once('value')
@@ -66,10 +65,9 @@ const logIn = (data) => {
             Users.forEach((user)=>{
                 if(user.email === data.email)
                     if(user.password === data.password){
-                        USER_FOUND = true
                         localStorageLogIn(data)
                         window.location.href="./index.html"
-                        console.log("found")
+                        USER_FOUND = true
                     }
             })
             if(!USER_FOUND){
@@ -80,20 +78,15 @@ const logIn = (data) => {
 
 const isUserLoggedIn = ()=>{
     // true daca este logat / false altfel
-
     if(JSON.parse(window.localStorage.getItem("accountStatus"))=== null ){
         // verificam daca are ceva in local storage, daca nu are nimic punem isLogged=false si return false
         localStorageLogOut()
         return false
     }
-
     else
         // stim ca accountStatus nu e null deci in isLogged poate fi ori true ori fals, returnam oricare ar fi
         return JSON.parse(window.localStorage.getItem("accountStatus")).isLogged
 }
-
-const dict = {"email":"admin@admin","password":"None"}
-const dict2 = {"email":"admin@admin","password":"admin@admin"}
 
 function validateEmail(email) {
     // true daca adresa de email este valida
@@ -128,6 +121,15 @@ function blinkError(err){
             },1500)
         },700)
     },1500)
+}
+
+function verifyIfUserHasRank(){
+    // let rank = sessionStorage.parse...
+        return true
+}
+
+if(!verifyIfUserHasRank()){
+    redirect(chooserank)
 }
 
 

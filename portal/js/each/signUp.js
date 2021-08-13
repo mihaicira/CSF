@@ -31,11 +31,19 @@ function signUp(){
             if (found){
                 blinkError(LoginSignupErrors[4])
             }
+            const ranks = [];
+            //vezi ce pui in ranks RANKS["aaf"] / RANKS["adf"] / amandoua
+            // if(aaf.selected)
+            //     ranks.push(RANKS["aaf"])
+            // if(adf.selected)
+            //     ranks.push(RANKS["adf"])
+             // ranks = [RANKS["aaf"], RANKS["adf"]]
             else{
                 let accountData = {
                     email:email,
                     password: $.MD5(password),
-                    nume: nume + " " + prenume
+                    nume: nume + " " + prenume,
+                    rank:ranks
                 }
                 document.getElementById("loadingAnimation").style.opacity="1"
                 createNewUser(accountData)

@@ -2,7 +2,7 @@
 <html lang="en">
 
 <!-- scriptul asta verificam daca userul este deja logat si nu mai lasam pagina sa se incarce si il trimitem la index in caz ca e logat -->
-<script>    function alreadySignedIn(){        if(JSON.parse(window.localStorage.getItem("accountStatus")).isLogged)            window.location.href="index.html"    }    alreadySignedIn()</script>
+<script>function alreadySignedIn(){if(JSON.parse(window.localStorage.getItem("accountStatus")).isLogged)window.location.href="index.html"}alreadySignedIn()</script>
 
 <head>
     <meta charset="UTF-8">
@@ -34,6 +34,7 @@
     <p><a href="forgotpassword.html"><b>Forgot password?</b></a></p>
     <p>Don't have an account? <a href="signup.html"><b>Sign Up</b></a></p>
 </section>
+
 
 <!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
