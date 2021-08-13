@@ -9,14 +9,9 @@ const createNewUser = (data) =>{
         email: data.email,
         password: data.password,
         nume: data.nume,
-        rankDF:{
-            id: 999,
-            nume: RANKS["999"]
-        },
-        rankAF:{
-            id: 999,
-            nume: RANKS["999"]
-        },
+        ranks:[
+            RANKS["aaf"]
+        ],
         contributions:[],
         evals:[],
         needToEval:[],

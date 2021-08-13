@@ -1,5 +1,6 @@
 function signUp(){
-    let nume = document.querySelector("input[name='name']").value
+    let prenume = document.querySelector("input[name='firstName']").value
+    let nume = document.querySelector("input[name='lastName']").value
     let email = document.querySelector("input[name='email']").value
     let password = document.querySelector("input[name='password']").value
 
@@ -34,7 +35,7 @@ function signUp(){
                 let accountData = {
                     email:email,
                     password: $.MD5(password),
-                    nume: nume
+                    nume: nume + " " + prenume
                 }
                 document.getElementById("loadingAnimation").style.opacity="1"
                 createNewUser(accountData)
@@ -44,9 +45,5 @@ function signUp(){
 
             }
         })
-
-
-
     return false;
 }
-

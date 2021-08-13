@@ -1,16 +1,53 @@
 const RANKS = {
-    0:"Administrator",
-    101:"Redactor șef Dialogues Francophones",
-    202:"Redactor responsabil Dialogues Francophones",
-    303:"Redactor responsabil Agapes Francophones",
-    404:"Membru în comitetul de redacție Agapes Francophones",
-    505:"Membru în comitetul de redacție Dialogues Francophones",
-    606:"Evaluator Dialogues Francophones",
-    707:"Evaluator Agapes Francophones",
-    808:"Autor Dialogues Francophones",
-    909:"Autor Agapes Francophones",
-    999:"Membru",
-    1000:"Vizitator"
+    admin:{
+        nume: "Administrator",
+        weight: 1
+    },
+    rsdf:{
+        id: "rsdf",
+        nume: "Redactor șef Dialogues Francophones",
+        weight: 2
+    },
+    redresdf:{
+        id: "redresdf",
+        nume: "Redactor responsabil Dialogues Francophones",
+        weight: 3
+    },
+    redresaf:{
+        id: "redresaf",
+        nume: "Redactor responsabil Agapes Francophones",
+        weight: 3
+    },
+    mcaf:{
+        id: "mcaf",
+        nume: "Membru în comitetul de redacție Agapes Francophones",
+        weight: 4
+    },
+    mcdf:{
+        id: "mcdf",
+        nume: "Membru în comitetul de redacție Dialogues Francophones",
+        weight: 4
+    },
+    evdf:{
+        id: "evdf",
+        nume: "Evaluator Dialogues Francophones",
+        weight: 5
+    },
+    evaf:{
+        id: "evaf",
+        nume: "Evaluator Agapes Francophones",
+        weight: 5
+    },
+    adf:{
+        id: "adf",
+        nume: "Autor Dialogues Francophones",
+        weight: 6
+    },
+    aaf:{
+        id: "aaf",
+        nume: "Autor Agapes Francophones",
+        weight: 6
+    }
 }
 
 const LoginSignupErrors = {

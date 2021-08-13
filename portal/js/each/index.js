@@ -11,3 +11,13 @@ function changeButton(){
 }
 changeButton()
 
+function denyButtonIfNotLoggedIn(paramBool){
+    if(!isUserLoggedIn())
+        alert("Nu sunteți conectat. Conectați-vă pentru a continua.")
+    else{
+        if(paramBool===true)
+            window.location.href="profile.html"
+        else
+            window.location.href="members.html"
+    }
+}
