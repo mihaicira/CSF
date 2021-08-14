@@ -30,8 +30,24 @@
         <input type="password" name="password" placeholder="Password" required/>
         <svg class="placeholder-iconlock" viewBox="0 0 6 7" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 0C2.33672 0 1.76367 0.247146 1.40625 0.647837C1.04883 1.04853 0.9 1.56806 0.9 2.12861V2.42308H1.8V2.12861C1.8 1.70373 1.91719 1.36929 2.10938 1.15264C2.30156 0.935998 2.56289 0.807692 3 0.807692C3.43828 0.807692 3.69844 0.928636 3.89063 1.14423C4.08281 1.35983 4.2 1.69847 4.2 2.12861V2.42308H5.1V2.12861C5.1 1.5649 4.9418 1.04011 4.58438 0.639423C4.22695 0.238732 3.66211 0 3 0ZM0.9 2.69231C0.403125 2.69231 0 3.05409 0 3.5V6.19231C0 6.63822 0.403125 7 0.9 7H5.1C5.59688 7 6 6.63822 6 6.19231V3.5C6 3.05409 5.59688 2.69231 5.1 2.69231H0.9ZM3 4.03846C3.33164 4.03846 3.6 4.2793 3.6 4.57692C3.6 4.77569 3.4793 4.94606 3.3 5.03966V5.65385C3.3 5.80213 3.16523 5.92308 3 5.92308C2.83477 5.92308 2.7 5.80213 2.7 5.65385V5.03966C2.5207 4.94606 2.4 4.77569 2.4 4.57692C2.4 4.2793 2.66836 4.03846 3 4.03846Z" fill="#696969"/></svg>
 
-        <p id="form-error">nothing to see here</p>
+        <p id="form-error"></p>
         <input type="submit" name="loginBtn" id="login-btn" value="LOGIN" class="submit-btn"/>
+        <div id="loadingAnimation">
+            <svg width="30" height="30" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g id="loadingAnim">
+                    <g id="bigPart">
+                        <rect id="bigPartContainer" width="46" height="46" fill="white" fill-opacity="0.01"/>
+                        <path id="bigPartCenter" d="M8 23H2C2.33333 30 7 44 23 44C39 44 43.6667 30 44 23H38C37.8333 28 34.6 38 23 38C11.4 37.2 8.16667 27.6667 8 23Z" fill="#182268"/>
+                    </g>
+                    <g id="smallPart">
+                        <g id="smallPartContainer">
+                            <rect id="smallPartContainer_2" width="46" height="46" fill="white" fill-opacity="0.01"/>
+                            <path id="smallPartCenter" d="M14 23H10C10.1667 18.5 13 9.59998 23 9.99998C33 10.4 35.8333 18.8333 36 23H32C31.8333 19.8333 29.8 13.6 23 14C16.2 14.4 14.1667 20.1666 14 23Z" fill="#182268"/>
+                        </g>
+                    </g>
+                </g>
+            </svg>
+        </div>
     </form>
     <p><a href="forgotpassword.html"><b>Forgot password?</b></a></p>
     <p>Don't have an account? <a href="signup.html"><b>Sign Up</b></a></p>

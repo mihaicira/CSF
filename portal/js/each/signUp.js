@@ -68,7 +68,7 @@ $(document).ready(function () {
         let checked = $("input[type=checkbox]:checked").length;
 
         if(!checked) {
-            alert("Trebuie sa selectati cel putin un rol: Membru DF / Membru AF");
+            alert("Trebuie sa selectati cel putin o redactie");
             return false;
         }
     });
