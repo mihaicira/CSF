@@ -26,7 +26,9 @@ function addButtons(){
                 if (user.email === userData.email){
                     if (user.password === userData.password) {
                         const ranks = user.ranks
-                        console.log(ranks)
+                        if(ranks.length === 1)
+                            chooseRank(RANKS[ranks[0].id])
+                        else
                         ranks.forEach((ranks)=>{
                             if(ranks.id.includes("df")){
                                 document.getElementById("header-third-line").insertAdjacentHTML("beforeend",`<button onclick='chooseRank(RANKS.${ranks.id})'>${ranks.nume}</button>`)
