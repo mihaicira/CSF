@@ -1,4 +1,5 @@
 function signUp(){
+
     let prenume = document.querySelector("input[name='firstName']").value
     let nume = document.querySelector("input[name='lastName']").value
     let email = document.querySelector("input[name='email']").value
@@ -19,6 +20,17 @@ function signUp(){
         return false;
     }
 
+
+    const ranks = [];
+    //vezi ce pui in ranks RANKS["aaf"] / RANKS["adf"] / amandoua
+    if(document.getElementById('MembruAF').checked){
+        if(document.getElementById('MembruDF').checked)
+            ranks.push(RANKS["aaf"],RANKS["adf"])
+        else
+            ranks.push(RANKS["aaf"])
+    }else
+        ranks.push(RANKS["adf"])
+
     database.ref("users").once("value")
         .then((snapshot)=>{
             const users = snapshot.val()
@@ -31,13 +43,7 @@ function signUp(){
             if (found){
                 blinkError(LoginSignupErrors[4])
             }
-            const ranks = [];
-            //vezi ce pui in ranks RANKS["aaf"] / RANKS["adf"] / amandoua
-            // if(aaf.selected)
-            //     ranks.push(RANKS["aaf"])
-            // if(adf.selected)
-            //     ranks.push(RANKS["adf"])
-             // ranks = [RANKS["aaf"], RANKS["adf"]]
+
             else{
                 let accountData = {
                     email:email,
@@ -47,6 +53,7 @@ function signUp(){
                 }
                 document.getElementById("loadingAnimation").style.opacity="1"
                 createNewUser(accountData)
+                accountData.rank = null;
                 setTimeout(()=>{
                     logIn(accountData)
                 },2000)
@@ -55,3 +62,16 @@ function signUp(){
         })
     return false;
 }
+
+$(document).ready(function () {
+    $('.submit-btn').click(function() {
+        checked = $("input[type=checkbox]:checked").length;
+
+        if(!checked) {
+            alert("Trebuie sa selectati cel putin un rol: Membru DF / Membru AF");
+            return false;
+        }
+
+    });
+});
+

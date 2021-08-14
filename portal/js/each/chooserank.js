@@ -6,14 +6,38 @@ function changeButton(){
 }
 changeButton()
 
+function chooseRank(Rank){
 
-database.ref("users").once('value')
-.then((snapshot)=>{
-    const userData = 1//getStorageData
-    Users.forEach((user)=>{
-        if(user.email === userData.email)
-            if(user.password === userData.password){
-                const ranks = user.ranks
-            }
-    })
-})
+    let userData = JSON.parse(window.sessionStorage.getItem("accountStatus"))
+    userData.account['rank']=Rank
+    sessionStorage.setItem("accountStatus",JSON.stringify(userData))
+    window.location.href="index.html"
+
+}
+
+
+
+function addButtons(){
+    database.ref("users").once('value')
+        .then((snapshot)=>{
+            Users = snapshot.val()
+            const userData = JSON.parse(window.sessionStorage.getItem("accountStatus")).account
+            Users.forEach((user)=> {
+                if (user.email === userData.email){
+                    if (user.password === userData.password) {
+                        const ranks = user.ranks
+                        console.log(ranks)
+                        ranks.forEach((ranks)=>{
+                            if(ranks.id.includes("df")){
+                                document.getElementById("header-third-line").insertAdjacentHTML("beforeend",`<button onclick='chooseRank(RANKS.${ranks.id})'>${ranks.nume}</button>`)
+                            }else{
+                               document.getElementById("header-fourth-line").insertAdjacentHTML("beforeend",`<button onclick="chooseRank(RANKS.${ranks.id})">${ranks.nume}</button>`)
+                            }
+
+                        })
+                    }
+                }
+            })
+        })
+}
+addButtons()

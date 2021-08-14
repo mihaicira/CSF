@@ -1,3 +1,5 @@
+
+
 const generateId = ()=>{return Date.now()}
 
 const createNewUser = (data) =>{
@@ -9,9 +11,7 @@ const createNewUser = (data) =>{
         email: data.email,
         password: data.password,
         nume: data.nume,
-        ranks:[
-            RANKS["aaf"]
-        ],
+        ranks:data.rank,
         contributions:[],
         evals:[],
         needToEval:[],
@@ -21,6 +21,7 @@ const createNewUser = (data) =>{
     database.ref('users').once("value")
         .then((snapshot)=>{
             const USERS = snapshot.val()
+            console.log(User)
             USERS.push(User)
             let updates = {}
             updates["/users"] = USERS
@@ -29,7 +30,7 @@ const createNewUser = (data) =>{
     return true;
 }
 
-const localStorageLogIn = (data)=>{
+const sessionStorageLogIn = (data)=>{
     let localData = {
         isLogged: true,
         account:{
@@ -38,20 +39,20 @@ const localStorageLogIn = (data)=>{
             rank:data.rank
         }
     }
-    window.localStorage.setItem("accountStatus",JSON.stringify(localData))
+    window.sessionStorage.setItem("accountStatus",JSON.stringify(localData))
 }
 
-const localStorageLogOut = ()=>{
+const sessionStorageLogOut = ()=>{
     let data = {
         isLogged: false,
         account:null
     }
-    window.localStorage.setItem("accountStatus",JSON.stringify(data))
+    window.sessionStorage.setItem("accountStatus",JSON.stringify(data))
     //let obj = JSON.parse(...)
 }
 
 const LogOut = ()=>{
-    localStorageLogOut()
+    sessionStorageLogOut()
     window.location.reload()
 }
 
@@ -65,7 +66,7 @@ const logIn = (data,login=true) => {
             Users.forEach((user)=>{
                 if(user.email === data.email)
                     if(user.password === data.password){
-                        localStorageLogIn(data)
+                        sessionStorageLogIn(data)
                         window.location.href="./index.html"
                         USER_FOUND = true
                     }
@@ -78,14 +79,14 @@ const logIn = (data,login=true) => {
 
 const isUserLoggedIn = ()=>{
     // true daca este logat / false altfel
-    if(JSON.parse(window.localStorage.getItem("accountStatus"))=== null ){
+    if(JSON.parse(window.sessionStorage.getItem("accountStatus"))=== null ){
         // verificam daca are ceva in local storage, daca nu are nimic punem isLogged=false si return false
-        localStorageLogOut()
+        sessionStorageLogOut()
         return false
     }
     else
         // stim ca accountStatus nu e null deci in isLogged poate fi ori true ori fals, returnam oricare ar fi
-        return JSON.parse(window.localStorage.getItem("accountStatus")).isLogged
+        return JSON.parse(window.sessionStorage.getItem("accountStatus")).isLogged
 }
 
 function validateEmail(email) {
@@ -122,6 +123,12 @@ function blinkError(err){
         },700)
     },1500)
 }
+
+
+
+
+
+
 
 function verifyIfUserHasRank(){
     // let rank = sessionStorage.parse...

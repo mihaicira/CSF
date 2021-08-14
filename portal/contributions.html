@@ -1,5 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<!-- scriptul asta verifica daca userul este logat si nu are rank selectat-->
+<script>function loggedInWithoutRank(){    if(JSON.parse(window.sessionStorage.getItem("accountStatus")).isLogged)         if(JSON.parse(window.sessionStorage.getItem("accountStatus")).account.rank == null)             window.location.href="chooserank.html"}loggedInWithoutRank()</script>
+
+
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>

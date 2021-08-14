@@ -1,0 +1,53 @@
+.buttons-container{
+    color:#696969;
+    width: max-content;
+    height: max-content;
+    display:flex;
+    align-items: center;
+    margin-bottom: 5vh;
+    position: relative;
+
+    justify-content: space-evenly;
+    flex-direction: column;
+    border: .2vh solid #182268;
+    background: white;
+    border-radius: 1vh;
+    -webkit-box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.39);
+    box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.39);
+    padding: 2vw;
+    margin-left: 50%;
+    transform: translateX(-50%);
+
+    margin-top: 5vh;
+}
+
+.buttons-container *{
+    font-family: 'Roboto', sans-serif;
+}
+
+.buttons-container button{
+    font-size: 1.7vh;
+    width: max-content;
+    height: 4vh;
+    padding: 1vh;
+    color:white;
+    display: block;
+    position: relative;
+    border-width: 0 0 0 0;
+    z-index: 1;
+    border-radius: 25vh;
+    overflow: hidden;
+    margin: 0 auto;
+    margin-top: 2vh;
+    cursor: pointer;
+}
+#header-third-line button{
+    background: #041CF6;
+    background: linear-gradient(left, #4BB6E4, #041CF6);
+    background: -webkit-linear-gradient(left, #4BB6E4, #041CF6);
+}
+#header-fourth-line button{
+    background: #edb42f;
+    background: linear-gradient(left, #f0bb41, #a17308);
+    background: -webkit-linear-gradient(left, #f0bb41, #a17308);
+}

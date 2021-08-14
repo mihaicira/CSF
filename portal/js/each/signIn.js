@@ -4,7 +4,8 @@ function signIn(){
 
     let accountData = {
         email:email,
-        password: $.MD5(password)
+        password: $.MD5(password),
+        rank:null
     }
 
     logIn(accountData)
