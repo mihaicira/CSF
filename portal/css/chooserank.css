@@ -29,7 +29,8 @@
     font-size: 1.7vh;
     width: max-content;
     height: 4vh;
-    padding: 1vh;
+    padding: 3vh;
+    font-weight: bold;
     color:white;
     display: block;
     position: relative;
@@ -37,9 +38,20 @@
     z-index: 1;
     border-radius: 25vh;
     overflow: hidden;
-    margin: 0 auto;
-    margin-top: 2vh;
+    margin-top: 2.5vh;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    transition: 500ms;
+    -o-transition: 500ms;
+    -moz-transition: 500ms;
+    -webkit-transition: 500ms;
+}
+.buttons-container button:hover{
+    -webkit-box-shadow: 0px 10px 27px -7px rgba(0,0,0,0.87);
+    box-shadow: 0px 10px 27px -7px rgba(0,0,0,0.87);
 }
 #header-third-line button{
     background: #041CF6;

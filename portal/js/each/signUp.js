@@ -65,13 +65,13 @@ function signUp(){
 
 $(document).ready(function () {
     $('.submit-btn').click(function() {
-        checked = $("input[type=checkbox]:checked").length;
+        let checked = $("input[type=checkbox]:checked").length;
 
         if(!checked) {
             alert("Trebuie sa selectati cel putin un rol: Membru DF / Membru AF");
             return false;
         }
-
     });
+
 });
 

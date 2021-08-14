@@ -9,7 +9,7 @@ a{
 .login-container{
     color:#696969;
     width: max-content;
-    height: 68vh;
+
     display:flex;
     align-items: center;
     margin-bottom: 5vh;
@@ -86,7 +86,7 @@ a{
 .checkmark {
     position: absolute;
     top: 0;
-    left: 12vh;
+    right: 2vh;
     height: 2vh;
     width: 2vh;
     background-color: #eee;
@@ -125,6 +125,60 @@ a{
     -webkit-transform: rotate(45deg);
     -ms-transform: rotate(45deg);
     transform: rotate(45deg);
+}
+
+.info-rank-container{
+    position: relative;
+
+}
+.info-rank-container>svg{
+    width: 3vh;
+    margin-left: 50%;
+    margin-bottom: 2vh;
+    transform: translateX(-50%);
+    cursor: pointer;
+}
+
+.info-rank-container>svg:hover +p{
+    opacity: 1;
+    z-index: 10;
+}
+
+.info-rank-container>p{
+    position: absolute;
+    background: #696969;
+    padding: 2vh;
+    z-index: -1;
+    border-radius: 2vh;
+    color: white;
+    width: 20vh;
+    text-align: center;
+    margin-left: 50%;
+    transform: translateX(-50%) translateY(-130%);
+    left: 0;
+    right: 0;
+    top: 0;
+    opacity: 0;
+
+    transition: 500ms;
+    -o-transition: 500ms;
+    -webkit-transition: 500ms;
+    -moz-transition: 500ms;
+}
+.info-rank-container>p::after{
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 3vh;
+    width: 3vh;
+    background: #696969;
+    margin-left: 50%;
+    transform: translateX(-50%) translateY(25%) rotateZ(45deg);
+
+    z-index: -1;
+
 }
 
 #form-error{
