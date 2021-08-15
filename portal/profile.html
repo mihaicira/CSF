@@ -1,10 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<!-- scriptul asta verifica daca userul este logat si nu are rank selectat-->
-<script>function loggedInWithoutRank(){    if(JSON.parse(window.sessionStorage.getItem("accountStatus")).isLogged)         if(JSON.parse(window.sessionStorage.getItem("accountStatus")).account.rank == null)             window.location.href="chooserank.html"}loggedInWithoutRank()</script>
-
-
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -15,10 +10,32 @@
 <section class="header-container">
     <div id="header-first-line"><img src="../media/logo-csf-cropped.png"></div>
     <div id="header-second-line">
-        <button onclick="window.location.href='./index.html'">Acasa </button>
+        <button onclick="window.location.href='/CSF-main/index.html'">Acasa </button>
         <button href="">buton 1</button>
     </div>
 </section>
+
+
+
+<section class="profile_box">
+    <img src="../media/profile_page_top.jpg" id="top_imag">
+    <b id="text_nume">Nume Prenume</b>
+    <div id="text_email">numeprenume@e.uvt.ro</div>
+    <div class="text-articole">Articole propuse:</div>
+    <section class="article-box">
+        <div class="text_nume_articol"> Nume articol</div>
+        <div class="text-secundar-articol">Propus in 14/05/2021</div>
+        <svg class="svg-articol" viewBox="0 0 25 26" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M23.8636 0.272705H14.7727C14.1451 0.272705 13.6363 0.777794 13.6363 1.40082C13.6363 2.02384 14.1451 2.52893 14.7727 2.52893H21.1202L9.42378 14.1403C8.97999 14.5809 8.97999 15.2951 9.42378 15.7357C9.64561 15.956 9.93643 16.0661 10.2273 16.0661C10.5181 16.0661 10.8089 15.956 11.0308 15.7356L22.7273 4.12427V10.4256C22.7273 11.0486 23.2361 11.5537 23.8637 11.5537C24.4913 11.5537 25.0001 11.0486 25.0001 10.4256V1.40082C25 0.777794 24.4912 0.272705 23.8636 0.272705Z" fill="black"/>
+            <path d="M19.3182 11.5537C18.6906 11.5537 18.1818 12.0588 18.1818 12.6818V22.8348H2.27271V7.04133H12.5C13.1276 7.04133 13.6364 6.53624 13.6364 5.91322C13.6364 5.2902 13.1276 4.78516 12.5 4.78516H1.13638C0.508789 4.78516 0 5.29024 0 5.91327V23.9629C0 24.5858 0.508789 25.0909 1.13638 25.0909H19.3182C19.9458 25.0909 20.4546 24.5858 20.4546 23.9628V12.6818C20.4545 12.0588 19.9458 11.5537 19.3182 11.5537Z" fill="black"/>
+        </svg>
+
+
+
+    </section>
+</section>
+
+
 
 <!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
