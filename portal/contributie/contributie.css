@@ -1,0 +1,309 @@
+
+:root{
+    --darkblue:  #182268;
+    --lightgrey: rgb(214, 209, 209);
+
+    --text-size: 1rem;
+}
+
+#formular-container{
+    width: 60vw;
+    min-height: 50vh;
+
+    border: .25vw solid var(--darkblue);
+    border-radius: 5vw;
+
+    background: rgb(247,248,252);
+    color: var(--darkblue);
+
+    margin-top: 15vw;
+    margin-bottom: 10vw;
+    padding: 5vw;
+    padding-top: 2.5vw;
+
+    margin-left: 50%;
+    transform: translateX(-50%);
+
+    transform-origin: center;
+    transform-style: preserve-3d;
+}
+
+@keyframes rotate-form{
+    from{
+        transform: translateX(-50%);
+    }
+    to{
+        transform: translateX(-50%) rotateX(-180deg);
+        height: 15vw;
+    }
+}
+
+#formular-container h1{
+    position: absolute;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%) rotateX(180deg);
+
+    z-index: -1;
+    width: 100%;
+
+    height: 20vw;
+
+    /*border: .25vw solid var(--darkblue);*/
+    /*border-radius: 3vw;*/
+
+    /*background: rgb(247,248,252);*/
+}
+
+
+#formular-container h2{
+    text-align: center;
+    font-size: calc(var(--text-size) * 2);
+    margin-bottom: 2.5vw;
+}
+
+form h3{
+    text-align: left;
+    font-size: calc(var(--text-size) * 1.7);
+    margin-left: 3vw;
+}
+
+form h4{
+    text-align: left;
+    font-size: calc(var(--text-size) * 1.25);
+}
+
+form label{
+    font-size: calc(var(--text-size) * 1.10);
+    margin-right: 5vw;
+    position: relative;
+}
+
+label a{
+    color: var(--lightgrey);
+    transition: 300ms;
+    -o-transition: 300ms;
+    -webkit-transition: 300ms;
+    -moz-transition: 300ms;
+}
+
+label a:hover{
+    color: var(--darkblue);
+}
+
+form input,select,button{
+    margin-right: 5vw;
+    position: relative;
+    border: .1vw solid var(--lightgrey);
+    border-radius: .7vw;
+
+    text-align: center;
+
+    transition: 300ms;
+    -o-transition: 300ms;
+    -webkit-transition: 300ms;
+    -moz-transition: 300ms;
+}
+
+form .text{
+    height: 2.5ch;
+    width: 10vw;
+}
+
+#file-input{
+    height: 3ch;
+    font-size: calc(var(--text-size) * 1.1);
+
+}
+
+#file-input>*{
+    background: red;
+}
+
+form input:focus,
+form input:active,
+form input:hover,
+form select:hover,
+form select:active,
+form select:focus,
+form button:focus,
+form button:hover,
+form button:active
+form textarea:active,
+form textarea:hover,
+form textarea:focus{
+    outline: none;
+    box-shadow: 0 0 .15vw .15vw var(--darkblue);
+}
+
+
+form hr{
+    width: 10vw;
+    height: .1vw;
+
+    position: relative;
+
+    border: none;
+
+    float: left;
+
+
+    background: var(--darkblue);
+}
+
+select{
+    padding-left: .5vw;
+    padding-right: .5vw;
+}
+
+#submit{
+    display: inline-block;
+    margin-top: 3vw;
+    margin-left: 50%;
+
+    padding: .25vw;
+
+    transform: translateX(-50%);
+
+    border: .15vw solid var(--darkblue);
+
+    color: var(--darkblue);
+
+    font-size: calc(var(--text-size) * 1.2);
+}
+
+
+table{
+    width: 100%;
+    border: 1px solid var(--darkblue);
+    border-spacing: 10px;
+    border-radius: .5vw;
+    opacity: 0;
+
+    transition: 300ms;
+    -o-transition: 300ms;
+    -webkit-transition: 300ms;
+    -moz-transition: 300ms;
+}
+
+th{
+    border-bottom: 1px solid var(--darkblue);
+}
+
+th:nth-of-type(1){
+    width: 25%;
+}
+
+th:nth-of-type(2){
+    width: 15%;
+}
+
+th:nth-of-type(3){
+    width: 10%;
+}
+
+th:nth-of-type(4){
+    width: 10%;
+}
+
+th:nth-of-type(5){
+    width: 10%;
+}
+td:nth-of-type(5)>button{
+    background: url(../../media/icons/trashcan.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    margin-left: 50%;
+    transform: translateX(-50%);
+
+    height: 1.2vw;
+    width: 1.2vw;
+
+    cursor: pointer;
+}
+
+td>input{
+    margin-left: 50%;
+    transform: translateX(-50%);
+}
+
+#addPerson{
+
+    background: url(../../media/icons/plus.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    margin-top: 1.5vw;
+
+    height: 1.5vw;
+    width: 1.5vw;
+
+    font-weight: 900;
+
+    color: var(--darkblue);
+
+    border: none;
+
+    cursor: pointer;
+}
+
+#addPerson:focus,
+#addPerson:active{
+    box-shadow: none;
+}
+
+tr{
+    text-align: center;
+}
+
+#fillPersons{
+    margin-top: 1.5vw;
+
+    border: 2px solid var(--darkblue);
+    border-radius: .5vw;
+
+    width: 25vw;
+
+    margin-left: 50%;
+    transform: translateX(-50%);
+
+    padding: 0.5vw;
+}
+#fillPersons>input{
+    margin-top: .5vw;
+}
+
+textarea{
+    width: 80%;
+    transition: 300ms;
+    -o-transition: 300ms;
+    -webkit-transition: 300ms;
+    -moz-transition: 300ms;
+    resize: none;
+}
+
+#addPerson{
+    margin-left: 50%;
+    transform: translateX(-50%);
+}
+
+
+.pair-10>select,
+.pair-10>input{
+    position: absolute;
+    left: 10vw;
+}
+
+.pair-15>select,
+.pair-15>input{
+    position: absolute;
+    left: 15vw;
+}
