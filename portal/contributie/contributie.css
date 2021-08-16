@@ -133,7 +133,7 @@ form select:active,
 form select:focus,
 form button:focus,
 form button:hover,
-form button:active
+form button:active,
 form textarea:active,
 form textarea:hover,
 form textarea:focus{
