@@ -16,7 +16,7 @@
     background: rgb(247,248,252);
     color: var(--darkblue);
 
-    margin-top: 15vw;
+    margin-top: 5vw;
     margin-bottom: 10vw;
     padding: 5vw;
     padding-top: 2.5vw;
@@ -297,9 +297,12 @@ textarea{
 
 
 .pair-10>select,
+
+
+
 .pair-10>input{
     position: absolute;
-    left: 10vw;
+    left: 13vw;
 }
 
 .pair-15>select,

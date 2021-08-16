@@ -1,10 +1,8 @@
 var FILE_UPLOAD;
 var FILE2_UPLOAD;
-var limba_articol,rubrica,verificare_documente_trimise,calitate,originalitate,colectare_date,articol_initial,titlu,subtitlu,rezumat;
 
 var autor,autori;
 
-var limba,cuvinte_cheie,referinte;
 
 function scrollToAutori(){
     $('html, body').animate({
@@ -73,93 +71,97 @@ document.getElementById('nota-fisier').addEventListener('change', function (e){
 
 });
 
+function getDropdownValue(id){
+    return $(`#${id}`).find(":selected").text()
+}
+
+function getTextValue(elem){
+    const value = elem.val()
+    return value
+}
+
 $("#formular-container>form").submit(function(e) {
     //prevent page from refreshing
     e.preventDefault();
 
-    /*****VERIFIES******/
-    if(true){
-        limba_articol = getDropdownValue("limba-articol")
-
-        rubrica = getDropdownValue("rubrica")
-
-        verificare_documente_trimise = isCheckCompleted("verificare");
-        if(!verificare_documente_trimise) return;
-
-        calitate = isRadioCompleted("calitate")
-        if(!calitate) return;
-
-        originalitate = isCheckCompleted("originalitate")
-        if(!originalitate) return;
-
-        colectare_date = isCheckCompleted("colectare-date")
-        if(!colectare_date) return;
-
-        if(!isFileCompleted("articol-fisier")) return;
-
-        if(!isFileCompleted("nota-fisier")) return;
-
-        articol_initial = getDropdownValue("Articol-initial")
-
-        titlu = isTextCompleted($("#titlu"))
-        if(!titlu) return;
-
-        subtitlu = isTextCompleted($("#sub-titlu"))
-        if(!subtitlu) return;
-
-        rezumat = isTextCompleted($("#rezumat"))
-        if(!rezumat) return;
-
-        if(!autoriCorespondentiCheck())
-            return;
-
-        limba = isTextCompleted($("#limba-dwn"))
-        if(!limba) return;
-
-        cuvinte_cheie = isTextCompleted($("#cuvinte-cheie"))
-        if(!cuvinte_cheie) return;
-
-        referinte = isTextCompleted($("#referinte"))
-        if(!referinte) return;
-
-    }
+    // /*****VERIFIES******/
+    // if(true){
+    //     limba_articol = getDropdownValue("limba-articol")
+    //
+    //     rubrica = getDropdownValue("rubrica")
+    //
+    //     verificare_documente_trimise = isCheckCompleted("verificare");
+    //     if(!verificare_documente_trimise) return;
+    //
+    //     calitate = isRadioCompleted("calitate")
+    //     if(!calitate) return;
+    //
+    //     originalitate = isCheckCompleted("originalitate")
+    //     if(!originalitate) return;
+    //
+    //     colectare_date = isCheckCompleted("colectare-date")
+    //     if(!colectare_date) return;
+    //
+    //     if(!isFileCompleted("articol-fisier")) return;
+    //
+    //     if(!isFileCompleted("nota-fisier")) return;
+    //
+    //     articol_initial = getDropdownValue("Articol-initial")
+    //
+    //     titlu = isTextCompleted($("#titlu"))
+    //     if(!titlu) return;
+    //
+    //     subtitlu = isTextCompleted($("#sub-titlu"))
+    //     if(!subtitlu) return;
+    //
+    //     rezumat = isTextCompleted($("#rezumat"))
+    //     if(!rezumat) return;
+    //
+    //     if(!autoriCorespondentiCheck())
+    //         return;
+    //
+    //     limba = isTextCompleted($("#limba-dwn"))
+    //     if(!limba) return;
+    //
+    //     cuvinte_cheie = isTextCompleted($("#cuvinte-cheie"))
+    //     if(!cuvinte_cheie) return;
+    //
+    //     referinte = isTextCompleted($("#referinte"))
+    //     if(!referinte) return;
+    //
+    // }
 
     /*****DATABASE PREPARE******/
 
-    const file1 = pathify(autor,"propunere")
-    const file2 = pathify(autor,"notabibliografica")
+    // const file1 = pathify(autor,"propunere")
+    // const file2 = pathify(autor,"notabibliografica")
 
     //
     const realtimeDatabaseForm = {
-        autor: autor,
-        autori: autori,
-        limba_articol: limba_articol,
-        rubrica: rubrica,
-        verificare_documente_trimise: "yes",
-        calitate:calitate,
-        originalitate: "yes",
-        colectare_date: "yes",
-        cale_fisier: file1,
-        cale_nota: file2,
-        articol_initial: articol_initial,
-        titlu:titlu,
-        subtitlu:subtitlu,
-        rezumat:rezumat,
-        limba:limba,
-        evaluari:"none",
-        cuvinte_cheie:cuvinte_cheie,
-        referinte:referinte,
+        limba_articol: getDropdownValue('limba-articol'),
+        rubrica: getDropdownValue('rubrica'),
+        calitate: document.querySelector("input[name='calitate']").value,
+        // cale_fisier: file1,
+        // cale_nota: file2,
+        articol_initial: getDropdownValue('Articol-initial'),
+        titlu: document.querySelector("input[id='titlu']").value,
+        subtitlu: document.querySelector("input[id='sub-titlu']").value,
+        rezumat: getTextValue($("#titlu")),
+        limba: getDropdownValue('limba-dwn'),
+        cuvinte_cheie: getTextValue($("#cuvinte-cheie")),
+        referinte: getTextValue($("#referinte")),
         data:new Date().toString()
     }
 
+    console.log(realtimeDatabaseForm)
     /*****DATABASE UPLOAD******/
 
-
-    uploadFile(FILE_UPLOAD,file1);
-
-    uploadFile(FILE2_UPLOAD,file2);
-
-    uploadData(realtimeDatabaseForm);
+    //
+    // uploadFile(FILE_UPLOAD,file1);
+    //
+    // uploadFile(FILE2_UPLOAD,file2);
+    //
+    // uploadData(realtimeDatabaseForm);
 
 });
 
@@ -202,3 +204,12 @@ $("#addPerson").click(()=>{
     $("#fill-person-role").val("");
 
 })
+
+
+function changeButton(){
+    if(isUserLoggedIn())
+        document.getElementById("header-second-line").insertAdjacentHTML("beforeend",'<button onclick="LogOut()">Deconecteaza-te </button>' )
+    else
+        document.getElementById("header-second-line").insertAdjacentHTML("beforeend",'<button onclick="window.location.href=\'../login.html\'">Conecteaza-te </button>' )
+}
+changeButton()

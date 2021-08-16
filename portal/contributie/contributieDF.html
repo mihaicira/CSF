@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
+
 <!-- scriptul asta verifica daca userul este logat si nu are rank selectat-->
 <script>function loggedInWithoutRank(){    if(JSON.parse(window.sessionStorage.getItem("accountStatus")).isLogged)         if(JSON.parse(window.sessionStorage.getItem("accountStatus")).account.rank == null)             window.location.href="chooserank.html"}loggedInWithoutRank()</script>
 
@@ -9,15 +10,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="/CSF/portal/css/global.css">
-    <link rel="stylesheet" href="/CSF/portal/contributie/contributie.css">
+    <link rel="stylesheet" href="../../portal/css/global.css">
+    <link rel="stylesheet" href="contributie.css">
 </head>
 <body>
 
 <section class="header-container">
-    <div id="header-first-line"><img src="/CSF/media/logo-csf-cropped.png"></div>
+    <div id="header-first-line"><img src="../../media/logo-csf-cropped.png"></div>
     <div id="header-second-line">
-        <button onclick="window.location.href='/CSF/index.html'">Acasa </button>
+        <button onclick="window.location.href='../../index.html'">Acasa </button>
         <button href="">buton 1</button>
     </div>
 </section>
@@ -56,7 +57,7 @@
         <!--        3. verificare-documente-trimise-->
         <h4>Lista verificare documente trimise</h4>
         <p>Declarație pe proprie răspundere înainte de a continua procesul de expediere a documentului supus atenției redacției:</p>
-        <input type="checkbox" id="verificare" name="verificare" value="yes">
+        <input type="checkbox" id="verificare" name="verificare" value="yes" required >
         <label for="verificare">Am citit condițiile de colaborare și sunt de-acord cu acestea.</label>
 
         <br><br><hr><br><br>
@@ -64,7 +65,7 @@
         <!--        4. calitate -->
         <h4>Calitatea celui care face propunerea</h4>
         <br>
-        <input type="radio" id="Autor" name="calitate" value="Autor">
+        <input type="radio" id="Autor" name="calitate" value="Autor" required >
         <label for="Autor">Autor</label>
 
         <br>
@@ -84,11 +85,11 @@
         <!--        5. originalitate-->
 
         <h4>Declarație pe proprie răspundere pentru originalitatea documentului supus atenției Redacției și autorizarea Redacției de a face ajustările textuale în confirmitate cu protocolul de tehnoredactare al revistei. Declarație de acceptare a cesiunii drepturilor de autor (Copyright Statement).</h4>
-        <input type="checkbox" id="originalitate" name="originalitate" value="yes">
+        <input type="checkbox" id="originalitate" name="originalitate" value="yes" required >
         <label for="originalitate">Accept și voi respecta condițiile declarației referitoare la drepturile de autor / J'accepte et respecterai les conditions de la déclaration de droit d'auteur.</label>
 
         <br>
-        <input type="checkbox" id="colectare-date" name="colectare-date" value="yes">
+        <input type="checkbox" id="colectare-date" name="colectare-date" value="yes" required >
         <label for="colectare-date">Accept ca datele mele să fie colectate și stocate în conformitate cu <a href="https://periodicos.unb.br/index.php/belasinfieis/about/privacy" target="_blank">declarația de confidențialitate</a> / Oui, j'accepte que mes données soient collectées et stockées conformément à la <a href="https://periodicos.unb.br/index.php/belasinfieis/about/privacy" target="_blank">Déclaration de confidentialité</a>.</label>
 
         <br><br><hr><br><br>
@@ -97,10 +98,10 @@
         <h3>Încărcare articol propus</h3>
         <p>A se încărca toate fișierele necesare echipei editorial pentru a efectua evaluarea, amandoua in format <b>word (.doc/.docx)</b>.</p>
         <p>1. Articolul propus anonimizat</p>
-        <input type="file" name="filename" id="articol-fisier">
+        <input type="file" name="filename" id="articol-fisier" required >
 
         <p>2. Nota biobibliografica (100 de cuvinte)</p>
-        <input type="file" name="notabib" id="nota-fisier">
+        <input type="file" name="notabib" id="nota-fisier" required >
 
         <br><br><hr><br><br>
 
@@ -119,25 +120,25 @@
         <!--        8. titre-->
         <div class="pair-10">
             <label>Titlu</label>
-            <input id="titlu" class="text">
+            <input id="titlu" class="text" required>
         </div>
 
         <br><br>
         <!--        9. sous-titre-->
         <div class="pair-10">
             <label>Sub-titlu</label>
-            <input id="sub-titlu" class="text">
+            <input id="sub-titlu"  class="text" required>
         </div>
 
         <br><br>
 
         <!--        10. rezumat-->
         <label>Rezumat</label><br>
-        <textarea rows="10" id="rezumat"></textarea>
+        <textarea rows="10" id="rezumat" required ></textarea>
 
-        <br><br><hr><br><br>
+        <!-- <br><br><hr><br><br>
 
-        <!--        co-autori-->
+
 
         <h4>Adăugare autori</h4>
 
@@ -165,7 +166,7 @@
             <br>
             <button id="addPerson" type="button"></button>
         </div>
-
+        -->
         <br><br><hr><br><br>
         <!--        11.-->
         <h4>Limba</h4>
@@ -182,7 +183,7 @@
         <!--        12.-->
         <h4>Cuvinte cheie</h4>
         <p>Maxim 5 cuvinte cheie, separate prin virgulă</p>
-        <textarea rows="2" id="cuvinte-cheie"></textarea>
+        <textarea rows="2" id="cuvinte-cheie"  required ></textarea>
 
 
         <br><br><hr><br><br>
@@ -190,7 +191,7 @@
         <!--        13.-->
         <h4>Referințe bibliografice</h4>
         <p>Sa cuprinda exact lucrarile citate (nu bibliografie generala)</p>
-        <textarea cols="5" rows="15" id="referinte" ></textarea>
+        <textarea cols="5" rows="15" id="referinte"  required ></textarea>
 
         <br><br>
 
@@ -198,10 +199,14 @@
     </form>
 </div>
 
-<script src="/CSF/src/jquery-3.6.0.min.js"></script>
-<script src="/CSF/portal/js/const.js"></script>
-<script src="/CSF/portal/js/utils.js"></script>
-<script src="/CSF/portal/js/headerChange.js"></script>
-<script src="/CSF/portal/js/each/contributions.js"></script>
+<script src="../../src/jquery-3.6.0.min.js"></script>
+<script src="../../portal/js/const.js"></script>
+<script src="../../portal/js/utils.js"></script>
+<script src="../../portal/js/headerChange.js"></script>
+<script src="../../portal/contributie/contributieDF.js"></script>
+
+<!-- in caz ca nu este logat pe site, va fii redirectionat la pagina de login -->
+<script>function notLoggedIn(){if(!JSON.parse(window.sessionStorage.getItem("accountStatus")).isLogged)window.location.href="../login.html"}notLoggedIn()</script>
+
 </body>
 </html>
