@@ -48,7 +48,7 @@ function signUp(){
                 let accountData = {
                     email:email,
                     password: $.MD5(password),
-                    nume: nume + " " + prenume,
+                    nume: prenume + " " + nume,
                     rank:ranks
                 }
                 document.getElementById("loadingAnimation").style.opacity="1"

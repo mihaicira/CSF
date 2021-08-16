@@ -138,6 +138,7 @@ $("#formular-container>form").submit(function(e) {
 
     //
     const realtimeDatabaseForm = {
+        autor: JSON.parse(window.sessionStorage.getItem("accountStatus")).account.nume,
         limba_articol: getDropdownValue('limba-articol'),
         rubrica: getDropdownValue('rubrica'),
         calitate: document.querySelector("input[name='calitate']").value,

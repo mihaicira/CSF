@@ -34,6 +34,7 @@ const sessionStorageLogIn = (data)=>{
     let localData = {
         isLogged: true,
         account:{
+            nume:data.nume,
             email:data.email,
             password:data.password,
             rank:data.rank
@@ -66,6 +67,7 @@ const logIn = (data,login=true) => {
             Users.forEach((user)=>{
                 if(user.email === data.email)
                     if(user.password === data.password){
+                        data['nume']=user.nume
                         sessionStorageLogIn(data)
                         window.location.href="./index.html"
                         USER_FOUND = true
