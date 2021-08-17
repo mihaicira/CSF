@@ -260,20 +260,37 @@ const RIGHTS = {
     }
 }
 
-const months = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December'
-]
+const months_short = {
+    'Jan': 'January',
+    'Feb':'February',
+    'Mar':'March',
+    'Apr':'April',
+    'May':'May',
+    'Jun':'June',
+    'Jul':'July',
+    'Aug':'August',
+    'Sep':'September',
+    'Oct':'October',
+    'Nov':'November',
+    'Dec':'December'
+}
+
+
+const months_num = {
+    'January': 0 ,
+    'February': 1,
+    'March': 2,
+    'April': 3,
+    'May': 4,
+    'June': 5,
+    'July': 6,
+    'August': 7,
+    'September': 8,
+    'October': 9,
+    'November': 10,
+    'December': 11
+}
+
 const days = [
     'Sun',
     'Mon',
