@@ -193,7 +193,6 @@ $("#addPerson").click(()=>{
         <td>${name}</td>
         <td>${contact}</td>
         <td>${role}</td>
-        <td><input type="checkbox" name="${id}-check1" value="isAuthor"></td>
         <td><button onclick="deleteId('${id}')" type="button"></button></td>
       </tr>
     `)
@@ -205,6 +204,11 @@ $("#addPerson").click(()=>{
     $("#fill-person-role").val("");
 
 })
+
+document.addEventListener('invalid', function(e){
+    $(e.target).addClass("invalid");
+    $('html, body').animate({scrollTop: $($(".invalid")[0]).offset().top - 300 }, 0);
+}, true);
 
 
 function changeButton(){

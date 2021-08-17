@@ -126,16 +126,25 @@ function blinkError(err){
     },1500)
 }
 
-
-
-
-
-
-
 function verifyIfUserHasRank(){
     // let rank = sessionStorage.parse...
         return true
 }
+
+function DateToString(date){
+    //parametru date = un string de forma celui returnat in urma executiei: new Date().toString()
+    //returneaza un string de forma DD ll AAAA, HH:MM
+    //de exemplu: 25 August 2021, 14:59
+    //functiile de getMonth si getDay (sau cum or fi) returneaza numere. Foloseste-te de constantele months si days din const.js
+}
+
+function StringToDate(date){
+    //parametru date = un string de forma DD ll AAAA, HH:MM, de exemplu 25 August 2021, 14:59
+    //sparge stringul si creaza un obiect tip Date pe care il returneaza
+    //la obiectul nou de tip Date ii dai parametri doar ceea ce ai in date: zi,luna,an,ora,minut (in ordinea care trebuie - vezi pe site)
+}
+
+
 
 if(!verifyIfUserHasRank()){
     redirect(chooserank)
