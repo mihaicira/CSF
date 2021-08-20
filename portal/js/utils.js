@@ -132,23 +132,20 @@ function verifyIfUserHasRank(){
 }
 
 function DateToString(date){
-    let info= date.split(" ")
-    day= info[2]
-    month= months_short[info[1]]
-    year= info[3]
-    hour= info[4].split(":")[0]
-    min= info[4].split(":")[1]
-    dateString = day+" "+month+" "+year+" "+hour+":"+min
+    let info= date.toString().split(" ")
+    let day= info[2]
+    let month= months_short[info[1]]
+    let year= info[3]
+    let hour= info[4].split(":")[0]
+    let min= info[4].split(":")[1]
+    let dateString = day+" "+month+" "+year+", "+hour+":"+min
 
     return dateString
-
-
 }
 
 function StringToDate(date){
     let info= date.split(" ")
-    return new Date(info[2],months_num[info[1]],info[0],info[3].split(":")[0],info[3].split(":")[1])
-
+    return new Date(info[2].slice(0,-1),months_num[info[1]],info[0],info[3].split(":")[0],info[3].split(":")[1])
 }
 
 

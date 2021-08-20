@@ -151,7 +151,7 @@ $("#formular-container>form").submit(function(e) {
         limba: getDropdownValue('limba-dwn'),
         cuvinte_cheie: getTextValue($("#cuvinte-cheie")),
         referinte: getTextValue($("#referinte")),
-        data:new Date().toString()
+        data:DateToString(new Date())
     }
 
     console.log(realtimeDatabaseForm)
@@ -204,12 +204,6 @@ $("#addPerson").click(()=>{
     $("#fill-person-role").val("");
 
 })
-
-document.addEventListener('invalid', function(e){
-    $(e.target).addClass("invalid");
-    $('html, body').animate({scrollTop: $($(".invalid")[0]).offset().top - 300 }, 0);
-}, true);
-
 
 function changeButton(){
     if(isUserLoggedIn())

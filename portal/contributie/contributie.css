@@ -6,12 +6,19 @@
     --text-size: 1rem;
 }
 
+*{
+    scroll-padding-top: 40vh;
+}
+
 #formular-container{
     width: 60vw;
     min-height: 50vh;
 
     border: .25vw solid var(--darkblue);
     border-radius: 5vw;
+
+    scroll-padding-top: 50vh;
+    scroll-behavior: smooth;
 
     background: rgb(247,248,252);
     color: var(--darkblue);
@@ -109,7 +116,6 @@ form input,select,button{
     -webkit-transition: 300ms;
     -moz-transition: 300ms;
 }
-
 form .text{
     height: 2.5ch;
     width: 10vw;

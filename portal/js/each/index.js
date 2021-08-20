@@ -15,7 +15,7 @@ function denyButtonIfNotLoggedIn(paramBool){
         alert("Nu sunteți conectat. Conectați-vă pentru a continua.")
     else{
         if(paramBool===true)
-            window.location.href="profile.html"
+            window.location.href="./contributie/contributieDF.html"
         else
             window.location.href="members.html"
     }

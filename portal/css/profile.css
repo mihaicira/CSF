@@ -131,11 +131,13 @@
 
 .article-box{
     color: #000000;
-    width: 50vw;
+    width: max-content;
+    max-width: 40vw;
 
     display:flex;
     align-items: center;
     justify-content: space-evenly;
+    gap: 4vh;
 
     position: relative;
     background: #dddddd;
@@ -145,17 +147,17 @@
     margin-top: 3vh;
     margin-bottom: 3vh;
     margin-left: 10%;
-    padding: 1.5vh 0 1.5vh 0;
+    padding: 1.5vh 4vh 1.5vh 4vh;
 }
 /***************/
 /*ARTICOL*/
 .text_nume_articol{
-    font-size: 3vh;
+    font-size: 1.5rem;
     margin-top: 1vh;
 }
 
 .text-secundar-articol{
-    font-size: 1.5vh;
+    font-size: 1rem;
     margin-top: 2vh;
 }
 
@@ -170,4 +172,78 @@
 .redirect-svg:hover{
     opacity: .5;
     transform: scale(.9);
+}
+
+/*articole ce trebuie atribuite evaluatorilor*/
+.assign-article-container{
+    color: #000000;
+    width: 40vw;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 3vh;
+
+    position: relative;
+    background: #dddddd;
+    border-radius: 1vh ;
+    border: 0.3vh solid #222222;
+
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+    margin-left: 10%;
+    padding: 1.5vh 4vh 1.5vh 4vh;
+}
+
+.assign-article-container button{
+    font-size: 1rem;
+    outline: none;
+    /*border: .8vh solid var(--darkblue);*/
+    border: none;
+    color: white;
+    background: var(--darkblue);
+    border-radius: 2vh;
+    padding: .5vh 3vh .5vh 3vh;
+
+    cursor: pointer;
+}
+
+.assign-article-container>div{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 2vh;
+
+}
+.assign-article-evals-container{
+    gap: 2vh;
+}
+.assign-article-evals-container,
+.assign-article-info-container{
+    flex-grow: 1;
+    height: 100%;
+    width: 25vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+}
+
+.assign-article-container p{
+    margin: 1vh;
+    font-size: 1rem;
+}
+
+.assign-article-container select{
+    width: 10vh;
+}
+
+.assign-article-container p:nth-of-type(1){
+    font-size: 1.5rem;
+}
+.assign-article-evals-container>p:nth-of-type(1){
+    font-size: 1.3rem;
 }
