@@ -247,3 +247,94 @@
 .assign-article-evals-container>p:nth-of-type(1){
     font-size: 1.3rem;
 }
+
+/*POP UP*/
+.form-container {
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 20vh;
+    z-index: 9;
+    font-size: 15px;
+    border-radius: 2vh;
+
+
+
+}
+
+#myForm{
+    transform: rotateX(90deg);
+    pointer-events: none;
+
+    transition: 700ms;
+    -o-transition: 700ms;
+    -webkit-transition: 700ms;
+    -moz-transition: 700ms;}
+
+.form-popup {
+
+    background: rgba(255,255,255,.8);
+    padding: 2vw 4vw 0 4vw;
+    border-radius: 2vh;
+
+}
+
+
+.form-popup input[type=nume], .form-popup input[type=prenume], .form-popup input[type=email]{
+    border-radius: 1vh;
+    margin-top: 3px;
+    margin-bottom: 6px;
+    border: none;
+    padding: .5vh 0 .5vh 2vh;
+    background-color: #a5a3a3;
+    color: white;
+}
+
+.form-popup>div{
+    width: 100%;
+    display: flex;
+    gap: 5vh;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.form-popup input[type=nume]:focus, .form-popup input[type=prenume]:focus , .form-popup input[type=email]:focus {
+
+    outline: none;
+}
+
+.form-popup .btn {
+    background-color: #04AA6D;
+    color: white;
+    cursor: pointer;
+    width: 50%;
+    border-radius: 2vh;
+    padding: 5px;
+    border: none;
+    margin-bottom:10px;
+    opacity: 0.8;
+    position: center;
+    margin-left: 50%;
+    transform: translateX(-50%);
+
+    transition: 300ms;
+    -o-transition: 300ms;
+    -webkit-transition: 300ms;
+    -moz-transition: 300ms;
+}
+
+.form-popup .btn:not(.cancel){
+    margin-top: 2vh;
+
+}
+
+.form-popup  .cancel {
+    background-color: #010547;
+}
+
+.form-popup .btn:hover {
+    opacity: 1;
+}

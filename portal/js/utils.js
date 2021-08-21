@@ -148,6 +148,15 @@ function StringToDate(date){
     return new Date(info[2].slice(0,-1),months_num[info[1]],info[0],info[3].split(":")[0],info[3].split(":")[1])
 }
 
+function openPopUp() {
+    document.getElementById("myForm").style.transform = "rotateX(0deg)";
+    document.getElementById("myForm").style.pointerEvents="initial"
+}
+function closePopup() {
+    document.getElementById("myForm").style.transform = "rotateX(90deg)";
+    document.getElementById("myForm").style.pointerEvents="none"
+}
+
 
 
 if(!verifyIfUserHasRank()){
