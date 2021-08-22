@@ -34,6 +34,7 @@ const sessionStorageLogIn = (data)=>{
     let localData = {
         isLogged: true,
         account:{
+            id:data.id,
             nume:data.nume,
             email:data.email,
             password:data.password,
@@ -68,6 +69,7 @@ const logIn = (data,login=true) => {
                 if(user.email === data.email)
                     if(user.password === data.password){
                         data['nume']=user.nume
+                        data['id']=user.id
                         sessionStorageLogIn(data)
                         window.location.href="./index.html"
                         USER_FOUND = true
@@ -77,6 +79,10 @@ const logIn = (data,login=true) => {
                 blinkError(LoginSignupErrors[5])
             }
         })
+}
+
+function getUserId(){
+    return JSON.parse(window.sessionStorage.getItem("accountStatus")).account.id
 }
 
 const isUserLoggedIn = ()=>{
