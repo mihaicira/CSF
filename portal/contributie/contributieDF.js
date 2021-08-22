@@ -84,59 +84,12 @@ $("#formular-container>form").submit(function(e) {
     //prevent page from refreshing
     e.preventDefault();
 
-    // /*****VERIFIES******/
-    // if(true){
-    //     limba_articol = getDropdownValue("limba-articol")
-    //
-    //     rubrica = getDropdownValue("rubrica")
-    //
-    //     verificare_documente_trimise = isCheckCompleted("verificare");
-    //     if(!verificare_documente_trimise) return;
-    //
-    //     calitate = isRadioCompleted("calitate")
-    //     if(!calitate) return;
-    //
-    //     originalitate = isCheckCompleted("originalitate")
-    //     if(!originalitate) return;
-    //
-    //     colectare_date = isCheckCompleted("colectare-date")
-    //     if(!colectare_date) return;
-    //
-    //     if(!isFileCompleted("articol-fisier")) return;
-    //
-    //     if(!isFileCompleted("nota-fisier")) return;
-    //
-    //     articol_initial = getDropdownValue("Articol-initial")
-    //
-    //     titlu = isTextCompleted($("#titlu"))
-    //     if(!titlu) return;
-    //
-    //     subtitlu = isTextCompleted($("#sub-titlu"))
-    //     if(!subtitlu) return;
-    //
-    //     rezumat = isTextCompleted($("#rezumat"))
-    //     if(!rezumat) return;
-    //
-    //     if(!autoriCorespondentiCheck())
-    //         return;
-    //
-    //     limba = isTextCompleted($("#limba-dwn"))
-    //     if(!limba) return;
-    //
-    //     cuvinte_cheie = isTextCompleted($("#cuvinte-cheie"))
-    //     if(!cuvinte_cheie) return;
-    //
-    //     referinte = isTextCompleted($("#referinte"))
-    //     if(!referinte) return;
-    //
-    // }
-
     /*****DATABASE PREPARE******/
+    const propunereID = generateId()
+    const fisier_propunere = propunereID + "-df-" + "userId"+"-propunere"
+    const fisier_notabibliografica =propunereID + "-df-" + "userId"+"-notabibliografica"
 
-    // const file1 = pathify(autor,"propunere")
-    // const file2 = pathify(autor,"notabibliografica")
 
-    //
     const realtimeDatabaseForm = {
         autor: JSON.parse(window.sessionStorage.getItem("accountStatus")).account.nume,
         limba_articol: getDropdownValue('limba-articol'),
@@ -156,6 +109,12 @@ $("#formular-container>form").submit(function(e) {
 
     console.log(realtimeDatabaseForm)
     /*****DATABASE UPLOAD******/
+
+    //upload data
+
+    //upload file
+
+    //update user contributions list
 
     //
     // uploadFile(FILE_UPLOAD,file1);
@@ -212,3 +171,36 @@ function changeButton(){
         document.getElementById("header-second-line").insertAdjacentHTML("beforeend",'<button onclick="window.location.href=\'../login.html\'">Conecteaza-te </button>' )
 }
 changeButton()
+
+
+function uploadFileToDF(file,path){
+    console.log("path: ",path)
+    var storageRef = firebase.storage().ref('DF/'+ path);
+    storageRef.put(file)
+        .then((snapshot)=>{
+            //pass
+            //success
+        })
+}
+
+function uploadDataToDF(object) {
+    //Send to firebase
+    const path = 'reviste/df/'+new Date().getFullYear()
+
+    var ref = firebase.database().ref(path)
+    ref.push(object)
+        .then((snapshot)=>{
+            $("#formular-container").css("animation","1s rotate-form forwards linear")
+            window.scrollTo(0,0);
+            setTimeout(()=>{
+                $("#formular-container>h2").remove();
+                $("#formular-container>form").remove();
+            },500)
+        })
+        .catch(()=>{
+            console.log("error")
+        })
+        .finally(()=>{
+            console.log("finally")
+        })
+}

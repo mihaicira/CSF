@@ -204,7 +204,7 @@
 <script src="../../portal/js/headerChange.js"></script>
 <script src="../../portal/contributie/contributieDF.js"></script>
 
-<!-- in caz ca nu este logat pe site, va fii redirectionat la pagina de login -->
+<!-- in caz ca nu are date in sessionStorage, va fi redirectionat la pagina de login -->
 <script>function notLoggedIn(){if(!JSON.parse(window.sessionStorage.getItem("accountStatus")).isLogged)window.location.href="../login.html"}notLoggedIn()</script>
 
 </body>

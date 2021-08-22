@@ -19,6 +19,19 @@ database.ref("users").once('value')
     else{
         document.getElementById("text_nume").innerText = USER.nume
         document.getElementById("text_nume").insertAdjacentHTML("afterend",`<a id="text_email" href="mailto:${USER.email}">${USER.email}</a>`)
+        const TEMP_isItMe = true
+        if(TEMP_isItMe){
+            //adaug buton pt schimbare date
+
+            //adaug formularul pt schimbare date
+
+            //adaug functia mea cu care sunt logat
+
+        }
+        else{
+            //adaug toate functiile mele din DB intr-un obiect separat, intre "profile-data-container" si "articles-container"
+            
+        }
 
         console.log("found")
     }
