@@ -19,15 +19,14 @@ database.ref("users").once('value')
     else{
         document.getElementById("text_nume").innerText = USER.nume
         document.getElementById("text_nume").insertAdjacentHTML("afterend",`<a id="text_email" href="mailto:${USER.email}">${USER.email}</a>`)
-        const TEMP_isItMe = true
-        if(TEMP_isItMe){
+        if(getUserId() === USER.id){
+            //it is me
             //adaug buton pt schimbare date
 
             //adaug formularul pt schimbare date
 
             //adaug functia mea cu care sunt logat
-            document.getElementById("profile-rank").insertAdjacentHTML('beforeend',`<h3>${getUserRank().id}</h3>`)
-
+            document.getElementById("profile-rank").insertAdjacentHTML('beforeend',`<h3>${getUserRank().nume}</h3>`)
         }
         else{
             raiseUserNotFound()

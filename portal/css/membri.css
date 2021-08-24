@@ -63,9 +63,56 @@
 .member>*:nth-of-type(1){
     font-weight: bold;
 }
-.member>*:nth-of-type(2){
-    color: #D65E5E;
+.member>*{
+    display: inline-block;
 }
-.member>*:nth-of-type(3){
+.rank-df{
+    color: #D65E5E;
+    display: inline-block;
+    font-size: .7rem;
+}
+.rank-af{
+    font-size: .7rem;
     color: #32894A;
+    display: inline-block;
+}
+
+#loadingAnimation{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 500ms;
+    -o-transition: 500ms;
+    -moz-transition: 500ms;
+    -webkit-transition: 500ms;
+    margin-top: 2vh;
+    opacity: 1;
+}
+
+#loadingAnim>#smallPart{
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: 2s rotateRight linear infinite;
+}
+#loadingAnim>#bigPart{
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: 2s rotateLeft linear infinite;
+}
+
+@keyframes rotateLeft {
+    from{
+        transform: rotateZ(0deg);
+    }
+    to{
+        transform: rotateZ(360deg)
+    }
+}
+@keyframes rotateRight {
+    from{
+        transform: rotateZ(0deg);
+    }
+    to{
+        transform: rotateZ(-360deg)
+    }
 }

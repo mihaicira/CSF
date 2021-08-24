@@ -2,14 +2,23 @@ function fetch_members(){
     database.ref("users").once("value")
         .then((snapshot)=>{
             const users = snapshot.val()
+
+            document.getElementById("members-count").insertAdjacentText("beforeend",users.length-1)
+
             users.forEach((user)=>{
-                if (user.id !== "0"){
-                    let rankDF = "test"//user.rankDF.id !== 999 ? `(${RANKS[user.rankDF.id]})` : "";
-                    let rankAF = "test"//user.rankAF.id !== 999 ? `(${RANKS[user.rankAF.id]})` : "";
-                    document.getElementById("members-container").insertAdjacentHTML("beforeend", `<div class="member">&bull;<p><a href="./profile.html?user=${user.id}">${user.nume}</a></p><p>${rankDF}</p><p>${rankAF}</p></div>`)
+                if (user.id != "0"){
+                    let userString = `<div class="member">&bull;<p><a href="./profile.html?user=${user.id}" target="_blank">${user.nume}</a></p>`
+                    user.ranks.forEach((rank)=>{
+                        if(rank.id.includes("df"))
+                            userString += `<p class="rank-df">${RANKS[rank.id].nume}</p>`
+                        else
+                            userString += `<p class="rank-af">${RANKS[rank.id].nume}</p>`
+                    })
+                    userString += "</div>"
+                    document.getElementById("members-container").insertAdjacentHTML("beforeend", userString)
                 }
             })
-            document.getElementById("members-count").insertAdjacentText("beforeend",users.length-1)
+            document.getElementById("loadingAnimation").style.display="none";
         })
     return true
 }
