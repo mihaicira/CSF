@@ -26,13 +26,27 @@ database.ref("users").once('value')
             //adaug formularul pt schimbare date
 
             //adaug functia mea cu care sunt logat
+            document.getElementById("profile-rank").insertAdjacentHTML('beforeend',`<h3>${getUserRank().id}</h3>`)
 
         }
         else{
-            //adaug toate functiile mele din DB intr-un obiect separat, intre "profile-data-container" si "articles-container"
-            
+            raiseUserNotFound()
         }
 
-        console.log("found")
     }
 })
+
+
+function raiseUserNotFound(){
+    document.getElementsByClassName("profile_box")[0].innerHTML = `
+                    <img src="./media/profile_page_top.jpg" id="top_imag">
+                        <div class="profile-data-container">
+                            <div class="profile-data">
+                                <p id="text_nume">Utilizatorul nu a fost gasit.</p>
+                            </div>
+                        </div>`
+}
+
+
+
+

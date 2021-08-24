@@ -2,7 +2,7 @@
 <html lang="en">
 
 <!-- scriptul asta verifica daca userul este logat si nu are rank selectat-->
-<script>function loggedInWithoutRank(){    if(JSON.parse(window.sessionStorage.getItem("accountStatus")).isLogged)         if(JSON.parse(window.sessionStorage.getItem("accountStatus")).account.rank == null)             window.location.href="chooserank.html"}loggedInWithoutRank()</script>
+<script>function loggedInWithoutRank(){if(JSON.parse(window.sessionStorage.getItem("accountStatus")).isLogged)         if(JSON.parse(window.sessionStorage.getItem("accountStatus")).account.rank == null)window.location.href="chooserank.html"}loggedInWithoutRank()</script>
 
 
 
@@ -16,7 +16,7 @@
 <body>
 
 <section class="header-container">
-    <div id="header-first-line"><img src="../media/logo-csf-cropped.png"></div>
+    <div id="header-first-line"><img src="../media/logo-csf-cropped-v2.png"></div>
     <div id="header-second-line">
         <button onclick="window.location.href='../index.html'">Acasa </button>
 
@@ -24,24 +24,26 @@
 </section>
 
 
-
 <section class="info-container">
-    <div class="revista">Dialogues Francophones</div>
-
-    <div>Contact redacție: <a href="MAILTO:dialogues.francophone@e-uvt.ro" class="contact">dialogues.francophone@e-uvt.ro</a> </div>
-    <div>Pentru trimiterea contribuțiilor completează următorul formular:</div>
-    <button class="articol-btn" id="DF" onclick="denyButtonIfNotLoggedIn(true)">Propune articol</button>
-    <b class="protocol" onclick="window.location.href='../index.html'">Protocol de tehnoredactare</b>
-
+    <div class="revista">CIEFT</div>
+    <div> Remplissez le formulaire suivant:</div>
+    <button class="articol-btn" id="CIEFT" onclick="redirectToForm(true)">Proposition de communication</button>
+    <div>Dès réception vous serez contacté.e par le, la secrétaire du colloque.</div>
 </section>
 
 <section class="info-container">
-    <div class="revista"> Agapes Francophones </div>
+    <div class="revista">Dialogues francophones</div>
+    <div>Courriel rédaction: <a href="MAILTO:dialogues.francophone@e-uvt.ro" class="contact">dialogues.francophone@e-uvt.ro</a> </div>
+    <button class="articol-btn" id="DF" onclick="redirectToForm('./contributie/contributieDF.html')">Soumettre une contribution</button>
+    <b class="protocol" onclick="window.location.href='../index.html'">Protocole de rédaction</b>
+</section>
 
-    <div>Contact redacție: <a href="MAILTO:agapes.francophone@e-uvt.ro" class="contact">agapes.francophone@e-uvt.ro</a> </div>
-    <div>Pentru trimiterea contribuțiilor completează următorul formular:</div>
-    <button class="articol-btn" id="AF" onclick="denyButtonIfNotLoggedIn(false)">Propune articol</button>
-    <b class="protocol" onclick="window.location.href='../index.html'">Protocol de tehnoredactare</b>
+<section class="info-container">
+    <div class="revista"> Agapes francophones </div>
+
+    <div>Courriel rédaction: <a href="MAILTO:agapes.francophone@e-uvt.ro" class="contact">agapes.francophone@e-uvt.ro</a> </div>
+    <button class="articol-btn" id="AF" onclick="redirectToForm('./contributie/contributieAF.html')">Soumettre un article</button>
+    <b class="protocol" onclick="window.location.href='../index.html'">Protocole de rédaction</b>
 
 </section>
 

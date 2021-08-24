@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- scriptul asta verifica daca userul este logat si nu are rank selectat-->
+<script>function loggedInWithoutRank(){    if(JSON.parse(window.sessionStorage.getItem("accountStatus")).isLogged)         if(JSON.parse(window.sessionStorage.getItem("accountStatus")).account.rank == null)             window.location.href="chooserank.html"}loggedInWithoutRank()</script>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="contributie/contributie.css">
+</head>
+<body>
+
+<section class="header-container">
+    <div id="header-first-line"><img src="../media/logo-csf-cropped.png"></div>
+    <div id="header-second-line">
+        <button onclick="window.location.href='../index.html'">Acasa </button>
+        <button href="">buton 1</button>
+    </div>
+</section>
+
+<div id="formular-container">
+    <h1>Merci de votre proposition de communication. Vous serez contacté.e par le, la secrétaire du colloque.</h1>
+    <h2>Formulaire d’inscription au Colloque international d’études francophones à Timişoara (CIEFT)</h2>
+    <form>
+<!--        afilierea-->
+        <div>
+            <label>Affiliation académique ou lieu d’exercice:</label>
+            <input id="afiliere" class="text" required>
+        </div>
+        <br>
+        <br>
+<!--        statut-->
+        <div >
+            <label>Statut (professeur, chercheur, doctorant, etc.):</label>
+            <input id="statut" class="text" required>
+        </div>
+        <br>
+        <br>
+<!--        titlul-->
+        <div >
+            <label>Titre de la communication:</label>
+            <input id="titlu" class="text" required>
+        </div>
+        <br>
+        <br>
+<!--        sectiunea de colocviu-->
+        <div >
+            <label>Section du colloque (indiquer une ou deux thématiques ou sessions visée(s)):</label>
+            <input id="sectiune" class="text" required>
+        </div>
+        <br>
+        <br>
+<!--        rezumat-->
+        <h3>Résumé en français </h3>
+        <p>(500 mots au maximum, références bibliographiques non comprises ; l’objectif de la communication, l’originalité du sujet, la méthode, les résultats obtenus clairement exposés et justifiés)</p>
+        <textarea rows="10" id="rezumat" required ></textarea>
+        <br>
+        <br><br>
+<!--        cuvinte cheie-->
+        <h3>Cinq mots clefs </h3>
+        <textarea rows="2" id="cuvintecheie" required ></textarea>
+        <br><br>
+<!--        bibliografie-->
+        <h3>Bibliographie</h3>
+        <p>Une bibliographie précise et spécifique (5 références pertinentes au maximum)</p>
+        <textarea rows="10" id="bibliografie" required ></textarea>
+        <br><br>
+
+<!--        nota biobibliografica-->
+        <h3>Notice biobibliographique </h3>
+        <p>(80-100 mots ; indiquer l’affiliation académique ou le lieu d’exercice, les publications représentatives, les centres d’intérêt)</p>
+        <textarea rows="10" id="notabiobibliografica" required ></textarea>
+
+        <br><br>
+
+        <input type="submit" id="submit">
+    </form>
+</div>
+
+<script src="../src/jquery-3.6.0.min.js"></script>
+<script src="js/const.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/headerChange.js"></script>
+<script src="contributie/contributieDF.js"></script>
+
+<!-- in caz ca nu are date in sessionStorage, va fi redirectionat la pagina de login -->
+<script>function notLoggedIn(){if(!JSON.parse(window.sessionStorage.getItem("accountStatus")).isLogged)window.location.href="login.html"}notLoggedIn()</script>
+
+</body>
+</html>

@@ -85,6 +85,10 @@ function getUserId(){
     return JSON.parse(window.sessionStorage.getItem("accountStatus")).account.id
 }
 
+function getUserRank(){
+    return JSON.parse(window.sessionStorage.getItem("accountStatus")).account.rank
+}
+
 const isUserLoggedIn = ()=>{
     // true daca este logat / false altfel
     if(JSON.parse(window.sessionStorage.getItem("accountStatus"))=== null ){

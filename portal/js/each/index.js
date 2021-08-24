@@ -10,13 +10,10 @@ function changeButton(){
 }
 changeButton()
 
-function denyButtonIfNotLoggedIn(paramBool){
+function redirectToForm(location){
     if(!isUserLoggedIn())
         alert("Nu sunteți conectat. Conectați-vă pentru a continua.")
-    else{
-        if(paramBool===true)
-            window.location.href="./contributie/contributieDF.html"
-        else
-            window.location.href="members.html"
-    }
+    else
+        window.location.href=location
+
 }
