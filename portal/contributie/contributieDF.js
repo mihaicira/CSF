@@ -71,14 +71,7 @@ document.getElementById('nota-fisier').addEventListener('change', function (e){
 
 });
 
-function getDropdownValue(id){
-    return $(`#${id}`).find(":selected").text()
-}
 
-function getTextValue(elem){
-    const value = elem.val()
-    return value
-}
 
 $("#formular-container>form").submit(function(e) {
     //prevent page from refreshing
@@ -86,12 +79,21 @@ $("#formular-container>form").submit(function(e) {
 
     /*****DATABASE PREPARE******/
     const propunereID = generateId()
-    const fisier_propunere = propunereID + "-df-" + "userId"+"-propunere"
-    const fisier_notabibliografica =propunereID + "-df-" + "userId"+"-notabibliografica"
+    const fisier_propunere = propunereID + "-df-" + getUserId()+"-propunere"
+    const fisier_notabibliografica =propunereID + "-df-" + getUserId() +"-notabibliografica"
+
+    let autori_secundari = []
+    for(let i = 0 ; i < $("#persons-table>tr").length ; i++)
+        autori_secundari.push({
+            nume:$("#persons-table>tr")[i].children[0].innerHTML,
+            email:$("#persons-table>tr")[i].children[1].innerHTML,
+            rol:$("#persons-table>tr")[i].children[2].innerHTML
+        })
 
 
     const realtimeDatabaseForm = {
         autor: JSON.parse(window.sessionStorage.getItem("accountStatus")).account.nume,
+        autori_secundari: autori_secundari,
         limba_articol: getDropdownValue('limba-articol'),
         rubrica: getDropdownValue('rubrica'),
         calitate: document.querySelector("input[name='calitate']").value,

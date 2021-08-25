@@ -162,9 +162,19 @@ function openPopUp() {
     document.getElementById("myForm").style.transform = "rotateX(0deg)";
     document.getElementById("myForm").style.pointerEvents="initial"
 }
+
 function closePopup() {
     document.getElementById("myForm").style.transform = "rotateX(90deg)";
     document.getElementById("myForm").style.pointerEvents="none"
+}
+
+function getDropdownValue(id){
+    return $(`#${id}`).find(":selected").text()
+}
+
+function getTextValue(elem){
+    const value = elem.val()
+    return value
 }
 
 
