@@ -97,8 +97,8 @@ $("#formular-container>form").submit(function(e) {
         limba_articol: getDropdownValue('limba-articol'),
         rubrica: getDropdownValue('rubrica'),
         calitate: document.querySelector("input[name='calitate']").value,
-        // cale_fisier: file1,
-        // cale_nota: file2,
+        fisier_propunere: fisier_propunere,
+        cale_nota: fisier_notabibliografica,
         articol_initial: getDropdownValue('Articol-initial'),
         titlu: document.querySelector("input[id='titlu']").value,
         subtitlu: document.querySelector("input[id='sub-titlu']").value,
@@ -136,9 +136,7 @@ function deleteId(id){
 
 }
 
-
 $("#addPerson").click(()=>{
-
     const id = generateId();
     const name = $("#fill-person-name").val();
     const contact = $("#fill-person-contact").val();
@@ -147,7 +145,6 @@ $("#addPerson").click(()=>{
     if(name.trim() === "") return;
     if(contact.trim() === "") return;
     if(role.trim() === "") return;
-
 
     $("#persons-table").append(`
       <tr id="${id}">
