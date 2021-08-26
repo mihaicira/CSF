@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+.cieft-members{
+    font-family: 'Roboto', sans-serif;
+    margin-top: 10vh;
+    position: relative;
+    width: 80%;
+    border: .2vh solid #182268;
+    background: white;
+    border-radius: 1vh;
+    -webkit-box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.39);
+    box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.39);
+    padding: 1vw;
+
+    display: flex;
+    flex-flow: column;
+
+    margin-left: 50%;
+    transform: translateX(-50%);
+}
+
+
+.cieft-members>h1{
+    display: flex;
+    justify-content: center;
+    margin: 0;
+
+}
+
+.each-member{
+    outline: 1px solid lightseagreen;
+    width: 60%;
+    margin-left: 10%;
+    font-size: 20px;
+}
