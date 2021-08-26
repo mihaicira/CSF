@@ -12,7 +12,6 @@ $("form").submit(function (e){
         cuv_cheie: getTextValue($("#cuvintecheie")),
         bibliografie: getTextValue($("#bibliografie")),
         nota_bibliografica: getTextValue($("#notabiobibliografica"))
-
     }
 
     // database send
@@ -33,5 +32,3 @@ $("form").submit(function (e){
         })
 
 })
-
-

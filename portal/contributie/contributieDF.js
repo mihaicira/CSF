@@ -1,5 +1,5 @@
-var FILE_UPLOAD;
-var FILE2_UPLOAD;
+var FISIER_PROPUNERE_DOC;
+var FISIER_NOTABIBLIOGRAFICA_DOC;
 
 var autor,autori;
 
@@ -53,7 +53,7 @@ function autoriCorespondentiCheck(){
 document.getElementById('articol-fisier').addEventListener('change', function (e){
     const extension = e.target.files[0].name.split(".")[1]
     if(["docx","doc"].includes(extension))
-        FILE_UPLOAD = e.target.files[0];
+        FISIER_PROPUNERE_DOC = e.target.files[0];
     else{
         $("#articol-fisier").val('')
         alert("Files must have .doc / .docx extension")
@@ -63,7 +63,7 @@ document.getElementById('articol-fisier').addEventListener('change', function (e
 document.getElementById('nota-fisier').addEventListener('change', function (e){
     const extension = e.target.files[0].name.split(".")[1]
     if(["docx","doc"].includes(extension))
-        FILE2_UPLOAD = e.target.files[0];
+        FISIER_NOTABIBLIOGRAFICA_DOC = e.target.files[0];
     else{
         $("#nota-fisier").val('')
         alert("Files must have .doc / .docx extension")
@@ -92,6 +92,9 @@ $("#formular-container>form").submit(function(e) {
 
 
     const realtimeDatabaseForm = {
+        publicatie: "DF", //!!!
+        id: propunereID,//!!!
+        stadiu: 1,//!!!
         autor: JSON.parse(window.sessionStorage.getItem("accountStatus")).account.nume,
         autori_secundari: autori_secundari,
         limba_articol: getDropdownValue('limba-articol'),
@@ -113,8 +116,13 @@ $("#formular-container>form").submit(function(e) {
     /*****DATABASE UPLOAD******/
 
     //upload data
+    uploadDataToDF(realtimeDatabaseForm)
 
     //upload file
+
+    uploadFileToDF(FISIER_PROPUNERE_DOC,fisier_propunere)
+    uploadFileToDF(FISIER_NOTABIBLIOGRAFICA_DOC,fisier_notabibliografica)
+
 
     //update user contributions list
 
@@ -172,22 +180,22 @@ function changeButton(){
 changeButton()
 
 
-function uploadFileToDF(file,path){
-    console.log("path: ",path)
-    var storageRef = firebase.storage().ref('DF/'+ path);
+function uploadFileToDF(file,name){
+    var storageRef = firebase.storage().ref('DF/'+ name);
     storageRef.put(file)
         .then((snapshot)=>{
             //pass
+            console.log("done")
             //success
+        })
+        .catch((e)=>{
+            console.log(e)
         })
 }
 
 function uploadDataToDF(object) {
-    //Send to firebase
-    const path = 'reviste/df/'+new Date().getFullYear()
-
-    var ref = firebase.database().ref(path)
-    ref.push(object)
+    var ref = database.ref("DF/propuneri/"+object.id)
+    ref.set(object)
         .then((snapshot)=>{
             $("#formular-container").css("animation","1s rotate-form forwards linear")
             window.scrollTo(0,0);
