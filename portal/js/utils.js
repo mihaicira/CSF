@@ -18,15 +18,17 @@ const createNewUser = (data) =>{
         finishedByMe:[]
     }
 
-    database.ref('users').once("value")
-        .then((snapshot)=>{
-            const USERS = snapshot.val()
-            console.log(User)
-            USERS.push(User)
-            let updates = {}
-            updates["/users"] = USERS
-            database.ref().update(updates)
-        })
+    var ref = database.ref("users/"+userId)
+    ref.set(User)
+
+    // database.ref('users').once("value")
+    //     .then((snapshot)=>{
+    //         const USERS = snapshot.val()
+    //         USERS.push(User)
+    //         let updates = {}
+    //         updates["/users"] = USERS
+    //         database.ref().update(updates)
+    //     })
     return true;
 }
 
@@ -65,7 +67,7 @@ const logIn = (data,login=true) => {
         .then((snapshot)=>{
             const Users = snapshot.val()
             let USER_FOUND = false
-            Users.forEach((user)=>{
+            for(const [id,user] of Object.entries(Users))
                 if(user.email === data.email)
                     if(user.password === data.password){
                         data['nume']=user.nume
@@ -74,7 +76,6 @@ const logIn = (data,login=true) => {
                         window.location.href="./index.html"
                         USER_FOUND = true
                     }
-            })
             if(!USER_FOUND){
                 blinkError(LoginSignupErrors[5])
             }
@@ -82,7 +83,11 @@ const logIn = (data,login=true) => {
 }
 
 function getUserId(){
-    return JSON.parse(window.sessionStorage.getItem("accountStatus")).account.id
+    const sessionData = JSON.parse(window.sessionStorage.getItem("accountStatus")).account
+    if(sessionData)
+        return sessionData.id
+    else
+        return "n/a"
 }
 
 function getUserRank(){
@@ -121,6 +126,9 @@ function maximizeNavbar(){
 }
 
 function blinkError(err){
+    if(document.getElementById("loadingAnimation"))
+        document.getElementById("loadingAnimation").style.opacity="0"
+
     //folosit la formularele de login / sign up, afiseaza erori in functie de caz
     let blink = document.getElementById("form-error")
     blink.innerText = err

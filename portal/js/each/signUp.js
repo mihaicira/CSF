@@ -22,24 +22,27 @@ function signUp(){
 
 
     const ranks = [];
-    //vezi ce pui in ranks RANKS["aaf"] / RANKS["adf"] / amandoua
     if(document.getElementById('MembruAF').checked){
         if(document.getElementById('MembruDF').checked)
             ranks.push(RANKS["aaf"],RANKS["adf"])
         else
             ranks.push(RANKS["aaf"])
-    }else
+    }
+    else
         ranks.push(RANKS["adf"])
 
     database.ref("users").once("value")
         .then((snapshot)=>{
             const users = snapshot.val()
             let found= false
-            console.log(users)
-            users.forEach((user)=>{
-                if (user.email === email)
-                    found = true
-            })
+
+            if(users){
+                for(const [id,user] of Object.entries(users))
+                    if(user.email === email)
+                        found = true
+            }
+
+
             if (found){
                 blinkError(LoginSignupErrors[4])
             }

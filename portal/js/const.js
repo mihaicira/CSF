@@ -51,11 +51,11 @@ const RANKS = {
 }
 
 const LoginSignupErrors = {
-    1: "Password is too short",
-    2: "Passwords do not match",
-    3: "Email address is not valid",
-    4: "There already is an account with this email address",
-    5: "Incorrect data. Try again"
+    1: "Mot de passe trop court",
+    2: "Mot de passe incorrect. Veuillez réessayer",
+    3: "Désolé, nous ne reconnaissons pas cette adresse mail",
+    4: "Désolé, il existe déjà un compte avec cette adresse mail",
+    5: "Données incorrectes. Veuillez réessayer"
 }
 
 //~~~~~~~~~~~~~~RIGHTS~~~~~~~~~~~~~~~

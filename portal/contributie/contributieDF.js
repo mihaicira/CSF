@@ -1,5 +1,11 @@
-var FISIER_PROPUNERE_DOC;
-var FISIER_NOTABIBLIOGRAFICA_DOC;
+let FISIER_PROPUNERE_DOC = {
+    file: "n/a",
+    extension: "n/a"
+}
+var FISIER_NOTABIBLIOGRAFICA_DOC = {
+    file: "n/a",
+    extension: "n/a"
+};
 
 var autor,autori;
 
@@ -53,21 +59,23 @@ function autoriCorespondentiCheck(){
 document.getElementById('articol-fisier').addEventListener('change', function (e){
     const extension = e.target.files[0].name.split(".")[1]
     if(["docx","doc"].includes(extension))
-        FISIER_PROPUNERE_DOC = e.target.files[0];
+        FISIER_PROPUNERE_DOC.file = e.target.files[0];
     else{
         $("#articol-fisier").val('')
         alert("Files must have .doc / .docx extension")
     }
+    FISIER_NOTABIBLIOGRAFICA_DOC.extension = extension
 });
 
 document.getElementById('nota-fisier').addEventListener('change', function (e){
     const extension = e.target.files[0].name.split(".")[1]
     if(["docx","doc"].includes(extension))
-        FISIER_NOTABIBLIOGRAFICA_DOC = e.target.files[0];
+        FISIER_NOTABIBLIOGRAFICA_DOC.file = e.target.files[0];
     else{
         $("#nota-fisier").val('')
         alert("Files must have .doc / .docx extension")
     }
+    FISIER_PROPUNERE_DOC.extension = extension
 
 });
 
@@ -79,8 +87,8 @@ $("#formular-container>form").submit(function(e) {
 
     /*****DATABASE PREPARE******/
     const propunereID = generateId()
-    const fisier_propunere = propunereID + "-df-" + getUserId()+"-propunere"
-    const fisier_notabibliografica =propunereID + "-df-" + getUserId() +"-notabibliografica"
+    const fisier_propunere = propunereID + "-df-" + getUserId()+"-propunere."+FISIER_PROPUNERE_DOC.extension
+    const fisier_notabibliografica =propunereID + "-df-" + getUserId() +"-notabibliografica."+FISIER_NOTABIBLIOGRAFICA_DOC.extension
 
     let autori_secundari = []
     for(let i = 0 ; i < $("#persons-table>tr").length ; i++)
@@ -94,6 +102,7 @@ $("#formular-container>form").submit(function(e) {
     const realtimeDatabaseForm = {
         publicatie: "DF", //!!!
         id: propunereID,//!!!
+        id_autor: getUserId(),//!!!!
         stadiu: 1,//!!!
         autor: JSON.parse(window.sessionStorage.getItem("accountStatus")).account.nume,
         autori_secundari: autori_secundari,
@@ -120,19 +129,17 @@ $("#formular-container>form").submit(function(e) {
 
     //upload file
 
-    uploadFileToDF(FISIER_PROPUNERE_DOC,fisier_propunere)
-    uploadFileToDF(FISIER_NOTABIBLIOGRAFICA_DOC,fisier_notabibliografica)
+    uploadFileToDF(FISIER_PROPUNERE_DOC.file,fisier_propunere)
+    uploadFileToDF(FISIER_NOTABIBLIOGRAFICA_DOC.file,fisier_notabibliografica)
 
 
     //update user contributions list
-
-    //
-    // uploadFile(FILE_UPLOAD,file1);
-    //
-    // uploadFile(FILE2_UPLOAD,file2);
-    //
-    // uploadData(realtimeDatabaseForm);
-
+    // database.ref("users").once("value")
+    //     .then((snapshot)=>{
+    //         let users = snapshot.val()
+    //         let user = users.find(u => u.id === getUserId())
+    //         user.
+    //     })
 });
 
 

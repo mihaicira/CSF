@@ -22,7 +22,7 @@ function addButtons(){
         .then((snapshot)=>{
             Users = snapshot.val()
             const userData = JSON.parse(window.sessionStorage.getItem("accountStatus")).account
-            Users.forEach((user)=> {
+            for(const [id,user] of Object.entries(Users)){
                 if (user.email === userData.email){
                     if (user.password === userData.password) {
                         const ranks = user.ranks
@@ -39,7 +39,7 @@ function addButtons(){
                         })
                     }
                 }
-            })
+            }
         })
 }
 addButtons()

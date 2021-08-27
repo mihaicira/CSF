@@ -12,9 +12,9 @@ let USER;
 database.ref("users").once('value')
 .then((snapshot)=>{
     const USERS = snapshot.val()
-    USER = USERS.find(user => user.id == USER_ID)
+    USER = USERS[USER_ID]
     if(USER === undefined){
-        console.log("not found")
+        raiseUserNotFound()
     }
     else{
         document.getElementById("text_nume").innerText = USER.nume
@@ -26,10 +26,10 @@ database.ref("users").once('value')
             //adaug formularul pt schimbare date
 
             //adaug functia mea cu care sunt logat
-            document.getElementById("profile-rank").insertAdjacentHTML('beforeend',`<h3>${getUserRank().nume}</h3>`)
+            document.getElementById("profile-rank").insertAdjacentHTML('beforeend',`<h3>${RANKS[getUserRank().id].nume}</h3>`)
         }
         else{
-            raiseUserNotFound()
+            console.log("guest")
         }
 
     }
@@ -41,7 +41,7 @@ function raiseUserNotFound(){
                     <img src="./media/profile_page_top.jpg" id="top_imag">
                         <div class="profile-data-container">
                             <div class="profile-data">
-                                <p id="text_nume">Utilizatorul nu a fost gasit.</p>
+                                <p id="text_nume">Nom d’utilisateur introuvable.</p>
                             </div>
                         </div>`
 }

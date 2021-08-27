@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- scriptul asta verifica daca userul este logat si nu are rank selectat-->
+<script>function loggedInWithoutRank(){    if(JSON.parse(window.sessionStorage.getItem("accountStatus")).isLogged)         if(JSON.parse(window.sessionStorage.getItem("accountStatus")).account.rank == null)             window.location.href="chooserank.html"}loggedInWithoutRank()</script>
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../css/global.css">
+    <style>
+        .contributii-container{
+            width: 90%;
+            margin-left: 5%;
+            margin-top: 10vh;
+        }
+        table{
+            border-collapse: collapse;
+            border: 1px solid black;
+            width: 100%;
+            font-size: 1rem;
+        }
+        th{
+            border: 1px solid black;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+        td,tr{
+            border: 1px solid black;
+            text-align: center;
+        }
+        td{
+            padding: 1.5vh;
+        }
+
+        table svg{
+            width: 4vh;
+        }
+        p{
+            font-weight: bold;
+            margin: 3px;
+        }
+
+        a{
+            color: black;
+            text-decoration: none;
+        }
+
+        .link-svg{
+            transition: 400ms;
+            -o-transition: 400ms;
+            -moz-transition: 400ms;
+            -webkit-transition: 400ms;
+
+            cursor: pointer;
+        }
+        .link-svg:hover{
+            opacity: .8;
+            transform: scale(.9);
+        }
+
+    </style>
+</head>
+
+
+<body>
+    <section class="header-container">
+        <div id="header-first-line"><img src="../../media/logo-csf-cropped.png"></div>
+        <div id="header-second-line">
+            <button onclick="window.location.href='../index.html'">Accueil</button>
+        </div>
+    </section>
+
+    <section class="contributii-container">
+        <table>
+            <tr>
+                <th>Nume</th>
+                <th>Publicatie</th>
+                <th>Evaluator 1</th>
+                <th>Evaluare 1</th>
+                <th>Evaluator 2</th>
+                <th>Evaluare 2</th>
+                <th>Stadiu</th>
+                <th>Data</th>
+                <th>Finalizata de</th>
+                <th>Link</th>
+            </tr>
+
+
+        </table>
+
+        <p style="color: #089908">&bull;&emsp;Stadiu 1 - Contributia a fost trimisa</p>
+        <p style="color: #389971">&bull;&emsp;Stadiu 2 - Contributia a fost evaluata de un evaluator</p>
+        <p style="color: #1b918d">&bull;&emsp;Stadiu 3 - Contributia a fost evaluata de doi evaluatori</p>
+        <p style="color: #1a3c75">&bull;&emsp;Stadiu 4 - Contributia a fost finalizata</p>
+
+    </section>
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+<script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-database.js"></script>
+<script src="../../src/jquery-3.6.0.min.js"></script>
+<script src="../js/firebaseConfig.js"></script>
+<script src="../js/const.js"></script>
+<script src="../js/utils.js"></script>
+<script src="../js/headerChange.js"></script>
+<script src="./contributii.js"></script>
+</body>
+</html>
