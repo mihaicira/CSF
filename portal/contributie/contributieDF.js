@@ -50,7 +50,6 @@ function autoriCorespondentiCheck(){
         return false;
     }
 
-
     autori = Autori
     console.log(autori)
     return true;
@@ -134,12 +133,18 @@ $("#formular-container>form").submit(function(e) {
 
 
     //update user contributions list
-    // database.ref("users").once("value")
-    //     .then((snapshot)=>{
-    //         let users = snapshot.val()
-    //         let user = users.find(u => u.id === getUserId())
-    //         user.
-    //     })
+    database.ref(`users/${getUserId()}`).once("value")
+        .then((snapshot)=>{
+            let user = snapshot.val()
+            if(user.contributions)
+                user.contributions.push(propunereID)
+            else
+                user.contributions = [propunereID]
+
+            let updates = {}
+            updates[`users/${getUserId()}`] = user
+            database.ref().update(updates)
+        })
 });
 
 
@@ -204,17 +209,10 @@ function uploadDataToDF(object) {
     var ref = database.ref("DF/propuneri/"+object.id)
     ref.set(object)
         .then((snapshot)=>{
-            $("#formular-container").css("animation","1s rotate-form forwards linear")
-            window.scrollTo(0,0);
-            setTimeout(()=>{
-                $("#formular-container>h2").remove();
-                $("#formular-container>form").remove();
-            },500)
+            $("#formular-container").html("<h1>Votre formulaire a été transmis</h1>")
         })
-        .catch(()=>{
-            console.log("error")
-        })
-        .finally(()=>{
-            console.log("finally")
+        .catch((e)=>{
+            console.log("Error: ",e)
+            alert("An error has occured. Please don't close the page and contact the support team.")
         })
 }

@@ -58,6 +58,13 @@ const LoginSignupErrors = {
     5: "Données incorrectes. Veuillez réessayer"
 }
 
+const CONTRIBUTION_STATUS = {
+    1: "Contributia a fost trimisa",
+    2: "Contributia a fost evaluata de un evaluator",
+    3: "Contributia a fost evaluata de doi evaluatori",
+    4: "Procesul contributiei a fost finalizat"
+}
+
 //~~~~~~~~~~~~~~RIGHTS~~~~~~~~~~~~~~~
 const RIGHTS = {
     0:{
