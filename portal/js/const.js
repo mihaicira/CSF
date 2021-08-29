@@ -65,6 +65,10 @@ const CONTRIBUTION_STATUS = {
     4: "Procesul contributiei a fost finalizat"
 }
 
+const GeneralErrors = {
+    "not-authorized":"Nu sunteti autorizat pentru aceasta actiune"
+}
+
 //~~~~~~~~~~~~~~RIGHTS~~~~~~~~~~~~~~~
 const RIGHTS = {
     0:{

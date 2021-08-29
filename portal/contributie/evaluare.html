@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<!-- scriptul asta verifica daca userul este logat si nu are rank selectat-->
+<!--<script>function loggedInWithoutRank(){    if(JSON.parse(window.sessionStorage.getItem("accountStatus")).isLogged)         if(JSON.parse(window.sessionStorage.getItem("accountStatus")).account.rank == null)             window.location.href="chooserank.html"}loggedInWithoutRank()</script>-->
+
+
+
+<head>
+    <meta charset="UTF-8">
+    <title>Evaluare contributie</title>
+    <link rel="stylesheet" href="../../portal/css/global.css">
+    <link rel="stylesheet" href="contributie.css">
+    <link rel="stylesheet" href="../css/evaluare.css">
+</head>
+<body>
+
+<section class="header-container">
+    <div id="header-first-line"><img src="../../media/logo-csf-cropped.png"></div>
+    <div id="header-second-line">
+        <button onclick="window.location.href='../../index.html'">Accueil</button>
+    </div>
+</section>
+
+<div id="formular-container">
+    <h2>Evaluare articol</h2>
+    <div id="loadingAnimation">
+        <svg width="30" height="30" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <g id="loadingAnim">
+                <g id="bigPart">
+                    <rect id="bigPartContainer" width="46" height="46" fill="white" fill-opacity="0.01"/>
+                    <path id="bigPartCenter" d="M8 23H2C2.33333 30 7 44 23 44C39 44 43.6667 30 44 23H38C37.8333 28 34.6 38 23 38C11.4 37.2 8.16667 27.6667 8 23Z" fill="#182268"/>
+                </g>
+                <g id="smallPart">
+                    <g id="smallPartContainer">
+                        <rect id="smallPartContainer_2" width="46" height="46" fill="white" fill-opacity="0.01"/>
+                        <path id="smallPartCenter" d="M14 23H10C10.1667 18.5 13 9.59998 23 9.99998C33 10.4 35.8333 18.8333 36 23H32C31.8333 19.8333 29.8 13.6 23 14C16.2 14.4 14.1667 20.1666 14 23Z" fill="#182268"/>
+                    </g>
+                </g>
+            </g>
+        </svg>
+    </div>
+    <form>
+        <p>*Toate câmpurile sunt obligatorii</p>
+    </form>
+</div>
+
+
+
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#available-libraries -->
+
+<script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-analytics.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-storage.js"></script>
+<script src="../../src/jquery-3.6.0.min.js"></script>
+<script src="../js/firebaseConfig.js"></script>
+<script src="../../portal/js/const.js"></script>
+<script src="../../portal/js/utils.js"></script>
+<script src="../../portal/js/headerChange.js"></script>
+<script src="../js/evaluare.js"></script>
+
+<!-- in caz ca nu are date in sessionStorage, va fi redirectionat la pagina de login -->
+<!--<script>function notLoggedIn(){if(!JSON.parse(window.sessionStorage.getItem("accountStatus")).isLogged)window.location.href="../login.html"}notLoggedIn()</script>-->
+
+</body>
+</html>

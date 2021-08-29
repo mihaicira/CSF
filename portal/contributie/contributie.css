@@ -103,7 +103,7 @@ label a:hover{
     color: var(--darkblue);
 }
 
-form input,select,button{
+form input, form select, form button{
     margin-right: 5vw;
     position: relative;
     border: .1vw solid var(--lightgrey);

@@ -14,7 +14,7 @@ database.ref("users").once('value')
     const USERS = snapshot.val()
     USER = USERS[USER_ID]
     if(USER === undefined){
-        raiseUserNotFound()
+        // raiseUserNotFound()
     }
     else{
         document.getElementById("text_nume").innerText = USER.nume

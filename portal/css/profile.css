@@ -328,6 +328,35 @@
     width: 2vw;
 }
 
+/*finalized by me*/
+.fbm-container{
+    width: 40vw;
+    font-size: 1rem;
+}
+
+.fbm-container p{
+    margin: 5px;
+}
+
+.fbm-top{
+    width: 100%;
+    justify-self: left;
+}
+.fbm-top p{
+    width: 100%;
+    text-align: left;
+}
+.fbm-title{
+    font-size: 1.5rem;
+}
+.fbm-btm{
+    width: 100%;
+}
+.fbm-btm div{
+    gap: 2vh;
+    text-align: center;
+}
+
 
 
 /*formular schimbare nume*/
