@@ -159,6 +159,7 @@ else
                             $("#submit").prop("disabled",true)
 
                             let databaseEvalForm = {
+                                titlu: propunere.titlu,//!!!
                                 arieCompetenta:document.querySelector("input[name='arie_competenta']").value,
                                 conformitateTitlu:document.querySelector("input[name='conformitate_titlu']").value,
                                 completitudineRezumat:document.querySelector("input[name='completitudine_rezumat']").value,
@@ -219,9 +220,9 @@ else
                                 .then((snap)=>{
                                     let user = snap.val()
                                     if(user.evaluations)
-                                        user.evaluations.push(propunere.id)
+                                        user.evaluations.push(propunere.id+'-'+EV)
                                     else
-                                        user.evaluations = [propunere.id]
+                                        user.evaluations = [propunere.id+'-'+EV]
 
                                     let updates = {}
                                     updates[`users/${getUserId()}`] = user
