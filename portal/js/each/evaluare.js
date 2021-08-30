@@ -80,7 +80,7 @@ const FORMULAR = `
    <input type="file" name="adnot" id="adnot-fisier">        
    <h3>FINALIZARE PROCES DE EVALUARE </h3>
    <h4>Redacția revistei Dialogues francophones vă mulțumește pentru că ați acceptat să faceți evaluarea acestui articol.</h4>   
-   <input type="submit" id="submit" value="Trimite" disabled>    
+   <input type="submit" id="submit" value="Trimite">    
 </form>
 `
 
@@ -154,6 +154,9 @@ else
                                     </g>
                                 </svg>
                             </div>`)
+
+                            //block submit button
+                            $("#submit").prop("disabled",true)
 
                             let databaseEvalForm = {
                                 arieCompetenta:document.querySelector("input[name='arie_competenta']").value,
