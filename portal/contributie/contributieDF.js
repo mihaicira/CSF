@@ -117,7 +117,14 @@ $("#formular-container>form").submit(function(e) {
         limba: getDropdownValue('limba-dwn'),
         cuvinte_cheie: getTextValue($("#cuvinte-cheie")),
         referinte: getTextValue($("#referinte")),
-        data:DateToString(new Date())
+        data:DateToString(new Date()),
+        evaluare_1:{
+            completed:false,
+            evaluator:"none"
+        },
+        evaluare_2:{
+            completed:false,
+            evaluator:"none"}
     }
 
     console.log(realtimeDatabaseForm)
