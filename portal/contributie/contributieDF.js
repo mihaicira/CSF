@@ -109,7 +109,7 @@ $("#formular-container>form").submit(function(e) {
         rubrica: getDropdownValue('rubrica'),
         calitate: document.querySelector("input[name='calitate']").value,
         fisier_propunere: fisier_propunere,
-        cale_nota: fisier_notabibliografica,
+        fisier_nota: fisier_notabibliografica,
         articol_initial: getDropdownValue('Articol-initial'),
         titlu: document.querySelector("input[id='titlu']").value,
         subtitlu: document.querySelector("input[id='sub-titlu']").value,
