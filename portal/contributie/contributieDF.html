@@ -23,19 +23,19 @@
 </section>
 
 <div id="formular-container">
-    <h2>Formular pentru trimiterea contributiilor</h2>
+    <h2>Formulaire d'envoi des contributions</h2>
     <form>
-        <p>*Toate câmpurile sunt obligatorii.</p>
-        <h3>Propunere contributie</h3>
+        <p>*Tous les champs sont obligatoires.</p>
+        <h3>Soumettre une contribution</h3>
 
         <!--        1. limba-articol-->
-        <h4>Limba în care este scris articolul:</h4>
+        <h4>Langue</h4>
         <select id="limba-articol">
-            <option>Engleză (UK)</option>
-            <option>Franceză (Franța)</option>
-            <option>Germană (Germania)</option>
-            <option>Italiană (Italia)</option>
-            <option>Spaniolă (Spania)</option>
+            <option>Anglaise (Angleterre)</option>
+            <option>Française (La France)</option>
+            <option>Allemande (Allemagne)</option>
+            <option>Italienne (Italie)</option>
+            <option>Espagnole (Espagne)</option>
         </select>
 
         <br><br><hr><br><br>
@@ -53,60 +53,60 @@
         <br><br><hr><br><br>
 
         <!--        3. verificare-documente-trimise-->
-        <h4>Lista verificare documente trimise</h4>
-        <p>Declarație pe proprie răspundere înainte de a continua procesul de expediere a documentului supus atenției redacției:</p>
+        <h4>Liste de vérification des documents envoyés </h4>
+        <p>Avant de poursuivre le téléchargement de votre contribution, veuillez lire l’engagement sur l’honneur ci-joint:</p>
         <input type="checkbox" id="verificare" name="verificare" value="yes" required >
-        <label for="verificare">Am citit condițiile de colaborare și sunt de-acord cu acestea.</label>
+        <label for="verificare">  J’ai lu les conditions de collaboration et j’exprime mon accord.</label>
 
         <br><br><hr><br><br>
 
         <!--        4. calitate -->
-        <h4>Calitatea celui care face propunerea</h4>
+        <h4>Rôle</h4>
         <br>
         <input type="radio" id="Autor" name="calitate" value="Autor" required >
-        <label for="Autor">Autor</label>
+        <label for="Autor">Auteur d’article</label>
 
         <br>
         <input type="radio" id="Recenzent" name="calitate" value="Recenzent">
-        <label for="Recenzent">Recenzent</label>
+        <label for="Recenzent">Auteur de compte rendu</label>
 
         <br>
         <input type="radio" id="Reporter/jurnalist" name="calitate" value="Reporter/jurnalist">
-        <label for="Reporter/jurnalist">Reporter/jurnalist</label>
+        <label for="Reporter/jurnalist">Intervieweur</label>
 
         <br>
         <input type="radio" id="Traducator" name="calitate" value="Traducator">
-        <label for="Traducator">Traducator</label>
+        <label for="Traducator">Traducteur</label>
 
         <br><br><hr><br><br>
 
         <!--        5. originalitate-->
 
-        <h4>Declarație pe proprie răspundere pentru originalitatea documentului supus atenției Redacției și autorizarea Redacției de a face ajustările textuale în confirmitate cu protocolul de tehnoredactare al revistei. Declarație de acceptare a cesiunii drepturilor de autor (Copyright Statement).</h4>
+        <h4>Déclaration sur l’honneur relative à l’originalité du document soumis à la Rédaction et autorisation de la Rédaction d’opérer tout ajustement formel du texte, suivant le protocole rédactionnel de la revue. Déclaration de cession des droits (Copyright Statement).</h4>
         <input type="checkbox" id="originalitate" name="originalitate" value="yes" required >
-        <label for="originalitate">Accept și voi respecta condițiile declarației referitoare la drepturile de autor / J'accepte et respecterai les conditions de la déclaration de droit d'auteur.</label>
+        <label for="originalitate">J’accepte et respecterai les conditions de la déclaration de droit d'auteur.</label>
 
         <br>
         <input type="checkbox" id="colectare-date" name="colectare-date" value="yes" required >
-        <label for="colectare-date">Accept ca datele mele să fie colectate și stocate în conformitate cu <a href="https://periodicos.unb.br/index.php/belasinfieis/about/privacy" target="_blank">declarația de confidențialitate</a> / Oui, j'accepte que mes données soient collectées et stockées conformément à la <a href="https://periodicos.unb.br/index.php/belasinfieis/about/privacy" target="_blank">Déclaration de confidentialité</a>.</label>
+        <label for="colectare-date">Oui, j’accepte que mes données soient collectées et stockées conformément à la <a href="https://periodicos.unb.br/index.php/belasinfieis/about/privacy" target="_blank">Déclaration de confidentialité</a>.</label>
 
         <br><br><hr><br><br>
 
         <!--        6. incarcare fisier-->
-        <h3>Încărcare articol propus</h3>
-        <p>A se încărca toate fișierele necesare echipei editorial pentru a efectua evaluarea, amandoua in format <b>word (.doc/.docx)</b>.</p>
-        <p>1. Articolul propus anonimizat</p>
+        <h3>Telechargement d’un article</h3>
+        <p>Veuillez télécharger sous format <b>word (.doc/.docx)</b>.</p>
+        <p>1. L’article anonymisé</p>
         <input type="file" name="filename" id="articol-fisier" required >
 
-        <p>2. Nota biobibliografica (100 de cuvinte)</p>
+        <p>2. La note biobibliographique (100 mots au maximum)</p>
         <input type="file" name="notabib" id="nota-fisier" required >
 
         <br><br><hr><br><br>
 
-        <h3>Completare metadate</h3>
+        <h3>Saisir les métadonnées</h3>
         <!--        7. article-initial-->
         <div class="pair-10">
-            <label>Articol initial</label>
+            <label>Article initial </label>
             <select id="Articol-initial">
                 <option>Un</option>
                 <option>Une</option>
@@ -117,48 +117,48 @@
         <br><br>
         <!--        8. titre-->
         <div class="pair-10">
-            <label>Titlu</label>
+            <label>Titre</label>
             <input id="titlu" class="text" required>
         </div>
 
         <br><br>
         <!--        9. sous-titre-->
         <div class="pair-10">
-            <label>Sub-titlu</label>
+            <label>Sous-titre</label>
             <input id="sub-titlu"  class="text" required>
         </div>
 
         <br><br>
 
         <!--        10. rezumat-->
-        <label>Rezumat</label><br>
+        <label>Résumé</label><br>
         <textarea rows="10" id="rezumat" required ></textarea>
 
       <br><br><hr><br><br>
 
 
 
-        <h4>Adaugă autori secundari</h4>
+        <h4>Ajouter un.e auteur, -trice secondaire</h4>
 
         <table id="persons-table">
             <tr>
-                <th>Nume</th>
-                <th>Contact</th>
-                <th>Rol</th>
-                <th>Sterge</th>
+                <th>Nom</th>
+                <th>Email</th>
+                <th>Rôle</th>
+                <th>Effacer</th>
             </tr>
         </table>
         <div id="fillPersons">
             <div class="pair-10">
-                <label>Nume Prenume</label><input id="fill-person-name">
+                <label>Nom(s) Prénom(s) :</label><input id="fill-person-name">
             </div>
             <br>
             <div class="pair-10">
-                <label>Email</label><input id="fill-person-contact">
+                <label>Email :</label><input id="fill-person-contact">
             </div>
             <br>
             <div class="pair-10">
-                <label>Rol</label><input id="fill-person-role">
+                <label>Rôle :</label><input id="fill-person-role">
             </div>
             <br>
             <button id="addPerson" type="button"></button>
@@ -166,28 +166,28 @@
 
         <br><br><hr><br><br>
         <!--        11.-->
-        <h4>Limba</h4>
+        <h4>Langue</h4>
         <select id="limba-dwn">
-            <option>Engleză (UK)</option>
-            <option>Franceză (Franța)</option>
-            <option>Germană (Germania)</option>
-            <option>Italiană (Italia)</option>
-            <option>Spaniolă (Spania)</option>
+            <option>Anglaise (Angleterre)</option>
+            <option>Française (La France)</option>
+            <option>Allemande (Allemagne)</option>
+            <option>Italienne (Italie)</option>
+            <option>Espagnole (Espagne)</option>
         </select>
 
         <br><br><hr><br><br>
 
         <!--        12.-->
-        <h4>Cuvinte cheie</h4>
-        <p>Maxim 5 cuvinte cheie, separate prin virgulă</p>
+        <h4>Mots-clés</h4>
+        <p>5 mots-clés, séparés par des virgules</p>
         <textarea rows="2" id="cuvinte-cheie"  required ></textarea>
 
 
         <br><br><hr><br><br>
 
         <!--        13.-->
-        <h4>Referințe bibliografice</h4>
-        <p>Sa cuprinda exact lucrarile citate (nu bibliografie generala)</p>
+        <h4>Références bibliographiques</h4>
+        <p>Liste des ouvrages et articles cités dans l’article. La littérature consultée mais non citée n’y figurera pas.</p>
         <textarea cols="5" rows="15" id="referinte"  required ></textarea>
 
         <br><br>
