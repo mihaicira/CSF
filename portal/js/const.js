@@ -68,7 +68,7 @@ const CONTRIBUTION_STATUS = {
 const GeneralErrors = {
     "not-authorized":"Nu sunteti autorizat pentru aceasta actiune",
     "doesnt-exist":"Aceasta propunere nu exista",
-    "not-completed":"Aceasta propunere nu a fost evaluata",
+    "not-completed":"Aceasta propunere nu a fost inca evaluata",
     "TBA":"Aici trebuie sa facem in caz ca e deja completat si are si acces"
 }
 

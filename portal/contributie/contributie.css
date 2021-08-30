@@ -312,4 +312,19 @@ textarea{
     left: 15vw;
 }
 
+#fill-download-link{
+    padding-left: 2vh;
+}
+
+#fill-download-link svg{
+    transition: 500ms;
+    -o-transition: 500ms;
+    -webkit-transition: 500ms;
+    -moz-transition: 500ms;
+}
+#fill-download-link svg:hover{
+    transform: scale(.9);
+    opacity: .7;
+}
+
 
