@@ -216,6 +216,7 @@ else
                                 })
 
                             //adaug evaluarea in lista de evaluari de la profilul meu
+                            //sterg de_evaluat din lista de de_evaluat de la profilul meu @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
                             database.ref(`users/${getUserId()}`).once('value')
                                 .then((snap)=>{
                                     let user = snap.val()

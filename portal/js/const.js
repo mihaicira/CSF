@@ -259,9 +259,6 @@ const RIGHTS =  {
     }
 }
 
-
-
-
 const months_short = {
     'Jan': 'January',
     'Feb':'February',

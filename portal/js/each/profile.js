@@ -31,7 +31,7 @@ database.ref("users").once('value')
             const Contributions = USER.contributions
             const Evaluations = USER.evaluations
 
-
+            //contributiile mele
             database.ref("DF/propuneri").once('value')
                 .then((snap)=>{
                     const propuneri = snap.val()
@@ -50,19 +50,17 @@ database.ref("users").once('value')
                         `)
                     })
                 })
+
+
+            //evaluarile mele
+            //trebuie verificat daca rankul meu imi permite sa vad panelul asta
             database.ref("DF/evaluari").once('value')
                 .then((snap)=>{
                     const evaluari = snap.val()
-
                     Evaluations.forEach((eval)=>{
                         eval = eval.toString()
                         const EV = eval.split("-")[1]
                         const evaluare = evaluari[eval.split("-")[0]][EV]
-
-
-                        console.log(evaluare)
-
-
                         document.getElementById("articole_evaluate_lista").insertAdjacentHTML("beforeend", `
                        <div class="article-box">
                     <div>
