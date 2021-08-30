@@ -35,7 +35,7 @@ const FORMULAR = `
    <p id="fill-download-link"></p>
    <h4>Evaluarea:</h4>
    <h4>Articolul supus evaluării corespunde ariei dumneavoastră de competență?</h4>
-   <input type="radio" id="Da1"  name="arie_competenta" value="Da" required>        <label for="Da1">Da</label>        <br>        <input type="radio" id="Nu1" name="arie_comepetenta" value="Nu">        <label for="Nu1">Nu</label>        
+   <input type="radio" id="Da1"  name="arie_competenta" value="Da" required>        <label for="Da1">Da</label>        <br>        <input type="radio" id="Nu1" name="arie_competenta" value="Nu">        <label for="Nu1">Nu</label>        
    <h4>Este titlul articolului clar, informativ  și conform propunerii pe care o anunță?</h4>
    <input type="radio" id="Da2"  name="conformitate_titlu" value="Da" required>        <label for="Da2">Da</label>        <br>        <input type="radio" id="Nu2" name="conformitate_titlu" value="Nu">        <label for="Nu2">Nu</label>        
    <h4>Rezumatul poate fi considerat complet?</h4>
@@ -80,7 +80,7 @@ const FORMULAR = `
    <input type="file" name="adnot" id="adnot-fisier">        
    <h3>FINALIZARE PROCES DE EVALUARE </h3>
    <h4>Redacția revistei Dialogues francophones vă mulțumește pentru că ați acceptat să faceți evaluarea acestui articol.</h4>   
-   <input type="submit" id="submit">    
+   <input type="submit" id="submit" value="Trimite" disabled>    
 </form>
 `
 
@@ -136,6 +136,25 @@ else
                             //prevent page from refreshing
                             e.preventDefault();
 
+                            //raise animation
+                            document.getElementById("submit").insertAdjacentHTML('beforebegin',`
+                            <div id="loadingAnimation" style="opacity: 1">
+                                <svg width="30" height="30" viewBox="0 0 46 46" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <g id="loadingAnim">
+                                        <g id="bigPart">
+                                            <rect id="bigPartContainer" width="46" height="46" fill="white" fill-opacity="0.01"/>
+                                            <path id="bigPartCenter" d="M8 23H2C2.33333 30 7 44 23 44C39 44 43.6667 30 44 23H38C37.8333 28 34.6 38 23 38C11.4 37.2 8.16667 27.6667 8 23Z" fill="#182268"/>
+                                        </g>
+                                        <g id="smallPart">
+                                            <g id="smallPartContainer">
+                                                <rect id="smallPartContainer_2" width="46" height="46" fill="white" fill-opacity="0.01"/>
+                                                <path id="smallPartCenter" d="M14 23H10C10.1667 18.5 13 9.59998 23 9.99998C33 10.4 35.8333 18.8333 36 23H32C31.8333 19.8333 29.8 13.6 23 14C16.2 14.4 14.1667 20.1666 14 23Z" fill="#182268"/>
+                                            </g>
+                                        </g>
+                                    </g>
+                                </svg>
+                            </div>`)
+
                             let databaseEvalForm = {
                                 arieCompetenta:document.querySelector("input[name='arie_competenta']").value,
                                 conformitateTitlu:document.querySelector("input[name='conformitate_titlu']").value,
@@ -154,17 +173,76 @@ else
                                 referinte:document.querySelector("input[name='referinte']").value,
                                 comentarii:getTextValue($("#comentarii")),
                                 recomandari:getDropdownValue('recomandari'),
-                                fisier_adnotari:`${propunere.id}-${PUB.toLowerCase()}-${getUserId()}-ev${EV}.${FISIER_ADNOTARI_DOC.extension}`,
+                                fisier_adnotari:`${propunere.id}-${PUB.toLowerCase()}-${propunere.id_autor}-ev${EV}.${FISIER_ADNOTARI_DOC.extension}`,
                                 data:DateToString(new Date())
                             }
-                            console.log(databaseEvalForm)
-                            //trimit evaluarea catre DB
+
+                            let NeedToUpdate = {
+                                "propunere": false,
+                                "eval_db": false,
+                                "eval_storage": false,
+                                "user_evaluations":false
+                            }
+                            let requestFinished = false
+
 
                             //schimb proprietatea de completed de la propunere
+                            propunere["evaluare_"+EV].completed = true
 
-                            //schimb status propunere xd
+                            //schimb status propunere
+                            propunere.status === propunere.status === 1 ? 2 : 1
+
+                            let updates = {}
+                            updates[PUB+"/propuneri/"+EVAL_ID] = propunere
+                            database.ref().update(updates)
+                                .then(()=>{
+                                    NeedToUpdate.propunere = true
+                                })
+
+                            //trimit evaluarea catre DB
+                            database.ref(`${PUB}/evaluari/${EVAL_ID}/${EV}`).set(databaseEvalForm)
+                                .then(()=>{
+                                    NeedToUpdate.eval_db = true
+                                })
+
+                            //trimit evaluare catre Storage
+                            firebase.storage().ref(`${PUB.toUpperCase()}/${propunere.id}-${PUB.toLowerCase()}-${propunere.id_autor}-ev${EV}.${FISIER_ADNOTARI_DOC.extension}`).put(FISIER_ADNOTARI_DOC.file)
+                                .then(()=>{
+                                    NeedToUpdate.eval_storage = true
+                                })
 
                             //adaug evaluarea in lista de evaluari de la profilul meu
+                            database.ref(`users/${getUserId()}`).once('value')
+                                .then((snap)=>{
+                                    let user = snap.val()
+                                    if(user.evaluations)
+                                        user.evaluations.push(propunere.id)
+                                    else
+                                        user.evaluations = [propunere.id]
+
+                                    let updates = {}
+                                    updates[`users/${getUserId()}`] = user
+                                    database.ref().update(updates)
+                                    NeedToUpdate.user_evaluations = true
+                                })
+
+                            setInterval(()=>{
+                                    if(requestFinished)
+                                        clearInterval()
+
+                                    let pass = true
+                                    for(const [key,value] of Object.entries(NeedToUpdate)){
+                                        if(value === false)
+                                            pass = false
+
+                                    if(pass){
+                                        $("#formular-container").html(`<h2>Congrats, u are done.</h2>`)
+                                        requestFinished = true
+                                    }
+                                }
+
+                            },800)
+
                         });
                         break
 
@@ -190,14 +268,15 @@ function authorized(val){
     let userRank = JSON.parse(window.sessionStorage.getItem("accountStatus")).account.rank.id
     let userID = JSON.parse(window.sessionStorage.getItem("accountStatus")).account.id
     //verificam daca userul este sef, apoi verificam daca evaluare este completata sau nu
-    if(["redresdf","redresaf"].includes(userRank)){
+    if(["redresdf","redresaf","rsdf"].includes(userRank)){
         if(val['evaluare_'+EV]['completed']){
             return 2
         }
         else return 3
     }
     //daca userul nu este sef verificam daca este evaluator, dupa verificam daca este completata sau nu
-    if(userID===val['evaluare_'+EV]['evaluator']){
+    console.log(userID,val['evaluare_'+EV]['evaluator'])
+    if(userID==val['evaluare_'+EV]['evaluator']){
         if(val['evaluare_'+EV]['completed']) return 2
         else return 1
     }

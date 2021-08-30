@@ -327,4 +327,12 @@ textarea{
     opacity: .7;
 }
 
+#submit:disabled,
+#submit[disabled]{
+opacity: .25;
+}
+#submit[disabled]:hover{
+    box-shadow: 0 0 0 0;
+}
+
 
