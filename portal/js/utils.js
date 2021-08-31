@@ -11,7 +11,7 @@ const createNewUser = (data) =>{
         email: data.email,
         password: data.password,
         nume: data.nume,
-        ranks:data.rank,
+        ranks:data.ranks,
         contributions:[],
         evals:[],
         needToEval:[],

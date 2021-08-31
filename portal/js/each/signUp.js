@@ -71,7 +71,6 @@ function signUp(){
                 }
                 document.getElementById("loadingAnimation").style.opacity="1"
                 createNewUser(accountData)
-                accountData.rank = null;
                 setTimeout(()=>{
                     logIn(accountData)
                 },2000)

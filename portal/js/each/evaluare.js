@@ -13,6 +13,19 @@ catch{
     CORRECT_URL = false
 }
 
+function changeButton(){
+    if(isUserLoggedIn()){
+        document.getElementById("header-second-line").insertAdjacentHTML('beforeend',`<button onclick='window.location.href="./profile.html?user=${getUserId()}"'>Pagina de profil</button>`)
+        document.getElementById("header-second-line").insertAdjacentHTML("beforeend",'<button onclick="LogOut()">Déconnexion</button>' )
+    }
+
+    else{
+        document.getElementById("header-second-line").insertAdjacentHTML("beforeend",'<button onclick="window.location.href=\'login.html\'">Connexion </button>' )
+    }
+}
+changeButton()
+
+
 
 const FORMULAR = `
 <h2>Formular pentru evaluarea contributiilor</h2>
@@ -57,7 +70,7 @@ const FORMULAR = `
    <h4>Fundamentele teoretice </h4>
    <input type="radio" id="fb5"  name="fundamente" value="Foarte bine" required>        <label for="fb5">Foarte bine</label>        <br>        <input type="radio" id="b5" name="fundamente" value="Bine">        <label for="b5">Bine</label>        <br>        <input type="radio" id="s5" name="fundamente" value="Suficient">        <label for="s5">Suficient</label>        <br>        <input type="radio" id="i5" name="fundamente" value="Insuficient">        <label for="i5">Insuficient</label>        
    <h4>Metoda de cercetare utilizată</h4>
-   <input type="radio" id="fb6"  name="cercetare" value="Foarte bine" required>        <label for="fb6">Foarte bine</label>        <br>        <input type="radio" id="b6" name="cercetare" value="Bine">        <label for="b6">Bine</label>        <br>        <input type="radio" id="s6" name="cercetare"value="Suficient">        <label for="s6">Suficient</label>        <br>        <input type="radio" id="i6" name="cercetare" value="Insuficient">        <label for="i6">Insuficient</label>        
+   <input type="radio" id="fb6"  name="cercetare" value="Foarte bine" required>        <label for="fb6">Foarte bine</label>        <br>        <input type="radio" id="b6" name="cercetare" value="Bine">        <label for="b6">Bine</label>        <br>        <input type="radio" id="s6" name="cercetare" value="Suficient">        <label for="s6">Suficient</label>        <br>        <input type="radio" id="i6" name="cercetare" value="Insuficient">        <label for="i6">Insuficient</label>        
    <h4>Rezultatele cercetării sunt corelate cu obiectivele acesteia</h4>
    <input type="radio" id="fb7"  name="rezultate" value="Foarte bine" required>        <label for="fb7">Foarte bine</label>        <br>        <input type="radio" id="b7" name="rezultate" value="Bine">        <label for="b7">Bine</label>        <br>        <input type="radio" id="s7" name="rezultate" value="Suficient">        <label for="s7">Suficient</label>        <br>        <input type="radio" id="i7" name="rezultate" value="Insuficient">        <label for="i7">Insuficient</label>        
    <h4>Concluziile reflectă demersul cercetării </h4>
@@ -270,7 +283,7 @@ else
 
 
 function authorized(val){
-    let userRank = JSON.parse(window.sessionStorage.getItem("accountStatus")).account.rank.id
+    let userRank = JSON.parse(window.sessionStorage.getItem("accountStatus")).account.rank
     let userID = JSON.parse(window.sessionStorage.getItem("accountStatus")).account.id
     //verificam daca userul este sef, apoi verificam daca evaluare este completata sau nu
     if(["redresdf","redresaf","rsdf"].includes(userRank)){

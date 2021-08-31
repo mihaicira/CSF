@@ -25,7 +25,7 @@ function addButtons(){
             let single = {key: null,true_occurences: 0}
             for(const [key,value] of Object.entries(ranks)){
                 if(value){
-                    single.key = RANKS[value.id].id
+                    single.key = RANKS[key].id
                     single.true_occurences += 1
                 }
             }
@@ -33,10 +33,17 @@ function addButtons(){
                 chooseRank(RANKS[single.key].id)
             else
                 for(const [key,value] of Object.entries(ranks)){
-                    if(RANKS[value.id].id.includes("df") && value)
-                        document.getElementById("header-third-line").insertAdjacentHTML("beforeend",`<button onclick='chooseRank(RANKS.${value.id}.id)'>${RANKS[value.id].nume}</button>`)
-                    if(RANKS[value.id].id.includes("af") && value)
-                        document.getElementById("header-fourth-line").insertAdjacentHTML("beforeend",`<button onclick="chooseRank(RANKS.${value.id}.id)">${RANKS[value.id].nume}</button>`)
+                    try {
+                        if (RANKS[key].id.includes("admin") && value)
+                            document.getElementById("header-third-line").insertAdjacentHTML("beforeend", `<button onclick='chooseRank(RANKS.${key}.id)'>${RANKS[key].nume}</button>`)
+                        if (RANKS[key].id.includes("df") && value)
+                            document.getElementById("header-fourth-line").insertAdjacentHTML("beforeend", `<button onclick='chooseRank(RANKS.${key}.id)'>${RANKS[key].nume}</button>`)
+                        if (RANKS[key].id.includes("af") && value)
+                            document.getElementById("header-fifth-line").insertAdjacentHTML("beforeend", `<button onclick="chooseRank(RANKS.${key}.id)">${RANKS[key].nume}</button>`)
+                    }
+                    catch {
+                        //pass
+                    }
                 }
         })
 }

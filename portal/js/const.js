@@ -1,5 +1,6 @@
 const RANKS = {
     admin:{
+        id: "admin",
         nume: "Administrator",
         weight: 1
     },
