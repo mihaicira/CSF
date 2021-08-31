@@ -22,14 +22,18 @@ function signUp(){
 
 
     const ranks = [];
+    let rank_aaf = false
+    let rank_adf = false
     if(document.getElementById('MembruAF').checked){
-        if(document.getElementById('MembruDF').checked)
-            ranks.push(RANKS["aaf"],RANKS["adf"])
+        if(document.getElementById('MembruDF').checked) {
+            rank_aaf = true
+            rank_adf = true
+        }
         else
-            ranks.push(RANKS["aaf"])
+            rank_aaf = true
     }
     else
-        ranks.push(RANKS["adf"])
+        rank_adf = true
 
     database.ref("users").once("value")
         .then((snapshot)=>{
@@ -52,7 +56,18 @@ function signUp(){
                     email:email,
                     password: $.MD5(password),
                     nume: prenume + " " + nume,
-                    rank:ranks
+                    ranks:{
+                        "admin":false,
+                        "rsdf":false,
+                        "redresdf":false,
+                        "redresaf":false,
+                        "mcdf":false,
+                        "mcaf":false,
+                        "evdf":false,
+                        "evaf":false,
+                        "aaf":rank_aaf,
+                        "adf":rank_adf,
+                    }
                 }
                 document.getElementById("loadingAnimation").style.opacity="1"
                 createNewUser(accountData)

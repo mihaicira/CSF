@@ -57,17 +57,16 @@ database.ref("users").once('value')
 
 
             //adaug functia mea cu care sunt logat
-            document.getElementById("profile-rank").insertAdjacentHTML('beforeend',`<h3>${RANKS[getUserRank().id].nume}</h3>`)
+            document.getElementById("profile-rank").insertAdjacentHTML('beforeend',`<h3>${RANKS[getUserRank()].nume}</h3>`)
 
-            const my_rank = getUserRank().id
-            const PUB = RANKS[getUserRank().id]["df-contributii-finalizate-panel"] === true ? "DF" : "AF"
+            const my_rank = getUserRank()
+            const PUB = RANKS[getUserRank()]["df-contributii-finalizate-panel"] === true ? "DF" : "AF"
             const pub = PUB.toLowerCase()
             const Contributions = USER.contributions
             const Evaluations = USER.evaluations
 
             //contributiile mele
-
-            if(RIGHTS[my_rank]["contributii-propuse-panel"] === "true") {
+            if(RIGHTS[my_rank]["contributii-propuse-panel"] === true) {
                 database.ref('DF/propuneri').once('value')
                     .then((snap) => {
                         const propuneri = snap.val()
@@ -91,7 +90,7 @@ database.ref("users").once('value')
             //evaluarile mele
             //trebuie verificat daca rankul meu imi permite sa vad panelul asta
 
-            if(RIGHTS[my_rank]["articole-evaluate-panel"] === "true"){
+            if(RIGHTS[my_rank]["articole-evaluate-panel"] === true){
 
                 document.getElementById("articole_evaluate_titlu").insertAdjacentHTML("beforeend",`<div>Articole evaluate</div>`)
                 database.ref('DF/evaluari').once('value')
@@ -116,7 +115,7 @@ database.ref("users").once('value')
 
             // articole de evaluat
 
-            if(RIGHTS[my_rank]["articole-de-evaluat-panel"] === "true"){
+            if(RIGHTS[my_rank]["articole-de-evaluat-panel"] === true){
 
                 document.getElementById("articole_de_evluat_titlu").insertAdjacentHTML("beforeend",`<div>Articole de evaluat</div>`)
 
@@ -135,7 +134,7 @@ database.ref("users").once('value')
 
             // ARTICOLE CE TREBUIE ATRIBUITE EVALUATORILOR-
 
-            if(RIGHTS[my_rank][`${pub}df-articole-assign-panel`] === "true"){
+            if(RIGHTS[my_rank][`${pub}df-articole-assign-panel`] === true){
 
                 document.getElementById("articole_evaluate_titlu").insertAdjacentHTML("beforeend",`<div>Articole ce trebuie atribuite evaluatorilor</div>`)
 
@@ -183,7 +182,7 @@ database.ref("users").once('value')
 
             //Contributii in curs de procesare
 
-             if(RIGHTS[my_rank][`${pub}-contributii-wip-panel`] === "true"){
+             if(RIGHTS[my_rank][`${pub}-contributii-wip-panel`] === true){
 
                     document.getElementById("articole_evaluate_titlu").insertAdjacentHTML("beforeend",`<div>Contributii in curs de procesare</div>`)
 
@@ -225,7 +224,7 @@ database.ref("users").once('value')
 
             //contributii finalizate de mine
 
-            if(RIGHTS[my_rank][`${pub}-contributii-finalizate-panel`] === "true"){
+            if(RIGHTS[my_rank][`${pub}-contributii-finalizate-panel`] === true){
 
                 document.getElementById("articole_finalizate_titlu").insertAdjacentHTML("beforeend",`<div>Contributii finalizate de mine</div>`)
 

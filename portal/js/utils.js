@@ -21,14 +21,6 @@ const createNewUser = (data) =>{
     var ref = database.ref("users/"+userId)
     ref.set(User)
 
-    // database.ref('users').once("value")
-    //     .then((snapshot)=>{
-    //         const USERS = snapshot.val()
-    //         USERS.push(User)
-    //         let updates = {}
-    //         updates["/users"] = USERS
-    //         database.ref().update(updates)
-    //     })
     return true;
 }
 

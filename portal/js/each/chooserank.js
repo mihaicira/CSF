@@ -18,28 +18,26 @@ function chooseRank(Rank){
 
 
 function addButtons(){
-    database.ref("users").once('value')
+    database.ref("users/"+getUserId()).once('value')
         .then((snapshot)=>{
-            Users = snapshot.val()
-            const userData = JSON.parse(window.sessionStorage.getItem("accountStatus")).account
-            for(const [id,user] of Object.entries(Users)){
-                if (user.email === userData.email){
-                    if (user.password === userData.password) {
-                        const ranks = user.ranks
-                        if(ranks.length === 1)
-                            chooseRank(RANKS[ranks[0].id])
-                        else
-                        ranks.forEach((ranks)=>{
-                            if(ranks.id.includes("df")){
-                                document.getElementById("header-third-line").insertAdjacentHTML("beforeend",`<button onclick='chooseRank(RANKS.${ranks.id})'>${ranks.nume}</button>`)
-                            }else{
-                               document.getElementById("header-fourth-line").insertAdjacentHTML("beforeend",`<button onclick="chooseRank(RANKS.${ranks.id})">${ranks.nume}</button>`)
-                            }
-
-                        })
-                    }
+            const User = snapshot.val()
+            const ranks = User.ranks
+            let single = {key: null,true_occurences: 0}
+            for(const [key,value] of Object.entries(ranks)){
+                if(value){
+                    single.key = RANKS[value.id].id
+                    single.true_occurences += 1
                 }
             }
+            if(single.true_occurences === 1)
+                chooseRank(RANKS[single.key].id)
+            else
+                for(const [key,value] of Object.entries(ranks)){
+                    if(RANKS[value.id].id.includes("df") && value)
+                        document.getElementById("header-third-line").insertAdjacentHTML("beforeend",`<button onclick='chooseRank(RANKS.${value.id}.id)'>${RANKS[value.id].nume}</button>`)
+                    if(RANKS[value.id].id.includes("af") && value)
+                        document.getElementById("header-fourth-line").insertAdjacentHTML("beforeend",`<button onclick="chooseRank(RANKS.${value.id}.id)">${RANKS[value.id].nume}</button>`)
+                }
         })
 }
 addButtons()
