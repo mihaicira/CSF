@@ -60,14 +60,28 @@ database.ref("users").once('value')
             document.getElementById("profile-rank").insertAdjacentHTML('beforeend',`<h3>${RANKS[getUserRank()].nume}</h3>`)
 
             const my_rank = getUserRank()
-            const PUB = RANKS[getUserRank()]["df-contributii-finalizate-panel"] === true ? "DF" : "AF"
+            let PUB
+            if (RANKS[getUserRank()].id.includes("df"))
+                PUB = "DF"
+            if (RANKS[getUserRank()].id.includes("af"))
+                PUB = "AF"
             const pub = PUB.toLowerCase()
             const Contributions = USER.contributions
             const Evaluations = USER.evaluations
 
+
+
             //contributiile mele
-            if(RIGHTS[my_rank]["contributii-propuse-panel"] === true) {
-                database.ref('DF/propuneri').once('value')
+            if(RIGHTS[my_rank]["contributii-propuse-panel"] === true ) {
+                document.getElementById("container-contributii").insertAdjacentHTML("beforeend",`
+                <div class="panel" >
+                <h2 class="titlu-panel" >Contributii propuse</h2>
+                <div class="list" id="contributii_propuse_lista">
+                </div>
+                </div>`)
+
+                if (Contributions){
+                database.ref(`${PUB}/propuneri`).once('value')
                     .then((snap) => {
                         const propuneri = snap.val()
 
@@ -85,15 +99,26 @@ database.ref("users").once('value')
                         `)
                         })
                     })
+                 }
+                 else
+                    document.getElementById("contributii_propuse_lista").insertAdjacentHTML("beforeend",`
+                    <p>Nu exista momentan</p>`)
 
             }
+
+
             //evaluarile mele
-            //trebuie verificat daca rankul meu imi permite sa vad panelul asta
 
             if(RIGHTS[my_rank]["articole-evaluate-panel"] === true){
+                document.getElementById("container-contributii").insertAdjacentHTML("beforeend",`
+                 <div class="panel">
+                 <h2 class="titlu-panel" id="articole_evaluate_titlu">Articole evaluate</h2>
+                 <div class="list" id="articole_evaluate_lista">
+                    </div>
+                    </div>`)
 
-                document.getElementById("articole_evaluate_titlu").insertAdjacentHTML("beforeend",`<div>Articole evaluate</div>`)
-                database.ref('DF/evaluari').once('value')
+            if (Evaluations)    {
+                database.ref(`${PUB}/evaluari`).once('value')
                     .then((snap)=>{
                         const evaluari = snap.val()
                         Evaluations.forEach((eval)=>{
@@ -112,12 +137,22 @@ database.ref("users").once('value')
                         })
                     })
             }
+            else
+                document.getElementById("articole_evaluate_lista").insertAdjacentHTML("beforeend",`
+                    <p>Nu exista momentan</p>`)
+            }
 
             // articole de evaluat
 
             if(RIGHTS[my_rank]["articole-de-evaluat-panel"] === true){
+                document.getElementById("container-contributii").insertAdjacentHTML("beforeend",`
+                     <div class="panel">
+                        <h2 class="titlu-panel" id="articole_de_evluat_titlu">Articole de evaluat</h2>
+                        <div class="list" id="articole_de_evaluat_lista">
 
-                document.getElementById("articole_de_evluat_titlu").insertAdjacentHTML("beforeend",`<div>Articole de evaluat</div>`)
+                         </div>
+                    </div>
+                `)
 
                 document.getElementById("articole_de_evaluat_lista").insertAdjacentHTML("beforeend", `
                       <div class="article-box">
@@ -134,11 +169,34 @@ database.ref("users").once('value')
 
             // ARTICOLE CE TREBUIE ATRIBUITE EVALUATORILOR-
 
-            if(RIGHTS[my_rank][`${pub}df-articole-assign-panel`] === true){
 
-                document.getElementById("articole_evaluate_titlu").insertAdjacentHTML("beforeend",`<div>Articole ce trebuie atribuite evaluatorilor</div>`)
+            //if(RIGHTS[my_rank][`${pub}-articole-assign-panel`] === true){
 
-                document.getElementById("articole_evaluate_lista").insertAdjacentHTML("beforeend", `
+            if (true){
+                /////////////////////////////////////////////////////////////////////////////////////////////
+                let evaluatori = []
+                for(const [key,user] of Object.entries(USERS)){
+                    let ranguri = user.ranks
+                    ranguri.forEach((each) => {
+                        if( each.weight === 5   &&  each.id.slice(-2).toString() === pub)
+                            evaluatori.push([user.nume, user.id])
+                    });
+                }
+
+                document.getElementById("container-contributii").insertAdjacentHTML("beforeend",`
+                      <div class="panel">
+                    <h2 class="titlu-panel" id="trebuie_atribuite_titlu">Articole ce trebuie atribuite evaluatorilor</h2>
+                    <div class="list" id="trebuie_atribuite_lista">
+        
+                    </div>
+                </div>
+                `)
+
+                database.ref(PUB+"/propuneri").once("value")
+                    .then((snap)=>{
+                        let propuneri= snap.val()
+                        for(const [key,propunere] of Object.entries(propuneri)){
+                            document.getElementById("trebuie_atribuite_lista").insertAdjacentHTML("beforeend", `
                        <div class="assign-article-container">
                     <div>
                         <div class="assign-article-info-container">
@@ -151,30 +209,33 @@ database.ref("users").once('value')
                             <p>Selecteaza evaluatori</p>
                             <div>
                                 <label>Evaluator 1</label>
-                                <select>
-                                    <option value="bla">bla</option>
-                                    <option value="bla">blablabla</option>
-                                    <option value="bla">bla</option>
-                                </select>
-
+                                <select id="${propunere.id}-assign-evaluatori-1"> </select>
                             </div>
                             <div>
                                 <label>Evaluator 2</label>
-                                <select>
-                                    <option value="bla">bla</option>
-                                    <option value="bla">blablablablablabla blablablablablabla blablablablablabla</option>
-                                    <option value="bla">bla</option>
-                                </select>
+                                <select id="${propunere.id}-assign-evaluatori-2"> </select>
                             </div>
                         </div>
                     </div>
                     <div>
-                        <button>Finalizeaza fara evaluare</button>
-                        <button>Trimite spre evaluare</button>
+                        <button onclick="finalizeazaFaraEvaluare('${propunere.id}')">Finalizeaza fara evaluare</button>
+                        <button onclick="trimiteSpreEvaluare('${propunere.id}')">Trimite spre evaluare</button>
                     </div>
 
                 </div>
                         `)
+                            evaluatori.forEach((evaluator) => {
+                                document.getElementById(`${propunere.id}-assign-evaluatori-1`).insertAdjacentHTML("beforeend",`
+                                <option value="${evaluator[1]}">${evaluator[0]}</option>
+                                `)
+                                document.getElementById(`${propunere.id}-assign-evaluatori-2`).insertAdjacentHTML("beforeend",`
+                                <option value="${evaluator[1]}">${evaluator[0]}</option>
+                                `)
+                            })
+
+                        }
+
+                    })
 
 
             }
@@ -184,9 +245,18 @@ database.ref("users").once('value')
 
              if(RIGHTS[my_rank][`${pub}-contributii-wip-panel`] === true){
 
-                    document.getElementById("articole_evaluate_titlu").insertAdjacentHTML("beforeend",`<div>Contributii in curs de procesare</div>`)
+                 document.getElementById("container-contributii").insertAdjacentHTML("beforeend",`
+                   <div class="panel">
+                    <h2 class="titlu-panel" id="contributii_in_procesare_titlu">Contributii in curs de procesare</h2>
+                    <div class="list" id="contributii_in_procesare_lista">
+        
+                    </div>
+                </div>
+                `)
 
-                    document.getElementById("articole_evaluate_lista").insertAdjacentHTML("beforeend", `
+
+
+                    document.getElementById("contributii_in_procesare_lista").insertAdjacentHTML("beforeend", `
                         <div class="article-box wip-container">
                     <div class="flex">
                         <div class="flex-col">
@@ -226,7 +296,15 @@ database.ref("users").once('value')
 
             if(RIGHTS[my_rank][`${pub}-contributii-finalizate-panel`] === true){
 
-                document.getElementById("articole_finalizate_titlu").insertAdjacentHTML("beforeend",`<div>Contributii finalizate de mine</div>`)
+                document.getElementById("container-contributii").insertAdjacentHTML("beforeend",`
+                    <div class="panel">
+                    <h2 class="titlu-panel" id="articole_finalizate_titlu">Contributii finalizate de mine</h2>
+                    <div class="list" id="articole_finalizate_lista">
+        
+                    </div>
+                </div>
+                `)
+
 
                 document.getElementById("articole_finalizate_lista").insertAdjacentHTML("beforeend", `
                       <div class="article-box fbm-container flex-col">
@@ -257,11 +335,6 @@ database.ref("users").once('value')
 
             }
 
-
-
-
-
-
         }
         else{
             console.log("guest")
@@ -281,6 +354,11 @@ function raiseUserNotFound(){
                         </div>`
 }
 
+function finalizeazaFaraEvaluare(){
+    console.log("De fapt nu ai finalizat")
+}
 
+function trimiteSpreEvaluare(){
+    console.log("De fapt nu ai trimis")
 
-
+}
