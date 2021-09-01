@@ -4,11 +4,11 @@ let PROP_ID = "", PUB = "";
 try{
     PUB = location.search.slice(1).split("&")[0].split("=")[1]
     PROP_ID = location.search.slice(1).split("&")[1].split("=")[1]
-
 }
 catch{
     CORRECT_URL = false
 }
+
 
 
 function changeButton(){
@@ -28,11 +28,12 @@ if(!CORRECT_URL){
     document.getElementById("propunere-container").insertAdjacentHTML("afterbegin",`<h2>${GeneralErrors["doesnt-exist"]}</h2>`)
 }
 else {
-    database.ref(PUB + "/propuneri/" + PROP_ID).once('value')
+    database.ref(PUB.toUpperCase()+"/propuneri/"+ PROP_ID).once('value')
         .then((snapshot) => {
+            let dbObj = snapshot.val()
             let userRank = JSON.parse(window.sessionStorage.getItem("accountStatus")).account.rank
             let userID = JSON.parse(window.sessionStorage.getItem("accountStatus")).account.id
-            dbObj = snapshot.val()
+
             if(dbObj){
                 var autoriHTML = ""
                 try{
