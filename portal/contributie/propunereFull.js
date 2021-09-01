@@ -2,14 +2,11 @@ let CORRECT_URL = true
 let PROP_ID = "", PUB = "";
 
 try{
-<<<<<<< Updated upstream
-    PUB = location.search.slice(1).split("&")[0].split("=")[1]
-    PROP_ID = location.search.slice(1).split("&")[1].split("=")[1]
-=======
+
     PUB = location.search.slice(1).split("&")[1].split("=")[1]
     PROP_ID = location.search.slice(1).split("&")[0].split("=")[1]
 
->>>>>>> Stashed changes
+
 }
 catch{
     CORRECT_URL = false
