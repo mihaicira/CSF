@@ -9,7 +9,11 @@ changeButton()
 const USER_ID = location.search.slice(1).split("&")[0].split("=")[1]
 let USER;
 
-
+var PUB
+if (RANKS[getUserRank()].id.includes("df"))
+    PUB = "DF"
+if (RANKS[getUserRank()].id.includes("af"))
+    PUB = "AF"
 
 database.ref("users").once('value')
 .then((snapshot)=>{
@@ -60,11 +64,7 @@ database.ref("users").once('value')
             document.getElementById("profile-rank").insertAdjacentHTML('beforeend',`<h3>${RANKS[getUserRank()].nume}</h3>`)
 
             const my_rank = getUserRank()
-            let PUB
-            if (RANKS[getUserRank()].id.includes("df"))
-                PUB = "DF"
-            if (RANKS[getUserRank()].id.includes("af"))
-                PUB = "AF"
+
             const pub = PUB.toLowerCase()
             const Contributions = USER.contributions
             const Evaluations = USER.evaluations
@@ -172,17 +172,10 @@ database.ref("users").once('value')
 
                 let evaluatori = []
                 for(const [key,user] of Object.entries(USERS)){
-                    let ranks = user.ranks
-                    // for(const [k,rank] of Object.entries(user.ranks)){
-                    //
-                    // }
                     if(user.ranks["ev"+pub])
                         evaluatori.push([user.nume, user.id])
 
-                    // ranguri.forEach((each) => {
-                    //     if( each.weight === 5   &&  each.id.slice(-2).toString() === pub)
-                    //         evaluatori.push([user.nume, user.id])
-                    // });
+
                 }
 
                 document.getElementById("container-contributii").insertAdjacentHTML("beforeend",`
@@ -200,7 +193,7 @@ database.ref("users").once('value')
                         for(const [key,contributie] of Object.entries(propuneri)){
                             if( contributie.stadiu === 1){
                                 document.getElementById("trebuie_atribuite_lista").insertAdjacentHTML("beforeend", `
-                             <div class="assign-article-container">
+                             <div class="assign-article-container" id="assign-article-${contributie.id}">
                             <div>
                             <div class="assign-article-info-container">
                                 <p>${contributie.titlu} &emsp; <svg class="redirect-svg" viewBox="0 0 25 25" fill="none"><path d="M23.8636 0.0303345H14.7727C14.1451 0.0303345 13.6363 0.527406 13.6363 1.14054C13.6363 1.75367 14.1451 2.25075 14.7727 2.25075H21.1202L9.42378 13.6779C8.97999 14.1114 8.97999 14.8143 9.42378 15.2479C9.64561 15.4646 9.93643 15.573 10.2273 15.573C10.5181 15.573 10.8089 15.4647 11.0308 15.2478L22.7273 3.82077V10.0221C22.7273 10.6352 23.2361 11.1323 23.8637 11.1323C24.4913 11.1323 25.0001 10.6352 25.0001 10.0221V1.14054C25 0.527406 24.4912 0.0303345 23.8636 0.0303345Z" fill="black"/><path d="M19.3182 11.1322C18.6906 11.1322 18.1818 11.6293 18.1818 12.2424V22.2342H2.27271V6.69143H12.5C13.1276 6.69143 13.6364 6.19436 13.6364 5.58123C13.6364 4.96809 13.1276 4.47107 12.5 4.47107H1.13638C0.508789 4.47107 0 4.96814 0 5.58128V23.3444C0 23.9575 0.508789 24.4545 1.13638 24.4545H19.3182C19.9458 24.4545 20.4546 23.9575 20.4546 23.3443V12.2424C20.4545 11.6293 19.9458 11.1322 19.3182 11.1322Z" fill="black"/></svg></p>
@@ -354,6 +347,26 @@ function finalizeazaFaraEvaluare(id){
     //fac referinta in db catre publicatia id
     //schimb stadiul publicatiei in 5
     //pun inapoi obiectul in db (salvez)
+    database.ref(PUB+"/propuneri/"+id).once("value")
+        .then((snapshot)=>{
+            let propunere = snapshot.val()
+            propunere.stadiu = 5
+
+            let updates = {}
+            updates[PUB+"/propuneri/"+id] = propunere
+            database.ref().update(updates)
+
+
+            $("#assign-article-"+id).html("Propunerea a fost finalizata")
+            
+            }
+        )
+
+
+
+
+    //
+    // contributie.stadiu=5
 }
 
 function trimiteSpreEvaluare(id){
