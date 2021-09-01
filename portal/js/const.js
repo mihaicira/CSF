@@ -95,6 +95,7 @@ const RIGHTS =  {
         "af-contributii-finalizate-panel": true,
         "access-cieft-page": true,
         "access-members-page": true,
+        "access-eval-pages": true,
         "df-access-contributii-page": true,
         "af-access-contributii-page": true
     },
@@ -118,6 +119,7 @@ const RIGHTS =  {
         "af-contributii-finalizate-panel": false,
         "access-cieft-page": true,
         "access-members-page": true,
+        "access-eval-pages": true,
         "df-access-contributii-page": true,
         "af-access-contributii-page": false
     },
@@ -141,6 +143,7 @@ const RIGHTS =  {
         "af-contributii-finalizate-panel": false,
         "access-cieft-page": true,
         "access-members-page": true,
+        "access-eval-pages": true,
         "df-access-contributii-page": true,
         "af-access-contributii-page": false
     },
@@ -164,6 +167,7 @@ const RIGHTS =  {
         "af-contributii-finalizate-panel": true,
         "access-cieft-page": true,
         "access-members-page": true,
+        "access-eval-pages": true,
         "df-access-contributii-page": false,
         "af-access-contributii-page": true
     },
@@ -187,6 +191,7 @@ const RIGHTS =  {
         "af-contributii-finalizate-panel": false,
         "access-cieft-page": false,
         "access-members-page": false,
+        "access-eval-pages": false,
         "df-access-contributii-page": false,
         "af-access-contributii-page": false
     },
@@ -210,6 +215,7 @@ const RIGHTS =  {
         "af-contributii-finalizate-panel": false,
         "access-cieft-page": false,
         "access-members-page": false,
+        "access-eval-pages": false,
         "df-access-contributii-page": false,
         "af-access-contributii-page": false
     },
@@ -233,6 +239,7 @@ const RIGHTS =  {
         "af-contributii-finalizate-panel": false,
         "access-cieft-page": false,
         "access-members-page": false,
+        "access-eval-pages": false,
         "df-access-contributii-page": false,
         "af-access-contributii-page": false
     },
@@ -256,6 +263,7 @@ const RIGHTS =  {
         "af-contributii-finalizate-panel": false,
         "access-cieft-page": false,
         "access-members-page": false,
+        "access-eval-pages": false,
         "df-access-contributii-page": false,
         "af-access-contributii-page": false
     },
@@ -279,6 +287,7 @@ const RIGHTS =  {
         "af-contributii-finalizate-panel": false,
         "access-cieft-page": false,
         "access-members-page": false,
+        "access-eval-pages": false,
         "df-access-contributii-page": false,
         "af-access-contributii-page": false
     },
@@ -302,6 +311,7 @@ const RIGHTS =  {
         "af-contributii-finalizate-panel": false,
         "access-cieft-page": false,
         "access-members-page": false,
+        "access-eval-pages": false,
         "df-access-contributii-page": false,
         "af-access-contributii-page": false
     }
