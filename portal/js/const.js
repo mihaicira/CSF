@@ -61,9 +61,10 @@ const LoginSignupErrors = {
 
 const CONTRIBUTION_STATUS = {
     1: "Contributia a fost trimisa",
-    2: "Contributia a fost evaluata de un evaluator",
-    3: "Contributia a fost evaluata de doi evaluatori",
-    4: "Procesul contributiei a fost finalizat"
+    2: "Contributia a fost asignata evaluatorilor",
+    3: "Contributia a fost evaluata de un evaluator",
+    4: "Contributia a fost evaluata de doi evaluatori",
+    5: "Procesul contributiei a fost finalizat"
 }
 
 const GeneralErrors = {

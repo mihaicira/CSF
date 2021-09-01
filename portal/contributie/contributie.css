@@ -46,25 +46,12 @@
 }
 
 #formular-container h1{
-    position: absolute;
-
     display: flex;
     align-items: center;
     justify-content: center;
 
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%) rotateX(180deg);
-
-    z-index: -1;
     width: 100%;
-
     height: 20vw;
-
-    /*border: .25vw solid var(--darkblue);*/
-    /*border-radius: 3vw;*/
-
-    /*background: rgb(247,248,252);*/
 }
 
 
