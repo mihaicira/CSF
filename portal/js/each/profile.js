@@ -78,8 +78,13 @@ database.ref("users").once('value')
             if(RIGHTS[my_rank]["access-members-page"])
                 document.getElementById("container-contributii").insertAdjacentHTML('beforeend',`<a href="./members.html">Accesează pagina cu membrii platformei</a>`)
 
+            //cieft link
             if(RIGHTS[my_rank]["access-cieft-page"])
                 document.getElementById("container-contributii").insertAdjacentHTML('beforeend',`<a href="./cieft.html">Accesează pagina cu membrii înscriși la colocviu</a>`)
+
+            //contrib panel
+            if(RIGHTS[my_rank]["access-contrib-page-af"] || RIGHTS[my_rank]["access-contrib-page-df"])
+                document.getElementById("container-contributii").insertAdjacentHTML('beforeend',`<a href="./contributie/contributii.html">Accesează panoul cu contribuțiile</a>`)
 
 
             //contributiile mele
@@ -205,13 +210,10 @@ database.ref("users").once('value')
 
             // ARTICOLE CE TREBUIE ATRIBUITE EVALUATORILOR-
             if(RIGHTS[my_rank][`${pub}-articole-assign-panel`] === true){
-
                 let evaluatori = []
                 for(const [key,user] of Object.entries(USERS)){
                     if(user.ranks["ev"+pub])
                         evaluatori.push([user.nume, user.id])
-
-
                 }
 
                 document.getElementById("container-contributii").insertAdjacentHTML("beforeend",`
@@ -480,13 +482,13 @@ function updateRanks(){
         "aaf" :  USER_RANKS["aaf"],
         "adf" :  USER_RANKS["adf"],
         "admin" : USER_RANKS["admin"],
-        "evaf" :  document.getElementById("evaf").checked,
-        "evdf" :  document.getElementById("evdf").checked,
-        "mcaf" :  document.getElementById("mcaf").checked,
-        "mcdf" :  document.getElementById("mcdf").checked,
-        "redresaf" :  document.getElementById("redresaf").checked,
-        "redresdf" :  document.getElementById("redresdf").checked,
-        "rsdf" :  document.getElementById("rsdf").checked
+        "evaf" :  (document.getElementById("evaf") ? document.getElementById("evaf").checked : USER_RANKS["evaf"]),
+        "evdf" :  (document.getElementById("evdf") ? document.getElementById("evdf").checked : USER_RANKS["evdf"]),
+        "mcaf" :  (document.getElementById("mcaf") ? document.getElementById("mcaf").checked : USER_RANKS["mcaf"]),
+        "mcdf" :  (document.getElementById("mcdf") ? document.getElementById("mcdf").checked : USER_RANKS["mcdf"]),
+        "redresaf" :  (document.getElementById("redresaf") ? document.getElementById("redresaf").checked : USER_RANKS["redresaf"]),
+        "redresdf" :  (document.getElementById("redresdf") ? document.getElementById("redresdf").checked : USER_RANKS["redresdf"]),
+        "rsdf" :  (document.getElementById("rsdf") ? document.getElementById("rsdf").checked : USER_RANKS["rsdf"]),
     }
     let logs = []
     for(const [key,value] of Object.entries(new_ranks)){

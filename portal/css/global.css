@@ -35,7 +35,7 @@ body{
 }
 #header-second-line>button{
     background: none;
-    width: 10%;
+    width: 30%;
     border: none;
     font-weight: 600;
     outline: none;
@@ -47,7 +47,7 @@ body{
     -webkit-transition: 500ms;
     -moz-transition: 500ms;
 }
-#header-second-line>button:hover{
+#header-second-line>button:hover:not(#connected-as){
     color: var(--grey);
 }
 #header-first-line,
@@ -56,6 +56,22 @@ body{
     align-items: center;
     width: 100%;
     justify-content: space-evenly;
+    transition: 500ms;
+    -o-transition: 500ms;
+    -webkit-transition: 500ms;
+    -moz-transition: 500ms;
+}
+
+
+#connected-as{
+    font-size: .8rem;
+    text-align: center;
+    width: 30%;
+    border: none;
+    font-weight: 600;
+    outline: none;
+    color: white;
+    text-decoration: none;
     transition: 500ms;
     -o-transition: 500ms;
     -webkit-transition: 500ms;

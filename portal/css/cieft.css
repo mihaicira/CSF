@@ -19,7 +19,7 @@
     transform: translateX(-50%);
 }
 
-.list{
+#list{
     display: flex;
     align-items: center;
     justify-content: center;

@@ -11,7 +11,8 @@ $("form").submit(function (e){
         rezumat: getTextValue($("#rezumat")),
         cuv_cheie: getTextValue($("#cuvintecheie")),
         bibliografie: getTextValue($("#bibliografie")),
-        nota_bibliografica: getTextValue($("#notabiobibliografica"))
+        nota_bibliografica: getTextValue($("#notabiobibliografica")),
+        nume: JSON.parse(window.sessionStorage.getItem("accountStatus")).account.nume
     }
 
     // database send

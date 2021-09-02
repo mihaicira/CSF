@@ -1,6 +1,8 @@
 function changeButton(){
     if(isUserLoggedIn()){
-        document.getElementById("header-second-line").insertAdjacentHTML('beforeend',`<button onclick='window.location.href="./profile.html?user=${getUserId()}"'>Pagina de profil</button>`)
+        document.getElementById("header-second-line").insertAdjacentHTML('beforeend',`<button onclick='window.location.href="../profile.html?user=${getUserId()}"'>Pagina de profil</button>`)
+
+        document.getElementById("header-second-line").insertAdjacentHTML("beforeend",`<p id='connected-as' ">Conectat ca ${RANKS[getUserRank()].nume} </button>` )
         document.getElementById("header-second-line").insertAdjacentHTML("beforeend",'<button onclick="LogOut()">Déconnexion</button>' )
     }
 
@@ -14,33 +16,46 @@ const X_SVG = `<svg viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/200
 const OK_SVG = `<svg viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">                    <path d="M7.5 0C3.37034 0 0 3.22732 0 7.18124C0 11.1354 3.37058 14.3625 7.5 14.3625C11.6297 14.3625 15 11.1352 15 7.18124C15 3.2271 11.6294 0 7.5 0ZM7.5 13.5209C3.84911 13.5209 0.878906 10.677 0.878906 7.18124C0.878906 3.68552 3.84911 0.841551 7.5 0.841551C11.1509 0.841551 14.1211 3.68552 14.1211 7.18124C14.1211 10.677 11.1509 13.5209 7.5 13.5209Z" fill="black"/>                    <path d="M3.5 7L6 10.5L12 4" stroke="black"/>                </svg>`
 const LINK_SVG = `<svg class="link-svg" viewBox="0 0 16 18" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M15.2727 0.847588H9.45451C9.05286 0.847588 8.72723 1.17886 8.72723 1.58748C8.72723 1.9961 9.05286 2.32738 9.45451 2.32738H13.5169L6.0312 9.94294C5.74717 10.2319 5.74717 10.7003 6.0312 10.9893C6.17317 11.1337 6.35929 11.206 6.54542 11.206C6.73154 11.206 6.9177 11.1338 7.0597 10.9892L14.5454 3.37371V7.50657C14.5454 7.91519 14.8711 8.24646 15.2727 8.24646C15.6744 8.24646 16 7.91519 16 7.50657V1.58748C16 1.17886 15.6744 0.847588 15.2727 0.847588Z" fill="black"/><path d="M12.3636 8.24645C11.962 8.24645 11.6363 8.57772 11.6363 8.98635V15.6453H1.45453V5.28691H8C8.40166 5.28691 8.72728 4.95564 8.72728 4.54701C8.72728 4.13839 8.40166 3.80715 8 3.80715H0.727281C0.325625 3.80715 0 4.13842 0 4.54705V16.3852C0 16.7938 0.325625 17.1251 0.727281 17.1251H12.3637C12.7653 17.1251 13.0909 16.7938 13.0909 16.3852V8.98635C13.0909 8.57772 12.7653 8.24645 12.3636 8.24645Z" fill="black"/></svg>`
 
-function StringToDate(date){
-    let info= date.split(" ")
-    return new Date(info[2].slice(0,-1),months_num[info[1]],info[0],info[3].split(":")[0],info[3].split(":")[1])
+let USERS;
+if(RIGHTS[getUserRank()]["access-contrib-page-af"] || RIGHTS[getUserRank()]["access-contrib-page-df"]){
+    database.ref("users").once("value")
+        .then((snapshot)=>{
+            USERS = snapshot.val()
+
+            const OBJECTS = []
+            database.ref("DF/propuneri").once("value")
+                .then((snap)=>{
+                    const data = snap.val()
+                    if(data && RIGHTS[getUserRank()]["access-contrib-page-df"])
+                    for(const [key,obj] of Object.entries(data)){
+                        OBJECTS.push(obj)
+                    }
+
+                    //AF...
+                    database.ref("AF/propuneri").once("value")
+                        .then((ndsnap)=>{
+                            const nddata = ndsnap.val()
+                            if(nddata && RIGHTS[getUserRank()]["access-contrib-page-af"])
+                                for(const [key,obj] of Object.entries(nddata)){
+                                    OBJECTS.push(obj)
+                                }
+
+                            //after AF...
+                            insertObjects(OBJECTS)
+                        })
+                })
+        })
+}
+else{
+    $(".contributii-container").html(`<h1>${GeneralErrors["not-authorized"]}</h1>`)
 }
 
-let USERS;
-database.ref("users").once("value")
-    .then((snapshot)=>{
-        USERS = snapshot.val()
-
-        const OBJECTS = []
-        database.ref("DF/propuneri").once("value")
-            .then((snap)=>{
-                const data = snap.val()
-                for(const [key,obj] of Object.entries(data)){
-                    OBJECTS.push(obj)
-                }
-
-                //AF...
-
-                //after AF...
-                insertObjects(OBJECTS)
-            })
-})
 
 
 function insertObjects(objects){
+
+    objects.sort((obj1,obj2)=>StringToDate(obj2.data) - StringToDate(obj1.data))
+
     objects.forEach((obj)=>{
 
 

@@ -6,7 +6,7 @@ function fetch_members(){
             document.getElementById("members-count").insertAdjacentText("beforeend",Object.entries(users).length-1)
 
             for(const [id,user] of Object.entries(users)){
-                if (user.id != "0"){
+                if (!user.ranks["admin"]){
                     let userString = `<div class="member">&bull;<p><a href="./profile.html?user=${user.id}">${user.nume}</a></p>`
                     for(const [key,value] of Object.entries(user.ranks)){
                         if(value){
@@ -41,8 +41,11 @@ function fetch_logs(){
 
 
 function changeButton(){
-    if(isUserLoggedIn())
+    if(isUserLoggedIn()){
+        document.getElementById("header-second-line").insertAdjacentHTML("beforeend",`<p id='connected-as' ">Conectat ca ${RANKS[getUserRank()].nume} </button>` )
         document.getElementById("header-second-line").insertAdjacentHTML("beforeend",'<button onclick="LogOut()">Déconnexion </button>' )
+    }
+
     else
         document.getElementById("header-second-line").insertAdjacentHTML("beforeend",'<button onclick="window.location.href=\'login.html\'">Connexion </button>' )
 }
