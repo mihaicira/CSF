@@ -7,6 +7,19 @@ var FISIER_NOTABIBLIOGRAFICA_DOC = {
     extension: "n/a"
 };
 
+function changeButton(){
+    if(isUserLoggedIn()){
+        document.getElementById("header-second-line").insertAdjacentHTML('beforeend',`<button onclick='window.location.href="../profile.html?user=${getUserId()}"'>Pagina de profil</button>`)
+        document.getElementById("header-second-line").insertAdjacentHTML("beforeend",'<button onclick="LogOut()">Déconnexion</button>' )
+    }
+
+    else{
+        document.getElementById("header-second-line").insertAdjacentHTML("beforeend",'<button onclick="window.location.href=\'login.html\'">Connexion </button>' )
+    }
+}
+changeButton()
+
+
 var autor;
 
 document.getElementById('articol-fisier').addEventListener('change', function (e){
@@ -144,13 +157,6 @@ $("#addPerson").click(()=>{
 
 })
 
-function changeButton(){
-    if(isUserLoggedIn())
-        document.getElementById("header-second-line").insertAdjacentHTML("beforeend",'<button onclick="LogOut()">Deconecteaza-te </button>' )
-    else
-        document.getElementById("header-second-line").insertAdjacentHTML("beforeend",'<button onclick="window.location.href=\'../login.html\'">Conecteaza-te </button>' )
-}
-changeButton()
 
 
 function uploadFileToDF(file,name){

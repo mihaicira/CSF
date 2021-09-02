@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- in caz ca nu are date in sessionStorage, va fi redirectionat la pagina de login -->
+<!-- in caz ca nu are date in session storage, i se vor pune niste date default, ca sa poata rula scripturile de mai jos -->
+<script>const userSessionStorage = ()=>{if(JSON.parse(window.sessionStorage.getItem("accountStatus"))=== null ){let data = {isLogged: false, account:null};window.sessionStorage.setItem("accountStatus",JSON.stringify(data))}};userSessionStorage()</script>
+<!-- in caz ca nu e logat, va fi redirectionat la pagina de login -->
 <script>function notLoggedIn(){if(!JSON.parse(window.sessionStorage.getItem("accountStatus")).isLogged)window.location.href="../login.html"}notLoggedIn()</script>
 <!-- scriptul asta verifica daca userul este logat si nu are rank selectat-->
-<script>function loggedInWithoutRank(){    if(JSON.parse(window.sessionStorage.getItem("accountStatus")).isLogged)         if(JSON.parse(window.sessionStorage.getItem("accountStatus")).account.rank == null)             window.location.href="chooserank.html"}loggedInWithoutRank()</script>
+<script>function loggedInWithoutRank(){    if(JSON.parse(window.sessionStorage.getItem("accountStatus")).isLogged)         if(JSON.parse(window.sessionStorage.getItem("accountStatus")).account.rank == null) window.location.href="chooserank.html"}loggedInWithoutRank()</script>
 
 
 
@@ -25,6 +27,7 @@
 
 <div id="formular-container">
     <h2>Formulaire d'envoi des contributions</h2>
+    <h3 class="titlu-publicatie">Dialogues francophones</h3>
     <form>
         <p>*Tous les champs sont obligatoires.</p>
         <h3>Soumettre une contribution</h3>
@@ -88,7 +91,7 @@
 
         <br>
         <input type="checkbox" id="colectare-date" name="colectare-date" value="yes" required >
-        <label for="colectare-date">Oui, j’accepte que mes données soient collectées et stockées conformément à la <a href="https://periodicos.unb.br/index.php/belasinfieis/about/privacy" target="_blank">Déclaration de confidentialité</a>.</label>
+        <label for="colectare-date">Oui, j’accepte que mes données soient collectées et stockées conformément à la Déclaration de confidentialité.</label>
 
         <br><br><hr><br><br>
 

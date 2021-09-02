@@ -1,13 +1,203 @@
 <!DOCTYPE html>
 <html lang="en">
+
+<!-- in caz ca nu are date in session storage, i se vor pune niste date default, ca sa poata rula scripturile de mai jos -->
+<script>const userSessionStorage = ()=>{if(JSON.parse(window.sessionStorage.getItem("accountStatus"))=== null ){let data = {isLogged: false, account:null};window.sessionStorage.setItem("accountStatus",JSON.stringify(data))}};userSessionStorage()</script>
+<!-- in caz ca nu e logat, va fi redirectionat la pagina de login -->
+<script>function notLoggedIn(){if(!JSON.parse(window.sessionStorage.getItem("accountStatus")).isLogged)window.location.href="../login.html"}notLoggedIn()</script>
+<!-- scriptul asta verifica daca userul este logat si nu are rank selectat-->
+<script>function loggedInWithoutRank(){    if(JSON.parse(window.sessionStorage.getItem("accountStatus")).isLogged)         if(JSON.parse(window.sessionStorage.getItem("accountStatus")).account.rank == null) window.location.href="chooserank.html"}loggedInWithoutRank()</script>
+
+
+
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="../../portal/css/global.css">
+    <link rel="stylesheet" href="contributie.css">
 </head>
 <body>
 
+<section class="header-container">
+    <div id="header-first-line"><img src="../../media/logo-csf-cropped.png"></div>
+    <div id="header-second-line">
+        <button onclick="window.location.href='../../index.html'">Accueil</button>
+    </div>
+</section>
+
+<div id="formular-container">
+    <h2>Formulaire d'envoi des contributions</h2>
+    <h3 class="titlu-publicatie">Agapes francophones</h3>
+    <form>
+        <p>*Tous les champs sont obligatoires.</p>
+        <h3>Soumettre une contribution</h3>
+
+        <!--        1. limba-articol-->
+        <h4>Langue</h4>
+        <select id="limba-articol">
+            <option>Anglaise (Angleterre)</option>
+            <option>Française (La France)</option>
+            <option>Allemande (Allemagne)</option>
+            <option>Italienne (Italie)</option>
+            <option>Espagnole (Espagne)</option>
+        </select>
+
+        <br><br><hr><br><br>
+
+        <!--        2. rubrica-->
+        <h4>Section</h4>
+        <select id="rubrica">
+            <option>Article</option>
+            <option>Entretien</option>
+            <option>Comptes rendus</option>
+            <option>Traductions inédites</option>
+        </select>
+
+        <br><br><hr><br><br>
+
+        <!--        3. verificare-documente-trimise-->
+        <h4>Liste de vérification des documents envoyés </h4>
+        <p>Avant de poursuivre le téléchargement de votre contribution, veuillez lire l’engagement sur l’honneur ci-joint:</p>
+        <input type="checkbox" id="verificare" name="verificare" value="yes" required >
+        <label for="verificare">  J’ai lu les conditions de collaboration et j’exprime mon accord.</label>
+
+        <br><br><hr><br><br>
+
+        <!--        4. calitate -->
+        <h4>Rôle</h4>
+        <br>
+        <input type="radio" id="Autor" name="calitate" value="Autor" required >
+        <label for="Autor">Auteur d’article</label>
+
+        <br>
+        <input type="radio" id="Recenzent" name="calitate" value="Recenzent">
+        <label for="Recenzent">Auteur de compte rendu</label>
+
+        <br>
+        <input type="radio" id="Reporter/jurnalist" name="calitate" value="Reporter/jurnalist">
+        <label for="Reporter/jurnalist">Intervieweur</label>
+
+        <br>
+        <input type="radio" id="Traducator" name="calitate" value="Traducator">
+        <label for="Traducator">Traducteur</label>
+
+        <br><br><hr><br><br>
+
+        <!--        5. originalitate-->
+
+        <h4>Déclaration sur l’honneur relative à l’originalité du document soumis à la Rédaction et autorisation de la Rédaction d’opérer tout ajustement formel du texte, suivant le protocole rédactionnel de la revue. Déclaration de cession des droits (Copyright Statement).</h4>
+        <input type="checkbox" id="originalitate" name="originalitate" value="yes" required >
+        <label for="originalitate">J’accepte et respecterai les conditions de la déclaration de droit d'auteur.</label>
+
+        <br>
+        <input type="checkbox" id="colectare-date" name="colectare-date" value="yes" required >
+        <label for="colectare-date">Oui, j’accepte que mes données soient collectées et stockées conformément à la Déclaration de confidentialité.</label>
+
+        <br><br><hr><br><br>
+
+        <!--        6. incarcare fisier-->
+        <h3>Telechargement d’un article</h3>
+        <p>Veuillez télécharger sous format <b>word (.doc/.docx)</b>.</p>
+        <p>1. L’article anonymisé</p>
+        <input type="file" name="filename" id="articol-fisier" required >
+
+        <p>2. La note biobibliographique (100 mots au maximum)</p>
+        <input type="file" name="notabib" id="nota-fisier" required >
+
+        <br><br><hr><br><br>
+
+        <h3>Saisir les métadonnées</h3>
+        <!--        7. article-initial-->
+        <div class="pair-10">
+            <label>Article initial </label>
+            <select id="Articol-initial">
+                <option>Un</option>
+                <option>Une</option>
+                <option>Le</option>
+                <option>La</option>
+            </select>
+        </div>
+        <br><br>
+        <!--        8. titre-->
+        <div class="pair-10">
+            <label>Titre</label>
+            <input id="titlu" class="text" required>
+        </div>
+
+        <br><br>
+        <!--        9. sous-titre-->
+        <div class="pair-10">
+            <label>Sous-titre</label>
+            <input id="sub-titlu"  class="text" required>
+        </div>
+
+        <br><br>
+
+        <!--        10. rezumat-->
+        <label>Résumé</label><br>
+        <textarea rows="10" id="rezumat" required ></textarea>
+
+        <br><br><hr><br><br>
 
 
+
+        <h4>Ajouter un.e auteur, -trice secondaire</h4>
+
+        <table id="persons-table">
+            <tr>
+                <th>Nom</th>
+                <th>Email</th>
+                <th>Rôle</th>
+                <th>Effacer</th>
+            </tr>
+        </table>
+        <div id="fillPersons">
+            <div class="pair-10">
+                <label>Nom(s) Prénom(s) :</label><input id="fill-person-name">
+            </div>
+            <br>
+            <div class="pair-10">
+                <label>Email :</label><input id="fill-person-contact">
+            </div>
+            <br>
+            <div class="pair-10">
+                <label>Rôle :</label><input id="fill-person-role">
+            </div>
+            <br>
+            <button id="addPerson" type="button"></button>
+        </div>
+
+        <br><br><hr><br><br>
+        <!--        11.-->
+        <h4>Langue</h4>
+        <select id="limba-dwn">
+            <option>Anglaise (Angleterre)</option>
+            <option>Française (La France)</option>
+            <option>Allemande (Allemagne)</option>
+            <option>Italienne (Italie)</option>
+            <option>Espagnole (Espagne)</option>
+        </select>
+
+        <br><br><hr><br><br>
+
+        <!--        12.-->
+        <h4>Mots-clés</h4>
+        <p>5 mots-clés, séparés par des virgules</p>
+        <textarea rows="2" id="cuvinte-cheie"  required ></textarea>
+
+
+        <br><br><hr><br><br>
+
+        <!--        13.-->
+        <h4>Références bibliographiques</h4>
+        <p>Liste des ouvrages et articles cités dans l’article. La littérature consultée mais non citée n’y figurera pas.</p>
+        <textarea cols="5" rows="15" id="referinte"  required ></textarea>
+
+        <br><br>
+
+        <input type="submit" id="submit">
+    </form>
+</div>
 
 <!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>
@@ -15,9 +205,17 @@
 <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
 
-
-
 <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-analytics.js"></script>
 <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-database.js"></script>
+<script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-storage.js"></script>
+<script src="../../src/jquery-3.6.0.min.js"></script>
+<script src="../js/firebaseConfig.js"></script>
+<script src="../../portal/js/const.js"></script>
+<script src="../../portal/js/utils.js"></script>
+<script src="../../portal/js/headerChange.js"></script>
+<script src="../../portal/contributie/contributieAF.js"></script>
+
+
+
 </body>
 </html>

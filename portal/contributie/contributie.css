@@ -58,7 +58,7 @@
 #formular-container h2{
     text-align: center;
     font-size: calc(var(--text-size) * 2);
-    margin-bottom: 2.5vw;
+    margin-bottom: 0;
 }
 
 form h3{
@@ -70,6 +70,13 @@ form h3{
 form h4{
     text-align: left;
     font-size: calc(var(--text-size) * 1.25);
+}
+
+
+#formular-container .titlu-publicatie{
+    text-align: center;
+    margin-bottom: 3vw;
+
 }
 
 form label{

@@ -25,73 +25,207 @@ function changeButton(){
 }
 changeButton()
 
-const FORMULAR = `
-<h2>Formular pentru evaluarea contributiilor</h2>
+const FORMULAR_AF = `
+<h2>Formulaire d’évaluation</h2>
+<h3 class="titlu-publicatie">Agapes francophones</h3>
 <form>
-   <p>*Toate câmpurile sunt obligatorii.</p>
-   <h3>SOLICITARE DE EVALUARE</h3>
-   <h4>&emsp;&emsp;Ați fost desemnat ca potențial evaluator al articolului supus atenției redacției revistei Dialogues francophones. Rezumatul propunerii și datele de evaluare sunt prezentate în continuare. Sperăm că veți accepta să faceți evaluarea acestui articol.</h4>
-   <h4>Rezumatul propunerii</h4>
+   <p>*Tous les champs sont obligatoires.</p>
+   <h3>DEMANDE D’ÉVALUATION </h3>
+   <h4>&emsp;&emsp;Vous avez été désigné évaluateur d’un article soumis au comité de rédaction du volume d’actes Agapes francophones. Vous trouverez ci-dessous le résumé de la proposition et les informations concernant le processus d’évaluation. Nous espérons que vous accepterez d’évaluer article ci-joint.</h4>
+   <h4>Résumé</h4>
    <p><i id="autocomplete-rezumat"></i></p>
-   <h4>Tip de evaluare: evaluator anonim, contribuție anonimizată </h4>
-   <p>CALENDAR - RAMANE DE COMPLETAT@@@@@@@@@@@@@@@@@@@@@@@@@@@</p>
-   <h3>ACORD-CADRU</h3>
-   <h4>Politica editorială a revistei. Metodologie de evaluare</h4>
-   <p>  &emsp;&emsp;Revista Dialogues francophones  stabilește o temă pentru fiecare număr prin consultarea membrilor comitetului științific. Calitatea articolelor publicate în Dialogues francophones rezultă din evaluarea temeinică a contribuțiilor trimise pe adresa revistei.<br>            &emsp;&emsp;Textele trimise pe adresa redacției sunt evaluate, în prima etapă, de comitetul de redacției al Dialogues francophones pentru a stabili gradul de adecvare la tematica anunțată.<br>            &emsp;&emsp;Redacția Dialogues francophones trimite textele evaluatorilor după obținerea raportului de originalitate (Ithenticate, Turnitin etc.) pentru fiecare articol.<br>            &emsp;&emsp;Evaluarea dublu anonimizată – a autorului și a evaluatorilor – este efectuată de cel puțin doi cercetători în domeniu (alții decât membrii comitetului de redacție), membri în comitetul științific sau experți la care se apelează ocazional.<br>            &emsp;&emsp;În fiecare număr al revistei, lista evaluatorilor este actualizată.<br>            &emsp;&emsp;În procesul de evaluare, membrii comitetului științific și experții-evaluatori ad hoc au în vedere următoarele criterii :<br>            &emsp;&emsp;&emsp;&emsp;1.&emsp;Respectarea protocolului de tehnoredactare (nerespectarea antrenează respingerea automată a articolului)<br>            &emsp;&emsp;&emsp;&emsp;2.&emsp;Originalitatea subiectului tratat în articolul supus evaluării<br>            &emsp;&emsp;&emsp;&emsp;3.&emsp;Adecvarea acestuia la tematica numărului<br>            &emsp;&emsp;&emsp;&emsp;4.&emsp;Relevanța studiului propus, problematica și argumentarea<br>            &emsp;&emsp;&emsp;&emsp;5.&emsp;Calitatea resurselor bibliografice.<br>            &emsp;&emsp;•&emsp;Se apreciază:<br>            &emsp;&emsp;&emsp;&emsp;&bull;&emsp;Părțile originale și corect editate în materialul supus evaluării,<br>            &emsp;&emsp;&emsp;&emsp;&bull;&emsp;Referințele bibliografice primare, exegeza acestora dacă o impune subiectul;<br>            &emsp;&emsp;&emsp;&emsp;&bull;&emsp;Bunele practici în materie de integritate în prezentarea rezultatelor de cercetare<br>            &emsp;&emsp;•&emsp;Se sancționează:<br>            &emsp;&emsp;&emsp;&emsp;&bull;&emsp;absența surselor primare din bibliografie  în favoarea referințele bibliografice secundare,<br>            &emsp;&emsp;&emsp;&emsp;&bull;&emsp;dubla citare incomplet semnalată,<br>            &emsp;&emsp;&emsp;&emsp;&bull;&emsp;preluarea de idei cât și preluarea de text fără citările de rigoare,<br>            &emsp;&emsp;&emsp;&emsp;&bull;&emsp;citatele care depășesc 10 rânduri;<br>            <br><br>Toți colaboratorii  vor fi informați cu privire la acceptarea sau refuzul propunerii lor prin intermediul platformei Dialogues francophones .        </p>
+   <h4>Type d’évaluation : évaluateur anonyme, contribution anonymisée </h4>
+   <h4>Calendrier</h4>
+   <p>Nous vous prions de nous communiquer d’abord par e-mail votre accord d’évaluer, dans un délai de 15 jours, et de soumettre par la suite votre rapport d’évaluation dans un délai supplémentaire de 30 jours au maximum.</p>
+   <h3>ACCORD-CADRE</h3>
+   <h4>Ligne éditoriale. Processus d’évaluation</h4>
+   <p>Les volumes d’actes Agapes francophones réunissent des contributions émanant des travaux du Colloque international d’études francophones (CIEFT), organisé annuellement à Timişoara (Roumanie). Le thème de chaque colloque est établi après consultation des membres du comité scientifique. La qualité scientifique des articles publiés ressort de l’évaluation rigoureuse des contributions envoyées au comité de rédaction.<br>
+<br>
+Dans une première étape, les textes reçus sont évalués par le comité de rédaction afin d’établir dans quelle mesure les sujets développés correspondent à la thématique et aux champs disciplinaires visés. <br>
+<br>
+Après avoir reçu le rapport d’originalité (Ithenticate, Turnitin, etc.) pour chaque article, le comité de rédaction envoie les textes aux évaluateurs. <br>
+<br>
+L’évaluation par les pair-e-s en « double aveugle » - anonymisation de l’auteur et des évaluateurs - est effectuée par au moins deux chercheurs (autres que les membres du comité de rédaction), membres du comité scientifique du volume ou experts sollicités occasionnellement. <br>
+<br>
+La liste des évaluateurs est mise à jour pour chaque volume d’actes.<br>
+<br>
+Dans le processus d’évaluation, les membres du comité scientifique et les experts-évaluateurs sollicités occasionnellement prennent en compte les critères suivants : <br>
+&emsp;&emsp;1. L’observation de la feuille de style (le non-respect de cette feuille de style entraînera le rejet de l’article) ;<br>
+&emsp;&emsp;2. L’originalité du sujet traité ; <br>
+&emsp;&emsp;3. L’adéquation du sujet de l’article avec la thématique du numéro ;<br>
+&emsp;&emsp;4. La pertinence de l’étude proposée, la problématique et l’argumentation ; <br>
+&emsp;&emsp;5. La qualité des ressources bibliographiques.<br>
+<br>
+• On apprécie :<br>
+&emsp;&emsp;o Les parties originales et correctement éditées du texte soumis à l’évaluation ;<br>
+&emsp;&emsp;o Les références bibliographiques primaires, leur exégèse si le sujet l’exige ;<br>
+&emsp;&emsp;o L’intégrité scientifique et la conduite des pratiques de recherche. <br>
+<br>
+• On sanctionne : <br>
+&emsp;&emsp;o L’absence des sources primaires dans la bibliographie en faveur de références bibliographiques secondaires ; <br>
+&emsp;&emsp;o La double citation signalée d’une manière incomplète ;<br>
+&emsp;&emsp;o La reprise d’idées ainsi que de textes sans avoir indiqué adéquatement la source ; <br>
+&emsp;&emsp;o Les citations de plus de dix lignes ;<br>
+&emsp;&emsp;o L’utilisation de type mosaïque d’un bloc de texte sans avoir cité la source, en remplaçant certains mots à l’intérieur du texte et en préservant la structure globale de la phrase.<br>
+<br>
+Le comité de rédaction du volume d’actes Agapes francophones se charge d’informer par e-mail chaque collaborateur, -trice de l’acceptation ou du rejet de l’article soumis à évaluation.<br>
+</p>
    <br><br>
    <hr>
    <br><br>        
-   <h3>DESCĂRCARE ȘI EVALUARE</h3>
-   <h4>Descarcare:</h4>
+   <h3>TÉLÉCHARGEZ ET ÉVALUEZ</h3>
+   <h4>TÉLÉCHARGEZ:</h4>
    <p id="fill-download-link"></p>
-   <h4>Evaluarea:</h4>
-   <h4>Articolul supus evaluării corespunde ariei dumneavoastră de competență?</h4>
-   <input type="radio" id="Da1"  name="arie_competenta" value="Da" required>        <label for="Da1">Da</label>        <br>        <input type="radio" id="Nu1" name="arie_competenta" value="Nu">        <label for="Nu1">Nu</label>        
-   <h4>Este titlul articolului clar, informativ  și conform propunerii pe care o anunță?</h4>
-   <input type="radio" id="Da2"  name="conformitate_titlu" value="Da" required>        <label for="Da2">Da</label>        <br>        <input type="radio" id="Nu2" name="conformitate_titlu" value="Nu">        <label for="Nu2">Nu</label>        
+   <h4>ÉVALUATION:</h4>
+   <h4>L’article soumis à l’évaluation correspond-il à votre domaine de compétence ?</h4>
+   <input type="radio" id="Da1"  name="arie_competenta" value="Oui" required>        <label for="Da1">Oui</label>        <br>        <input type="radio" id="Nu1" name="arie_competenta" value="Non">        <label for="Nu1">Non</label>        
+   <h4>Le titre de l’article est-il clair, informatif et conforme à la proposition qu’il annonce ? </h4>
+   <input type="radio" id="Da2"  name="conformitate_titlu" value="Oui" required>        <label for="Da2">Oui</label>        <br>        <input type="radio" id="Nu2" name="conformitate_titlu" value="Non">        <label for="Nu2">Non</label>        
    <h4>Rezumatul poate fi considerat complet?</h4>
-   <input type="radio" id="Da3"  name="completitudine_rezumat" value="Da" required>        <label for="Da3">Da</label>        <br>        <input type="radio" id="Nu3" name="completitudine_rezumat" value="Nu">        <label for="Nu3">Nu</label>        
-   <h4>Cuvintele cheie sunt adecvate propunerii de articol?</h4>
-   <input type="radio" id="Perfect adecvate"  name="cuv_cheie_adecvate" value="Perfect adecvate" required>        <label for="Perfect adecvate">Perfect adecvate</label>        <br>        <input type="radio" id="Suficient de adecvate" name="cuv_cheie_adecvate" value="Suficient de adecvate">        <label for="Suficient de adecvate">Suficient de adecvate</label>        <br>        <input type="radio" id="Parțial adecvate"  name="cuv_cheie_adecvate" value="Parțial adecvate">        <label for="Parțial adecvate">Parțial adecvate</label>        <br>        <input type="radio" id="Insuficient adecvate" name="cuv_cheie_adecvate" value="Insuficient adecvate">        <label for="Insuficient adecvate">Insuficient adecvate</label>        <br>        
-   <h4>Originalitatea conținutului?</h4>
-   <input type="radio" id="Complet original"  name="originalitate" value="Complet original" required>        <label for="Complet original">Complet original</label>        <br>        <input type="radio" id="original2" name="originalitate" value="Idei originale imbricate într-un text care sintetizează teorii arhicunoscute, inedită interpretare a corpusului">        <label for="original2">Idei originale imbricate într-un text care sintetizează teorii arhicunoscute, inedită interpretare a corpusului</label>        <br>        <input type="radio" id="original3" name="originalitate" value="Modeste elemente de originalitate: reproducere a unor idei comune, sinteză a punctelor de vedere teoretice urmată de o analiză de corpus">        <label for="original3">Modeste elemente de originalitate: reproducere a unor idei comune, sinteză a punctelor de vedere teoretice urmată de o analiză de corpus</label>        <br>        <input type="radio" id="original4" name="originalitate" value="Lipsit de originalitate">        <label for="original4">Lipsit de originalitate</label>        
-   <h4>Actualitatea și relevanța cercetării relatate în acest articol?</h4>
-   <input type="radio" id="actualitate1"  name="actualitate" value="Perfect actuală și relevantă" required>        <label for="actualitate1">Perfect actuală și relevantă</label>        <br>        <input type="radio" id="actualitate2" name="actualitate" value="Actuală și suficient de relevantă">        <label for="actualitate2">Actuală și suficient de relevantă</label>        <br>        <input type="radio" id="actualitate3" name="actualitate" value="Parțial relevantă, nonactuală">        <label for="actualitate3">Parțial relevantă, nonactuală</label>        <br>        <input type="radio" id="actualitate4" name="actualitate" value="Lipsă de relevanță și de actualitate">        <label for="actualitate4">Lipsă de relevanță și de actualitate</label>        
-   <h4>Coerența și argumentația </h4>
-   <input type="radio" id="fb1"  name="coerenta" value="Foarte bine" required>        <label for="fb1">Foarte bine</label>        <br>        <input type="radio" id="b1" name="coerenta" value="Bine">        <label for="b1">Bine</label>        <br>        <input type="radio" id="s1" name="coerenta" value="Suficient">        <label for="s1">Suficient</label>        <br>        <input type="radio" id="i1" name="coerenta" value="Insuficient">        <label for="i1">Insuficient</label>        
-   <h4>Limba și calitatea redactării  </h4>
-   <input type="radio" id="fb2"  name="redactare" value="Foarte bine" required>        <label for="fb2">Foarte bine</label>        <br>        <input type="radio" id="b2" name="redactare" value="Bine">        <label for="b2">Bine</label>        <br>        <input type="radio" id="s2" name="redactare" value="Suficient">        <label for="s2">Suficient</label>        <br>        <input type="radio" id="i2" name="redactare" value="Insuficient">        <label for="i2">Insuficient</label>        
-   <h4>Structura, planul și organizarea textului </h4>
-   <input type="radio" id="fb3"  name="structura" value="Foarte bine" required>        <label for="fb3">Foarte bine</label>        <br>        <input type="radio" id="b3" name="structura" value="Bine">        <label for="b3">Bine</label>        <br>        <input type="radio" id="s3" name="structura" value="Suficient">        <label for="s3">Suficient</label>        <br>        <input type="radio" id="i3" name="structura" value="Insuficient">        <label for="i3">Insuficient</label>        
-   <h4>Claritatea obiectivelor expuse </h4>
-   <input type="radio" id="fb4"  name="obiective" value="Foarte bine" required>        <label for="fb4">Foarte bine</label>        <br>        <input type="radio" id="b4" name="obiective" value="Bine">        <label for="b4">Bine</label>        <br>        <input type="radio" id="s4" name="obiective" value="Suficient">        <label for="s4">Suficient</label>        <br>        <input type="radio" id="i4" name="obiective" value="Insuficient">        <label for="i4">Insuficient</label>        
-   <h4>Fundamentele teoretice </h4>
-   <input type="radio" id="fb5"  name="fundamente" value="Foarte bine" required>        <label for="fb5">Foarte bine</label>        <br>        <input type="radio" id="b5" name="fundamente" value="Bine">        <label for="b5">Bine</label>        <br>        <input type="radio" id="s5" name="fundamente" value="Suficient">        <label for="s5">Suficient</label>        <br>        <input type="radio" id="i5" name="fundamente" value="Insuficient">        <label for="i5">Insuficient</label>        
-   <h4>Metoda de cercetare utilizată</h4>
-   <input type="radio" id="fb6"  name="cercetare" value="Foarte bine" required>        <label for="fb6">Foarte bine</label>        <br>        <input type="radio" id="b6" name="cercetare" value="Bine">        <label for="b6">Bine</label>        <br>        <input type="radio" id="s6" name="cercetare" value="Suficient">        <label for="s6">Suficient</label>        <br>        <input type="radio" id="i6" name="cercetare" value="Insuficient">        <label for="i6">Insuficient</label>        
-   <h4>Rezultatele cercetării sunt corelate cu obiectivele acesteia</h4>
-   <input type="radio" id="fb7"  name="rezultate" value="Foarte bine" required>        <label for="fb7">Foarte bine</label>        <br>        <input type="radio" id="b7" name="rezultate" value="Bine">        <label for="b7">Bine</label>        <br>        <input type="radio" id="s7" name="rezultate" value="Suficient">        <label for="s7">Suficient</label>        <br>        <input type="radio" id="i7" name="rezultate" value="Insuficient">        <label for="i7">Insuficient</label>        
-   <h4>Concluziile reflectă demersul cercetării </h4>
-   <input type="radio" id="fb8"  name="concluzii" value="Foarte bine" required>        <label for="fb8">Foarte bine</label>        <br>        <input type="radio" id="b8" name="concluzii" value="Bine">        <label for="b8">Bine</label>        <br>        <input type="radio" id="s8" name="concluzii" value="Suficient">        <label for="s8">Suficient</label>        <br>        <input type="radio" id="i8" name="concluzii" value="Insuficient">        <label for="i8">Insuficient</label>        
-   <h4>Referințele bibliografice sunt structurate în conformitate cu importanța lor în cercetare: surse primare, surse secundare (exegeze), corpus etc.</h4>
-   <input type="radio" id="fb9"  name="referinte" value="Foarte bine" required>        
-   <label for="fb9">Foarte bine</label>        
-   <br>        <input type="radio" id="b9" name="referinte" value="Bine" >        <label for="b9">Bine</label>        <br>        <input type="radio" id="s9" name="referinte" value="Suficient">        <label for="s9">Suficient</label>        <br>        <input type="radio" id="i9" name="referinte" value="Insuficient">        <label for="i9">Insuficient</label>        <br><br><br><br>        <label>Comentarii (cca 150 - 200 de cuvinte, dacă este necesar)</label><br>        
+   <input type="radio" id="Da3"  name="completitudine_rezumat" value="Oui" required>        <label for="Da3">Da</label>        <br>        <input type="radio" id="Nu3" name="completitudine_rezumat" value="Non">        <label for="Nu3">Nu</label>        
+   <h4>Les mots clés sont-ils adéquats à la proposition d’article ?</h4>
+   <input type="radio" id="Perfect adecvate"  name="cuv_cheie_adecvate" value="Parfaitement adéquats" required>        <label for="Perfect adecvate">Parfaitement adéquats</label>        <br>        <input type="radio" id="Suficient de adecvate" name="cuv_cheie_adecvate" value="Suffisamment adéquats">        <label for="Suficient de adecvate">Suffisamment adéquats</label>        <br>        <input type="radio" id="Parțial adecvate"  name="cuv_cheie_adecvate" value="Partiellement adéquats">        <label for="Parțial adecvate">Partiellement adéquats</label>        <br>        <input type="radio" id="Insuficient adecvate" name="cuv_cheie_adecvate" value="Insuffisamment adéquats">        <label for="Insuficient adecvate">Insuffisamment adéquats</label>        <br>        
+   <h4>S’agit-il d’une recherche originale ?</h4>
+   <input type="radio" id="Complet original"  name="originalitate" value="Intégralement originale" required>        <label for="Complet original">Intégralement originale</label>        <br>        <input type="radio" id="original2" name="originalitate" value="Des idées originales insérées dans un texte qui synthétise des théories bien connues, une   interprétation originale du corpus,">        <label for="original2">Des idées originales insérées dans un texte qui synthétise des théories bien connues, une   interprétation originale du corpus,</label>        <br>        <input type="radio" id="original3" name="originalitate" value="Originalité modérée : reproduction d’idées communes, synthèse des points de vue théoriques suivie d’une analyse de corpus">        <label for="original3">Originalité modérée : reproduction d’idées communes, synthèse des points de vue théoriques suivie d’une analyse de corpus</label>        <br>        <input type="radio" id="original4" name="originalitate" value="Manque d’originalité">        <label for="original4">Manque d’originalité</label>        
+   <h4>La démarche scientifique proposée est-elle actuelle et pertinente ?</h4>
+   <input type="radio" id="actualitate1"  name="actualitate" value="Parfaitement actuelle et pertinente" required>        <label for="actualitate1">Parfaitement actuelle et pertinente</label>        <br>        <input type="radio" id="actualitate2" name="actualitate" value="Actuelle et suffisamment pertinente">        <label for="actualitate2">Actuelle et suffisamment pertinente</label>        <br>        <input type="radio" id="actualitate3" name="actualitate" value="Partiellement pertinente, non-actuelle">        <label for="actualitate3">Partiellement pertinente, non-actuelle</label>        <br>        <input type="radio" id="actualitate4" name="actualitate" value="Lipsă de relevanță și de actualitate">        <label for="actualitate4">Lipsă de relevanță și de actualitate</label>        
+   <h4>La cohérence et l’argumentation</h4>
+   <input type="radio" id="fb1"  name="coerenta" value="Très bien" required>        <label for="fb1">Très bien</label>        <br>        <input type="radio" id="b1" name="coerenta" value="Bien">        <label for="b1">Bien</label>        <br>        <input type="radio" id="s1" name="coerenta" value="Suffisant">        <label for="s1">Suffisant</label>        <br>        <input type="radio" id="i1" name="coerenta" value="Insuficient">        <label for="i1">Insuficient</label>        
+   <h4>La langue et la qualité de l’écriture</h4>
+   <input type="radio" id="fb2"  name="redactare" value="Très bien" required>        <label for="fb2">Très bien</label>        <br>        <input type="radio" id="b2" name="redactare" value="Bien">        <label for="b2">Bien</label>        <br>        <input type="radio" id="s2" name="redactare" value="Suffisant">        <label for="s2">Suffisant</label>        <br>        <input type="radio" id="i2" name="redactare" value="Insuficient">        <label for="i2">Insuficient</label>        
+   <h4>La structure, le plan et l’organisation du texte</h4>
+   <input type="radio" id="fb3"  name="structura" value="Très bien" required>        <label for="fb3">Très bien</label>        <br>        <input type="radio" id="b3" name="structura" value="Bien">        <label for="b3">Bien</label>        <br>        <input type="radio" id="s3" name="structura" value="Suffisant">        <label for="s3">Suffisant</label>        <br>        <input type="radio" id="i3" name="structura" value="Insuficient">        <label for="i3">Insuficient</label>        
+   <h4>La clarté des objectifs exposés</h4>
+   <input type="radio" id="fb4"  name="obiective" value="Très bien" required>        <label for="fb4">Très bien</label>        <br>        <input type="radio" id="b4" name="obiective" value="Bien">        <label for="b4">Bien</label>        <br>        <input type="radio" id="s4" name="obiective" value="Suffisant">        <label for="s4">Suffisant</label>        <br>        <input type="radio" id="i4" name="obiective" value="Insuficient">        <label for="i4">Insuficient</label>        
+   <h4>Les fondements théoriques</h4>
+   <input type="radio" id="fb5"  name="fundamente" value="Très bien" required>        <label for="fb5">Très bien</label>        <br>        <input type="radio" id="b5" name="fundamente" value="Bien">        <label for="b5">Bien</label>        <br>        <input type="radio" id="s5" name="fundamente" value="Suffisant">        <label for="s5">Suffisant</label>        <br>        <input type="radio" id="i5" name="fundamente" value="Insuficient">        <label for="i5">Insuficient</label>        
+   <h4>La méthode de recherche utilisée</h4>
+   <input type="radio" id="fb6"  name="cercetare" value="Très bien" required>        <label for="fb6">Très bien</label>        <br>        <input type="radio" id="b6" name="cercetare" value="Bien">        <label for="b6">Bien</label>        <br>        <input type="radio" id="s6" name="cercetare" value="Suffisant">        <label for="s6">Suffisant</label>        <br>        <input type="radio" id="i6" name="cercetare" value="Insuficient">        <label for="i6">Insuficient</label>        
+   <h4>Les résultats de la recherche sont bien corrélés avec les objectifs envisagés</h4>
+   <input type="radio" id="fb7"  name="rezultate" value="Très bien" required>        <label for="fb7">Très bien</label>        <br>        <input type="radio" id="b7" name="rezultate" value="Bien">        <label for="b7">Bien</label>        <br>        <input type="radio" id="s7" name="rezultate" value="Suffisant">        <label for="s7">Suffisant</label>        <br>        <input type="radio" id="i7" name="rezultate" value="Insuficient">        <label for="i7">Insuficient</label>        
+   <h4>Les conclusions reflètent la démarche scientifique: </h4>
+   <input type="radio" id="fb8"  name="concluzii" value="Très bien" required>        <label for="fb8">Très bien</label>        <br>        <input type="radio" id="b8" name="concluzii" value="Bien">        <label for="b8">Bien</label>        <br>        <input type="radio" id="s8" name="concluzii" value="Suffisant">        <label for="s8">Suffisant</label>        <br>        <input type="radio" id="i8" name="concluzii" value="Insuficient">        <label for="i8">Insuficient</label>        
+   <h4>Les références bibliographiques sont structurées en fonction de leur importance dans la recherche : sources primaires, sources secondaires (exégèses), corpus, etc.</h4>
+   <input type="radio" id="fb9"  name="referinte" value="Très bien" required>        
+   <label for="fb9">Très bien</label>        
+   <br>        <input type="radio" id="b9" name="referinte" value="Bien" >        <label for="b9">Bien</label>        <br>        <input type="radio" id="s9" name="referinte" value="Suffisant">        <label for="s9">Suffisant</label>        <br>        <input type="radio" id="i9" name="referinte" value="Insuficient">        <label for="i9">Insuficient</label>        <br><br><br><br>        <label>Commentaires (environ 100-150 mots, si nécessaire)  </label><br>        
    <textarea rows="10" id="comentarii"></textarea>
-   <h4>Recomandări:</h4>
+   <h4>Recommandations (sélectionner dans la liste) :</h4>
    <select id="recomandari">
-      <option>Acceptarea textului fără modificări</option>
-      <option>Revizuirea aspectelor semnalate</option>
-      <option>Reevaluare necesară</option>
-      <option>Refuzarea textului</option>
+      <option>Accepter la soumission</option>
+      <option>Révisions requises</option>
+      <option>Réévaluation nécessaire</option>
+      <option>Rejeter la soumission</option>
    </select>
    <br><br><br><br>        
-   <h4>Fișierul cu adnotări</h4>
-   <p>Încărcați fișierul .word care conține adnotările necesare</p>
+   <h4>Article évalué et annoté</h4>
+   <p>Télécharger l’article éventuellement annoté, sous format .word (doc, docx). </p>
    <input type="file" name="adnot" id="adnot-fisier">        
-   <h3>FINALIZARE PROCES DE EVALUARE </h3>
+   <h3>TERMINER</h3>
     
-   <input type="submit" id="submit" value="Trimite">    
+   <input type="submit" id="submit" value="Envoyer">    
+</form>
+`
+
+const FORMULAR_DF = `
+<h2>Formulaire d’évaluation</h2>
+<h3 class="titlu-publicatie">Dialogues Francophones</h3>
+<form>
+   <p>*Tous les champs sont obligatoires.</p>
+   <h3>DEMANDE D’ÉVALUATION </h3>
+   <h4>&emsp;&emsp;Vous avez été désigné évaluateur d’un article soumis à la rédaction de la revue Dialogues francophones. Vous trouverez ci-dessous le résumé de la proposition et les informations concernant le processus d’évaluation. Nous espérons que vous accepterez d’évaluer article ci-joint.</h4>
+   <h4>Résumé</h4>
+   <p><i id="autocomplete-rezumat"></i></p>
+   <h4>Type d’évaluation : évaluateur anonyme, contribution anonymisée </h4>
+   <h4>Calendrier</h4>
+   <p>Nous vous prions de nous communiquer d’abord par e-mail votre accord d’évaluer, dans un délai de 15 jours, et de soumettre par la suite votre rapport d’évaluation dans un délai supplémentaire de 30 jours au maximum.</p>
+   <h3>ACCORD-CADRE</h3>
+   <h4>Ligne éditoriale de la revue. Processus d’évaluation</h4>
+   <p>Pour chaque numéro, la revue Dialogues francophones propose un dossier thématique après consultation des membres du comité scientifique. La qualité scientifique des articles publiés ressort de l’évaluation rigoureuse des contributions envoyées à la rédaction.<br>
+<br>
+Dans une première étape, les textes reçus sont évalués par le comité de rédaction afin d’établir dans quelle mesure les sujets développés correspondent à la thématique du numéro. <br>
+<br>
+Après avoir reçu le rapport d’originalité (Ithenticate, Turnitin, etc.) pour chaque article, le comité de rédaction envoie les textes aux évaluateurs. <br>
+<br>
+L’évaluation par les pair-e-s en « double aveugle » - anonymisation de l’auteur et des évaluateurs - est effectuée par au moins deux chercheurs (autres que les membres du comité de rédaction), membres du comité scientifique de la revue ou experts sollicités occasionnellement. <br>
+<br>
+La liste des évaluateurs est mise à jour pour chaque numéro de la revue.<br>
+<br>
+Dans le processus d’évaluation, les membres du comité scientifique et les experts-évaluateurs sollicités occasionnellement prennent en compte les critères suivants : <br>
+&emsp;&emsp;1. L’observation de la feuille de style (le non-respect de cette feuille de style entraînera le rejet de l’article) ;<br>
+&emsp;&emsp;2. L’originalité du sujet traité ; <br>
+&emsp;&emsp;3. L’adéquation du sujet de l’article avec la thématique du numéro ;<br>
+&emsp;&emsp;4. La pertinence de l’étude proposée, la problématique et l’argumentation ; <br>
+&emsp;&emsp;5. La qualité des ressources bibliographiques.<br>
+<br>
+• On apprécie :<br>
+&emsp;&emsp;o Les parties originales et correctement éditées du texte soumis à l’évaluation ;<br>
+&emsp;&emsp;o Les références bibliographiques primaires, leur exégèse si le sujet l’exige ;<br>
+&emsp;&emsp;o L’intégrité scientifique et la conduite des pratiques de recherche. <br>
+<br>
+• On sanctionne : <br>
+&emsp;&emsp;o L’absence des sources primaires dans la bibliographie en faveur de références bibliographiques secondaires ; <br>
+&emsp;&emsp;o La double citation signalée d’une manière incomplète ;<br>
+&emsp;&emsp;o La reprise d’idées ainsi que de textes sans avoir indiqué adéquatement la source ; <br>
+&emsp;&emsp;o Les citations de plus de dix lignes ;<br>
+&emsp;&emsp;o L’utilisation de type mosaïque d’un bloc de texte sans avoir cité la source, en remplaçant certains mots à l’intérieur du texte et en préservant la structure globale de la phrase.<br>
+<br>
+Le comité de rédaction de la revue Dialogues francophones se charge d’informer par e-mail chaque collaborateur, -trice de l’acceptation ou du rejet de l’article soumis à évaluation.<br>
+</p>
+   <br><br>
+   <hr>
+   <br><br>        
+   <h3>TÉLÉCHARGEZ ET ÉVALUEZ</h3>
+   <h4>TÉLÉCHARGEZ:</h4>
+   <p id="fill-download-link"></p>
+   <h4>ÉVALUATION:</h4>
+   <h4>L’article soumis à l’évaluation correspond-il à votre domaine de compétence ?</h4>
+   <input type="radio" id="Da1"  name="arie_competenta" value="Oui" required>        <label for="Da1">Oui</label>        <br>        <input type="radio" id="Nu1" name="arie_competenta" value="Non">        <label for="Nu1">Non</label>        
+   <h4>Le titre de l’article est-il clair, informatif et conforme à la proposition qu’il annonce ? </h4>
+   <input type="radio" id="Da2"  name="conformitate_titlu" value="Oui" required>        <label for="Da2">Oui</label>        <br>        <input type="radio" id="Nu2" name="conformitate_titlu" value="Non">        <label for="Nu2">Non</label>        
+   <h4>Rezumatul poate fi considerat complet?</h4>
+   <input type="radio" id="Da3"  name="completitudine_rezumat" value="Oui" required>        <label for="Da3">Da</label>        <br>        <input type="radio" id="Nu3" name="completitudine_rezumat" value="Non">        <label for="Nu3">Nu</label>        
+   <h4>Les mots clés sont-ils adéquats à la proposition d’article ?</h4>
+   <input type="radio" id="Perfect adecvate"  name="cuv_cheie_adecvate" value="Parfaitement adéquats" required>        <label for="Perfect adecvate">Parfaitement adéquats</label>        <br>        <input type="radio" id="Suficient de adecvate" name="cuv_cheie_adecvate" value="Suffisamment adéquats">        <label for="Suficient de adecvate">Suffisamment adéquats</label>        <br>        <input type="radio" id="Parțial adecvate"  name="cuv_cheie_adecvate" value="Partiellement adéquats">        <label for="Parțial adecvate">Partiellement adéquats</label>        <br>        <input type="radio" id="Insuficient adecvate" name="cuv_cheie_adecvate" value="Insuffisamment adéquats">        <label for="Insuficient adecvate">Insuffisamment adéquats</label>        <br>        
+   <h4>S’agit-il d’une recherche originale ?</h4>
+   <input type="radio" id="Complet original"  name="originalitate" value="Intégralement originale" required>        <label for="Complet original">Intégralement originale</label>        <br>        <input type="radio" id="original2" name="originalitate" value="Des idées originales insérées dans un texte qui synthétise des théories bien connues, une   interprétation originale du corpus,">        <label for="original2">Des idées originales insérées dans un texte qui synthétise des théories bien connues, une   interprétation originale du corpus,</label>        <br>        <input type="radio" id="original3" name="originalitate" value="Originalité modérée : reproduction d’idées communes, synthèse des points de vue théoriques suivie d’une analyse de corpus">        <label for="original3">Originalité modérée : reproduction d’idées communes, synthèse des points de vue théoriques suivie d’une analyse de corpus</label>        <br>        <input type="radio" id="original4" name="originalitate" value="Manque d’originalité">        <label for="original4">Manque d’originalité</label>        
+   <h4>La démarche scientifique proposée est-elle actuelle et pertinente ?</h4>
+   <input type="radio" id="actualitate1"  name="actualitate" value="Parfaitement actuelle et pertinente" required>        <label for="actualitate1">Parfaitement actuelle et pertinente</label>        <br>        <input type="radio" id="actualitate2" name="actualitate" value="Actuelle et suffisamment pertinente">        <label for="actualitate2">Actuelle et suffisamment pertinente</label>        <br>        <input type="radio" id="actualitate3" name="actualitate" value="Partiellement pertinente, non-actuelle">        <label for="actualitate3">Partiellement pertinente, non-actuelle</label>        <br>        <input type="radio" id="actualitate4" name="actualitate" value="Lipsă de relevanță și de actualitate">        <label for="actualitate4">Lipsă de relevanță și de actualitate</label>        
+   <h4>La cohérence et l’argumentation</h4>
+   <input type="radio" id="fb1"  name="coerenta" value="Très bien" required>        <label for="fb1">Très bien</label>        <br>        <input type="radio" id="b1" name="coerenta" value="Bien">        <label for="b1">Bien</label>        <br>        <input type="radio" id="s1" name="coerenta" value="Suffisant">        <label for="s1">Suffisant</label>        <br>        <input type="radio" id="i1" name="coerenta" value="Insuficient">        <label for="i1">Insuficient</label>        
+   <h4>La langue et la qualité de l’écriture</h4>
+   <input type="radio" id="fb2"  name="redactare" value="Très bien" required>        <label for="fb2">Très bien</label>        <br>        <input type="radio" id="b2" name="redactare" value="Bien">        <label for="b2">Bien</label>        <br>        <input type="radio" id="s2" name="redactare" value="Suffisant">        <label for="s2">Suffisant</label>        <br>        <input type="radio" id="i2" name="redactare" value="Insuficient">        <label for="i2">Insuficient</label>        
+   <h4>La structure, le plan et l’organisation du texte</h4>
+   <input type="radio" id="fb3"  name="structura" value="Très bien" required>        <label for="fb3">Très bien</label>        <br>        <input type="radio" id="b3" name="structura" value="Bien">        <label for="b3">Bien</label>        <br>        <input type="radio" id="s3" name="structura" value="Suffisant">        <label for="s3">Suffisant</label>        <br>        <input type="radio" id="i3" name="structura" value="Insuficient">        <label for="i3">Insuficient</label>        
+   <h4>La clarté des objectifs exposés</h4>
+   <input type="radio" id="fb4"  name="obiective" value="Très bien" required>        <label for="fb4">Très bien</label>        <br>        <input type="radio" id="b4" name="obiective" value="Bien">        <label for="b4">Bien</label>        <br>        <input type="radio" id="s4" name="obiective" value="Suffisant">        <label for="s4">Suffisant</label>        <br>        <input type="radio" id="i4" name="obiective" value="Insuficient">        <label for="i4">Insuficient</label>        
+   <h4>Les fondements théoriques</h4>
+   <input type="radio" id="fb5"  name="fundamente" value="Très bien" required>        <label for="fb5">Très bien</label>        <br>        <input type="radio" id="b5" name="fundamente" value="Bien">        <label for="b5">Bien</label>        <br>        <input type="radio" id="s5" name="fundamente" value="Suffisant">        <label for="s5">Suffisant</label>        <br>        <input type="radio" id="i5" name="fundamente" value="Insuficient">        <label for="i5">Insuficient</label>        
+   <h4>La méthode de recherche utilisée</h4>
+   <input type="radio" id="fb6"  name="cercetare" value="Très bien" required>        <label for="fb6">Très bien</label>        <br>        <input type="radio" id="b6" name="cercetare" value="Bien">        <label for="b6">Bien</label>        <br>        <input type="radio" id="s6" name="cercetare" value="Suffisant">        <label for="s6">Suffisant</label>        <br>        <input type="radio" id="i6" name="cercetare" value="Insuficient">        <label for="i6">Insuficient</label>        
+   <h4>Les résultats de la recherche sont bien corrélés avec les objectifs envisagés</h4>
+   <input type="radio" id="fb7"  name="rezultate" value="Très bien" required>        <label for="fb7">Très bien</label>        <br>        <input type="radio" id="b7" name="rezultate" value="Bien">        <label for="b7">Bien</label>        <br>        <input type="radio" id="s7" name="rezultate" value="Suffisant">        <label for="s7">Suffisant</label>        <br>        <input type="radio" id="i7" name="rezultate" value="Insuficient">        <label for="i7">Insuficient</label>        
+   <h4>Les conclusions reflètent la démarche scientifique: </h4>
+   <input type="radio" id="fb8"  name="concluzii" value="Très bien" required>        <label for="fb8">Très bien</label>        <br>        <input type="radio" id="b8" name="concluzii" value="Bien">        <label for="b8">Bien</label>        <br>        <input type="radio" id="s8" name="concluzii" value="Suffisant">        <label for="s8">Suffisant</label>        <br>        <input type="radio" id="i8" name="concluzii" value="Insuficient">        <label for="i8">Insuficient</label>        
+   <h4>Les références bibliographiques sont structurées en fonction de leur importance dans la recherche : sources primaires, sources secondaires (exégèses), corpus, etc.</h4>
+   <input type="radio" id="fb9"  name="referinte" value="Très bien" required>        
+   <label for="fb9">Très bien</label>        
+   <br>        <input type="radio" id="b9" name="referinte" value="Bien" >        <label for="b9">Bien</label>        <br>        <input type="radio" id="s9" name="referinte" value="Suffisant">        <label for="s9">Suffisant</label>        <br>        <input type="radio" id="i9" name="referinte" value="Insuficient">        <label for="i9">Insuficient</label>        <br><br><br><br>        <label>Commentaires (environ 100-150 mots, si nécessaire)  </label><br>        
+   <textarea rows="10" id="comentarii"></textarea>
+   <h4>Recommandations (sélectionner dans la liste) :</h4>
+   <select id="recomandari">
+      <option>Accepter la soumission</option>
+      <option>Révisions requises</option>
+      <option>Réévaluation nécessaire</option>
+      <option>Rejeter la soumission</option>
+   </select>
+   <br><br><br><br>        
+   <h4>Article évalué et annoté</h4>
+   <p>Télécharger l’article éventuellement annoté, sous format .word (doc, docx). </p>
+   <input type="file" name="adnot" id="adnot-fisier">        
+   <h3>TERMINER</h3>
+    
+   <input type="submit" id="submit" value="Envoyer">    
 </form>
 `
 
@@ -115,7 +249,9 @@ else
                         break
 
                     case 1:
-                        document.getElementById("formular-container").insertAdjacentHTML("beforeend",FORMULAR)
+                        if(PUB==='DF')  document.getElementById("formular-container").insertAdjacentHTML("beforeend",FORMULAR_DF)
+                        else if(PUB==='AF') document.getElementById("formular-container").insertAdjacentHTML("beforeend",FORMULAR_AF)
+
 
                         //download prop link
                         var propunereRef = firebase.storage().ref(`${PUB.toUpperCase()}/${propunere.fisier_propunere}`);
@@ -276,13 +412,13 @@ else
                                 const FORMULAR_COMPLETED = `
 
         <div class="evaluare-pair">
-            <span>Articolul supus evaluării corespunde ariei dumneavoastră de competență?</span>
+            <span>L’article soumis à l’évaluation correspond-il à votre domaine de compétence?</span>
             <span>${dbObj.arieCompetenta}</span>
         </div>
 
 
         <div class="evaluare-pair">
-            <span>Este titlul articolului clar, informativ și conform propunerii pe care o anunță?</span>
+            <span>Le titre de l’article est-il clair, informatif et conforme à la proposition qu’il annonce?</span>
             <span>${dbObj.conformitateTitlu}</span>
         </div>
 
@@ -292,82 +428,82 @@ else
         </div>
 
         <div class="evaluare-pair">
-            <span>Cuvintele cheie sunt adecvate propunerii de articol?</span>
+            <span>Les mots clés sont-ils adéquats à la proposition d’article?</span>
             <span>${dbObj.cuvCheieAdecvate}</span>
         </div>
 
         <div class="evaluare-pair">
-            <span>Originalitatea conținutului?</span>
+            <span>S’agit-il d’une recherche originale?</span>
             <span>${dbObj.originalitate}</span>
         </div>
 
         <div class="evaluare-pair">
-            <span>Actualitatea și relevanța cercetării relatate în acest articol?</span>
+            <span>La démarche scientifique proposée est-elle actuelle et pertinente?</span>
             <span>${dbObj.actualitate}</span>
         </div>
 
 
          <div class="evaluare-pair">
-            <span>Coerența și argumentația</span>
+            <span>La cohérence et l’argumentation</span>
             <span>${dbObj.coerenta}</span>
         </div>
 
          <div class="evaluare-pair">
-            <span>Limba și calitatea redactării</span>
+            <span>La langue et la qualité de l’écriture</span>
             <span>${dbObj.redactare}</span>
         </div>
 
          <div class="evaluare-pair">
-            <span>Structura, planul și organizarea textului</span>
+            <span>La structure, le plan et l’organisation du texte</span>
             <span>${dbObj.structura}</span>
         </div>
 
         <div class="evaluare-pair">
-            <span>Claritatea obiectivelor expuse</span>
+            <span>La clarté des objectifs exposés</span>
             <span>${dbObj.obiective}</span>
         </div>
 
         <div class="evaluare-pair">
-            <span>Fundamentele teoretice</span>
-            <span>${dbObj.cuvinte_cheie}</span>
-        </div>
-
-        <div class="evaluare-pair">
-            <span>Metoda de cercetare utilizată</span>
+            <span>Les fondements théoriques</span>
             <span>${dbObj.fundamente}</span>
         </div>
 
         <div class="evaluare-pair">
-            <span>Rezultatele cercetării sunt corelate cu obiectivele acesteia</span>
+            <span>La méthode de recherche utilisée</span>
+            <span>${dbObj.cercetare}</span>
+        </div>
+
+        <div class="evaluare-pair">
+            <span>Les résultats de la recherche sont bien corrélés avec les objectifs envisagés</span>
             <span>${dbObj.rezultate}</span>
         </div>
 
         <div class="evaluare-pair">
-            <span>Concluziile reflectă demersul cercetării</span>
+            <span>Les conclusions reflètent la démarche scientifique</span>
             <span>${dbObj.concluzii}</span>
         </div>
 
 
         <div class="evaluare-pair">
-            <span>Referințele bibliografice sunt structurate în conformitate cu importanța lor în cercetare: surse primare, surse secundare (exegeze), corpus etc.</span>
+            <span>Les références bibliographiques sont structurées en fonction de leur importance dans la recherche : sources primaires, sources secondaires (exégèses), corpus, etc.</span>
             <span>${dbObj.referinte}</span>
         </div>
 
 
         <div class="evaluare-pair">
-            <span>Comentarii</span>
+            <span>Commentaires</span>
             <span>${dbObj.comentarii}</span>
         </div>
 
 
         <div class="evaluare-pair">
-            <span>Recomandari</span>
+            <span>Recommandations</span>
             <span>${dbObj.recomandari}</span>
         </div>
 
 
         <div class="evaluare-pair">
-            <span>Adnotari</span>
+            <span>Article évalué et annoté</span>
             <span id="adnotari"></span>
         </div>`
 
