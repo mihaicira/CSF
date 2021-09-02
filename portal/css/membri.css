@@ -116,3 +116,29 @@
         transform: rotateZ(-360deg)
     }
 }
+
+#logs-container{
+    font-family: 'Roboto', sans-serif;
+    margin-top: 10vh;
+    margin-bottom: 10vh;
+    width: 80%;
+    border: .2vh solid #182268;
+    background: white;
+    border-radius: 1vh;
+    -webkit-box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.39);
+    box-shadow: 0px 0px 5px 1px rgba(0,0,0,0.39);
+    padding: 1vw;
+
+    margin-left: 50%;
+    transform: translateX(-50%);
+}
+
+#logs-container h1{
+    display: flex;
+    justify-content: center;
+    margin: 0;
+}
+#logs>p{
+    font-size: .8rem;
+    text-align: center;
+}

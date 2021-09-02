@@ -88,6 +88,7 @@ const FormEnds = {
 const RIGHTS =  {
     admin:{
         "to-eval": true,
+        "change-ranks": true,
         "change-to-rsdf": true,
         "change-to-redresdf": true,
         "change-to-redresaf": true,
@@ -95,7 +96,7 @@ const RIGHTS =  {
         "change-to-mcaf": true,
         "change-to-evdf": true,
         "change-to-evaf": true,
-        "contributii-propuse-panel": true,
+        "contributii-propuse-panel": false,
         "articole-evaluate-panel": false,
         "articole-de-evaluat-panel": false,
         "df-articole-assign-panel": true,
@@ -112,6 +113,7 @@ const RIGHTS =  {
     },
     rsdf:{
         "to-eval": false,
+        "change-ranks": true,
         "change-to-rsdf": false,
         "change-to-redresdf": true,
         "change-to-redresaf": false,
@@ -136,6 +138,7 @@ const RIGHTS =  {
     },
     redresdf: {
         "to-eval": false,
+        "change-ranks": true,
         "change-to-rsdf": false,
         "change-to-redresdf": false,
         "change-to-redresaf": false,
@@ -143,7 +146,7 @@ const RIGHTS =  {
         "change-to-mcaf": false,
         "change-to-evdf": true,
         "change-to-evaf": false,
-        "contributii-propuse-panel": true,
+        "contributii-propuse-panel": false,
         "articole-evaluate-panel": false,
         "articole-de-evaluat-panel": false,
         "df-articole-assign-panel": true,
@@ -160,6 +163,7 @@ const RIGHTS =  {
     },
     redresaf:{
         "to-eval": false,
+        "change-ranks": true,
         "change-to-rsdf": false,
         "change-to-redresdf": false,
         "change-to-redresaf": false,
@@ -184,6 +188,7 @@ const RIGHTS =  {
     },
     mcdf:{
         "to-eval": false,
+        "change-ranks": true,
         "change-to-rsdf": false,
         "change-to-redresdf": false,
         "change-to-redresaf": false,
@@ -191,7 +196,7 @@ const RIGHTS =  {
         "change-to-mcaf": false,
         "change-to-evdf": true,
         "change-to-evaf": false,
-        "contributii-propuse-panel": true,
+        "contributii-propuse-panel": false,
         "articole-evaluate-panel": false,
         "articole-de-evaluat-panel": false,
         "df-articole-assign-panel": false,
@@ -208,6 +213,7 @@ const RIGHTS =  {
     },
     mcaf:{
         "to-eval": false,
+        "change-ranks": true,
         "change-to-rsdf": false,
         "change-to-redresdf": false,
         "change-to-redresaf": false,
@@ -215,7 +221,7 @@ const RIGHTS =  {
         "change-to-mcaf": false,
         "change-to-evdf": false,
         "change-to-evaf": true,
-        "contributii-propuse-panel": true,
+        "contributii-propuse-panel": false,
         "articole-evaluate-panel": false,
         "articole-de-evaluat-panel": false,
         "df-articole-assign-panel": false,
@@ -232,6 +238,7 @@ const RIGHTS =  {
     },
     evdf:{
         "to-eval": true,
+        "change-ranks": false,
         "change-to-rsdf": false,
         "change-to-redresdf": false,
         "change-to-redresaf": false,
@@ -239,7 +246,7 @@ const RIGHTS =  {
         "change-to-mcaf": false,
         "change-to-evdf": false,
         "change-to-evaf": false,
-        "contributii-propuse-panel": true,
+        "contributii-propuse-panel": false,
         "articole-evaluate-panel": true,
         "articole-de-evaluat-panel": true,
         "df-articole-assign-panel": false,
@@ -256,6 +263,7 @@ const RIGHTS =  {
     },
     evaf:{
         "to-eval": true,
+        "change-ranks": false,
         "change-to-rsdf": false,
         "change-to-redresdf": false,
         "change-to-redresaf": false,
@@ -263,7 +271,7 @@ const RIGHTS =  {
         "change-to-mcaf": false,
         "change-to-evdf": false,
         "change-to-evaf": false,
-        "contributii-propuse-panel": true,
+        "contributii-propuse-panel": false,
         "articole-evaluate-panel": true,
         "articole-de-evaluat-panel": true,
         "df-articole-assign-panel": false,
@@ -280,6 +288,7 @@ const RIGHTS =  {
     },
     aaf:{
         "to-eval": false,
+        "change-ranks": false,
         "change-to-rsdf": false,
         "change-to-redresdf": false,
         "change-to-redresaf": false,
@@ -304,6 +313,7 @@ const RIGHTS =  {
     },
     adf:{
         "to-eval": false,
+        "change-ranks": false,
         "change-to-rsdf": false,
         "change-to-redresdf": false,
         "change-to-redresaf": false,

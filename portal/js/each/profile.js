@@ -7,18 +7,20 @@ function changeButton(){
 changeButton()
 
 const USER_ID = location.search.slice(1).split("&")[0].split("=")[1]
-let USER;
+let USER,USERS;
+let USER_RANKS;
 let nothing_here
 
-var PUB
+var PUB = "admin"
 if (RANKS[getUserRank()].id.includes("df"))
     PUB = "DF"
 if (RANKS[getUserRank()].id.includes("af"))
     PUB = "AF"
 
+
 database.ref("users").once('value')
 .then((snapshot)=>{
-    const USERS = snapshot.val()
+    USERS = snapshot.val()
     USER = USERS[USER_ID]
     if(USER === undefined){
         // raiseUserNotFound()
@@ -26,38 +28,41 @@ database.ref("users").once('value')
     else{
 
         document.getElementById("text_nume").innerText = USER.nume
-        document.getElementById("text_nume").insertAdjacentHTML("afterend",`<a id="text_email" href="mailto:${USER.email}">${USER.email}</a>`)
+        if(PUB !== "admin")
+            document.getElementById("text_nume").insertAdjacentHTML("afterend",`<a id="text_email" href="mailto:${USER.email}">${USER.email}</a>`)
         if(getUserId() === USER.id){
             //it is me
 
-            //adaug buton pt schimbare date
-            document.getElementById("profile_data").insertAdjacentHTML("beforeend",`
+            if(PUB !== "admin"){
+                //adaug buton pt schimbare date
+                document.getElementById("profile_data").insertAdjacentHTML("beforeend",`
                 <svg onclick="openPopUp()" width="22" height="25" viewBox="0 0 22 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M20.3051 14.749C20.0025 14.749 19.7572 15.0511 19.7572 15.4238V21.4148C19.7561 22.5324 19.021 23.438 18.1135 23.4391H2.73957C1.83209 23.438 1.0969 22.5324 1.09583 21.4148V3.83151C1.0969 2.71422 1.83209 1.80858 2.73957 1.80726H7.60444C7.90708 1.80726 8.15236 1.50521 8.15236 1.13251C8.15236 0.760083 7.90708 0.457764 7.60444 0.457764H2.73957C1.22724 0.459872 0.00171223 1.9691 0 3.83151V21.4151C0.00171223 23.2775 1.22724 24.7867 2.73957 24.7888H18.1135C19.6258 24.7867 20.8513 23.2775 20.853 21.4151V15.4238C20.853 15.0511 20.6078 14.749 20.3051 14.749Z" fill="black"/>
                 <path d="M20.6361 1.4493C19.6731 0.263482 18.112 0.263482 17.1491 1.4493L7.37394 13.4873C7.30695 13.5698 7.25858 13.672 7.23333 13.7843L5.94787 19.4994C5.895 19.7337 5.94872 19.9846 6.08827 20.1567C6.22803 20.3286 6.43179 20.3947 6.62206 20.3299L11.2629 18.7466C11.354 18.7155 11.4371 18.6559 11.5041 18.5734L21.279 6.53523C22.2404 5.34862 22.2404 3.42769 21.279 2.24108L20.6361 1.4493ZM8.5678 13.9258L16.568 4.07345L19.1481 7.25083L11.1477 17.1032L8.5678 13.9258ZM8.05242 15.1994L10.1137 17.7382L7.26243 18.711L8.05242 15.1994ZM20.5042 5.58109L19.9231 6.29669L17.3428 3.11904L17.9241 2.40344C18.4589 1.74477 19.3262 1.74477 19.8611 2.40344L20.5042 3.19522C21.0382 3.85468 21.0382 4.92189 20.5042 5.58109Z" fill="black"/>
                 </svg>
 `)
 
-            //adaug formularul pt schimbare date
-            document.getElementById("myForm").insertAdjacentHTML("afterbegin",`
-             <div class="form-popup">
-            <div>
-                <b>Nume</b>
-                <input type="nume" placeholder="Introdu nume" name="nume" >
-            </div>
-
-            <div>
-                <b>Prenume</b>
-                <input type="prenume" placeholder="Introdu prenume" name="prenume" >
-            </div>
-
-            <div>
-                <b>Email</b>
-                <input type="email" placeholder="Introdu email" name="email" >
-            </div>
-            <button  class="btn">Schimba date </button>
-            <button type="button" class="btn cancel" onclick="closePopup()">Inchide</button>
-        </div>`)
+                //adaug formularul pt schimbare date
+                document.getElementById("myForm").insertAdjacentHTML("afterbegin",`
+                     <div class="form-popup">
+                    <div>
+                        <b>Nume</b>
+                        <input type="nume" placeholder="Introdu nume" name="nume" value="${USER.nume.split(' ')[0]}">
+                    </div>
+        
+                    <div>
+                        <b>Prenume</b>
+                        <input type="prenume" placeholder="Introdu prenume" name="prenume" value="${USER.nume.split(' ')[1]}">
+                    </div>
+        
+                    <div>
+                        <b>Email</b>
+                        <input type="email" placeholder="Introdu email" name="email" value="${USER.email}">
+                    </div>
+                    <button  class="btn">Schimba date </button>
+                    <button type="button" class="btn cancel" onclick="closePopup()">Inchide</button>
+                </div>`)
+            }
 
             //adaug functia mea cu care sunt logat
             document.getElementById("profile-rank").insertAdjacentHTML('beforeend',`<h3>${RANKS[getUserRank()].nume}</h3>`)
@@ -68,6 +73,13 @@ database.ref("users").once('value')
             const Contributions = USER.contributions
             const Evaluations = USER.evaluations
 
+
+            //members link
+            if(RIGHTS[my_rank]["access-members-page"])
+                document.getElementById("container-contributii").insertAdjacentHTML('beforeend',`<a href="./members.html">Accesează pagina cu membrii platformei</a>`)
+
+            if(RIGHTS[my_rank]["access-cieft-page"])
+                document.getElementById("container-contributii").insertAdjacentHTML('beforeend',`<a href="./cieft.html">Accesează pagina cu membrii înscriși la colocviu</a>`)
 
 
             //contributiile mele
@@ -350,9 +362,26 @@ database.ref("users").once('value')
 
         }
         else{
-            console.log("guest")
+            //SUPERVISOR RANK-CHANGE
+            if(RIGHTS[getUserRank()]["change-ranks"])
+            {
+                USER_RANKS = USER.ranks
+                document.getElementById("container-contributii").insertAdjacentHTML("beforeend",`
+                    <div id="change-rank-container">
+                    <h3 id="change-ranks-of">Schimba functiile lui <i>${USER.nume}</i></h3>
+                    <div>
+                       ${RIGHTS[getUserRank()]["change-to-rsdf"] ? '<input type="checkbox" id="rsdf" name="role" value="rsdf" '+(USER.ranks["rsdf"] ? 'checked' : '')+'><label for="rsdf">'+RANKS["rsdf"].nume+'</label><br>' : ''}
+                       ${RIGHTS[getUserRank()]["change-to-redresdf"] ? '<input type="checkbox" id="redresdf" name="role" value="redresdf" '+(USER.ranks["redresdf"] ? 'checked' : '')+'><label for="redresdf">'+RANKS["redresdf"].nume+'</label><br>' : ''}
+                       ${RIGHTS[getUserRank()]["change-to-redresaf"] ? '<input type="checkbox" id="redresaf" name="role" value="redresaf" '+(USER.ranks["redresaf"] ? 'checked' : '')+'><label for="redresaf">'+RANKS["redresaf"].nume+'</label><br>' : ''}
+                       ${RIGHTS[getUserRank()]["change-to-mcaf"] ? '<input type="checkbox" id="mcaf" name="role" value="mcaf" '+(USER.ranks["mcaf"] ? 'checked' : '')+'><label for="mcaf">'+RANKS["mcaf"].nume+'</label><br>' : ''}
+                       ${RIGHTS[getUserRank()]["change-to-mcdf"] ? '<input type="checkbox" id="mcdf" name="role" value="mcdf" '+(USER.ranks["mcdf"] ? 'checked' : '')+'><label for="mcdf">'+RANKS["mcdf"].nume+'</label><br>' : ''}
+                       ${RIGHTS[getUserRank()]["change-to-evdf"] ? '<input type="checkbox" id="evdf" name="role" value="evdf" '+(USER.ranks["evdf"] ? 'checked' : '')+'><label for="evdf">'+RANKS["evdf"].nume+'</label><br>' : ''}
+                       ${RIGHTS[getUserRank()]["change-to-evaf"] ? '<input type="checkbox" id="evaf" name="role" value="evaf" '+(USER.ranks["evaf"] ? 'checked' : '')+'><label for="evaf">'+RANKS["evaf"].nume+'</label><br>' : ''}
+                            </div>
+                            <button onclick="updateRanks()">Schimba</button>
+                        </div>`)
+            }
         }
-
     }
 })
 
@@ -443,5 +472,56 @@ function trimiteSpreEvaluare(id){
 
     //fac referinta in db catre evaluatorul 1, ii adaug la array-ul to_evaluate un string de forma `${publicatie.id}-1`, salvez obiectul in db (update)
     //fac referinta in db catre evaluatorul 2, ii adaug la array-ul to_evaluate un string de forma `${publicatie.id}-2`, salvez obiectul in db (update)
+
+}
+
+function updateRanks(){
+    let new_ranks = {
+        "aaf" :  USER_RANKS["aaf"],
+        "adf" :  USER_RANKS["adf"],
+        "admin" : USER_RANKS["admin"],
+        "evaf" :  document.getElementById("evaf").checked,
+        "evdf" :  document.getElementById("evdf").checked,
+        "mcaf" :  document.getElementById("mcaf").checked,
+        "mcdf" :  document.getElementById("mcdf").checked,
+        "redresaf" :  document.getElementById("redresaf").checked,
+        "redresdf" :  document.getElementById("redresdf").checked,
+        "rsdf" :  document.getElementById("rsdf").checked
+    }
+    let logs = []
+    for(const [key,value] of Object.entries(new_ranks)){
+        if(new_ranks[key] !== USER_RANKS[key]){
+            if(USER_RANKS[key] === true)
+                logs.push(`[delete-rank] ${USERS[getUserId()].nume} i-a sters lui ${USERS[USER_ID].nume} functia de ${RANKS[key].nume} la ${DateToString(new Date())}`)
+            else
+                logs.push(`[add-rank] ${USERS[getUserId()].nume} i-a adaugat lui ${USERS[USER_ID].nume} functia de ${RANKS[key].nume} la ${DateToString(new Date())}`)
+        }
+    }
+
+    if(logs.length === 0){
+        alert("Nu a avut loc nicio schimbare.")
+    }
+    else{
+        //update user ranks
+        let updates = {}
+        updates[`users/${USER_ID}/ranks`] = new_ranks
+        database.ref().update(updates)
+
+        //update logs
+        database.ref('logs').once('value')
+            .then((snapshot)=>{
+                let DBlogs = snapshot.val()
+                if(!DBlogs)
+                    DBlogs = logs
+                else
+                    DBlogs = DBlogs.concat(logs)
+
+                updates = {}
+                updates[`logs`] = DBlogs
+                database.ref().update(updates)
+
+                alert("Schimbarile au fost efectuate.")
+            })
+    }
 
 }

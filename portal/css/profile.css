@@ -442,3 +442,49 @@
     font-weight: bold;
     color: #b52424;
 }
+
+#change-rank-container{
+    border: .5vh solid var(--darkblue);
+    border-radius: 2vh;
+    padding: 2vh;
+    float: right;
+    width: 60%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#change-rank-container label,
+#change-rank-container input{
+    font-size: 1.2rem;
+    margin-bottom: 2vh;
+}
+#change-rank-container button{
+    font-size: 1rem;
+    outline: none;
+    border: none;
+    color: white;
+    background: var(--darkblue);
+    border-radius: 2vh;
+    margin-top: 3vh;
+    padding: .5vh 3vh .5vh 3vh;
+    cursor: pointer;
+
+}
+
+#container-contributii>a{
+    text-decoration: none;
+    font-weight: bold;
+    color: var(--darkblue);
+    margin-bottom: 10px;
+    transition: 500ms;
+    -o-transition: 500ms;
+    -webkit-transition: 500ms;
+    -moz-transition: 500ms;
+
+}
+#container-contributii>a:hover{
+    color: #ef4135;
+}
