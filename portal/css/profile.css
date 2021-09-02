@@ -435,3 +435,10 @@
 .form-popup .btn:hover {
     opacity: 1;
 }
+
+.list>p{
+    padding-left: 10vh;
+    font-style: italic;
+    font-weight: bold;
+    color: #b52424;
+}

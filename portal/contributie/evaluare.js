@@ -15,7 +15,7 @@ catch{
 
 function changeButton(){
     if(isUserLoggedIn()){
-        document.getElementById("header-second-line").insertAdjacentHTML('beforeend',`<button onclick='window.location.href="./profile.html?user=${getUserId()}"'>Pagina de profil</button>`)
+        document.getElementById("header-second-line").insertAdjacentHTML('beforeend',`<button onclick='window.location.href="../profile.html?user=${getUserId()}"'>Pagina de profil</button>`)
         document.getElementById("header-second-line").insertAdjacentHTML("beforeend",'<button onclick="LogOut()">Déconnexion</button>' )
     }
 
@@ -24,8 +24,6 @@ function changeButton(){
     }
 }
 changeButton()
-
-
 
 const FORMULAR = `
 <h2>Formular pentru evaluarea contributiilor</h2>
@@ -96,9 +94,6 @@ const FORMULAR = `
    <input type="submit" id="submit" value="Trimite">    
 </form>
 `
-
-
-
 
 if(!CORRECT_URL){
     document.getElementById("loadingAnimation").style.opacity='0';
@@ -231,8 +226,8 @@ else
                                     NeedToUpdate.eval_storage = true
                                 })
 
-                            //adaug evaluarea in lista de evaluari de la profilul meu
-                            //sterg de_evaluat din lista de de_evaluat de la profilul meu @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+                            // adaug evaluarea in lista de evaluari de la profilul meu
+                            // sterg de_evaluat din lista de de_evaluat de la profilul meu
                             database.ref(`users/${getUserId()}`).once('value')
                                 .then((snap)=>{
                                     let user = snap.val()
@@ -240,6 +235,12 @@ else
                                         user.evaluations.push(propunere.id+'-'+EV)
                                     else
                                         user.evaluations = [propunere.id+'-'+EV]
+
+                                    const current_eval_id = user.to_evaluate.findIndex(element => element===`${propunere.id}-${EV}`)
+
+                                    console.log(user.to_evaluate)
+                                    user.to_evaluate.splice(current_eval_id,1)
+                                    console.log(user.to_evaluate)
 
                                     let updates = {}
                                     updates[`users/${getUserId()}`] = user
@@ -409,7 +410,6 @@ function authorized(val){
         else return 3
     }
     //daca userul nu este sef verificam daca este evaluator, dupa verificam daca este completata sau nu
-    console.log(userID,val['evaluare_'+EV]['evaluator'])
     if(userID==val['evaluare_'+EV]['evaluator']){
         if(val['evaluare_'+EV]['completed']) return 2
         else return 1

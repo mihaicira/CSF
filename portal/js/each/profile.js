@@ -28,8 +28,8 @@ database.ref("users").once('value')
         document.getElementById("text_nume").insertAdjacentHTML("afterend",`<a id="text_email" href="mailto:${USER.email}">${USER.email}</a>`)
         if(getUserId() === USER.id){
             //it is me
-            //adaug buton pt schimbare date
 
+            //adaug buton pt schimbare date
             document.getElementById("profile_data").insertAdjacentHTML("beforeend",`
                 <svg onclick="openPopUp()" width="22" height="25" viewBox="0 0 22 25" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M20.3051 14.749C20.0025 14.749 19.7572 15.0511 19.7572 15.4238V21.4148C19.7561 22.5324 19.021 23.438 18.1135 23.4391H2.73957C1.83209 23.438 1.0969 22.5324 1.09583 21.4148V3.83151C1.0969 2.71422 1.83209 1.80858 2.73957 1.80726H7.60444C7.90708 1.80726 8.15236 1.50521 8.15236 1.13251C8.15236 0.760083 7.90708 0.457764 7.60444 0.457764H2.73957C1.22724 0.459872 0.00171223 1.9691 0 3.83151V21.4151C0.00171223 23.2775 1.22724 24.7867 2.73957 24.7888H18.1135C19.6258 24.7867 20.8513 23.2775 20.853 21.4151V15.4238C20.853 15.0511 20.6078 14.749 20.3051 14.749Z" fill="black"/>
@@ -38,7 +38,6 @@ database.ref("users").once('value')
 `)
 
             //adaug formularul pt schimbare date
-
             document.getElementById("myForm").insertAdjacentHTML("afterbegin",`
              <div class="form-popup">
             <div>
@@ -58,7 +57,6 @@ database.ref("users").once('value')
             <button  class="btn">Schimba date </button>
             <button type="button" class="btn cancel" onclick="closePopup()">Inchide</button>
         </div>`)
-
 
             //adaug functia mea cu care sunt logat
             document.getElementById("profile-rank").insertAdjacentHTML('beforeend',`<h3>${RANKS[getUserRank()].nume}</h3>`)
@@ -94,21 +92,18 @@ database.ref("users").once('value')
                         <div class="text_nume_articol "> ${propunere.titlu}</div>
                         <div class="text-secundar-articol">Propus in ${propunere.data}</div>
                         </div>
-                        <svg class="redirect-svg" viewBox="0 0 25 25" fill="none"><path d="M23.8636 0.0303345H14.7727C14.1451 0.0303345 13.6363 0.527406 13.6363 1.14054C13.6363 1.75367 14.1451 2.25075 14.7727 2.25075H21.1202L9.42378 13.6779C8.97999 14.1114 8.97999 14.8143 9.42378 15.2479C9.64561 15.4646 9.93643 15.573 10.2273 15.573C10.5181 15.573 10.8089 15.4647 11.0308 15.2478L22.7273 3.82077V10.0221C22.7273 10.6352 23.2361 11.1323 23.8637 11.1323C24.4913 11.1323 25.0001 10.6352 25.0001 10.0221V1.14054C25 0.527406 24.4912 0.0303345 23.8636 0.0303345Z" fill="black"/><path d="M19.3182 11.1322C18.6906 11.1322 18.1818 11.6293 18.1818 12.2424V22.2342H2.27271V6.69143H12.5C13.1276 6.69143 13.6364 6.19436 13.6364 5.58123C13.6364 4.96809 13.1276 4.47107 12.5 4.47107H1.13638C0.508789 4.47107 0 4.96814 0 5.58128V23.3444C0 23.9575 0.508789 24.4545 1.13638 24.4545H19.3182C19.9458 24.4545 20.4546 23.9575 20.4546 23.3443V12.2424C20.4545 11.6293 19.9458 11.1322 19.3182 11.1322Z" fill="black"/></svg>
+                        <a href="./contributie/propunereFull.html?ID=${propunere.id}&PUB=${PUB}"><svg class="redirect-svg" viewBox="0 0 25 25" fill="none"><path d="M23.8636 0.0303345H14.7727C14.1451 0.0303345 13.6363 0.527406 13.6363 1.14054C13.6363 1.75367 14.1451 2.25075 14.7727 2.25075H21.1202L9.42378 13.6779C8.97999 14.1114 8.97999 14.8143 9.42378 15.2479C9.64561 15.4646 9.93643 15.573 10.2273 15.573C10.5181 15.573 10.8089 15.4647 11.0308 15.2478L22.7273 3.82077V10.0221C22.7273 10.6352 23.2361 11.1323 23.8637 11.1323C24.4913 11.1323 25.0001 10.6352 25.0001 10.0221V1.14054C25 0.527406 24.4912 0.0303345 23.8636 0.0303345Z" fill="black"/><path d="M19.3182 11.1322C18.6906 11.1322 18.1818 11.6293 18.1818 12.2424V22.2342H2.27271V6.69143H12.5C13.1276 6.69143 13.6364 6.19436 13.6364 5.58123C13.6364 4.96809 13.1276 4.47107 12.5 4.47107H1.13638C0.508789 4.47107 0 4.96814 0 5.58128V23.3444C0 23.9575 0.508789 24.4545 1.13638 24.4545H19.3182C19.9458 24.4545 20.4546 23.9575 20.4546 23.3443V12.2424C20.4545 11.6293 19.9458 11.1322 19.3182 11.1322Z" fill="black"/></svg></a>
                         </div>
                         `)
                         })
                     })
                  }
                  else
-                    document.getElementById("contributii_propuse_lista").insertAdjacentHTML("beforeend",`
-                    <p>Nu exista momentan</p>`)
+                    document.getElementById("contributii_propuse_lista").insertAdjacentHTML("beforeend",`<p>${ProfileErrors["no-contrib-prop"]}</p>`)
 
             }
 
-
             //evaluarile mele
-
             if(RIGHTS[my_rank]["articole-evaluate-panel"] === true){
                 document.getElementById("container-contributii").insertAdjacentHTML("beforeend",`
                  <div class="panel">
@@ -123,27 +118,26 @@ database.ref("users").once('value')
                         const evaluari = snap.val()
                         Evaluations.forEach((eval)=>{
                             eval = eval.toString()
+                            const id = eval.split("-")[0]
                             const EV = eval.split("-")[1]
                             const evaluare = evaluari[eval.split("-")[0]][EV]
                             document.getElementById("articole_evaluate_lista").insertAdjacentHTML("beforeend", `
-                       <div class="article-box">
-                    <div>
-                        <div class="text_nume_articol "> ${evaluare.titlu} </div>
-                        <div class="text-secundar-articol">Evaluat in ${evaluare.data}</div>
-                    </div>
-                    <svg class="redirect-svg" viewBox="0 0 25 25" fill="none"><path d="M23.8636 0.0303345H14.7727C14.1451 0.0303345 13.6363 0.527406 13.6363 1.14054C13.6363 1.75367 14.1451 2.25075 14.7727 2.25075H21.1202L9.42378 13.6779C8.97999 14.1114 8.97999 14.8143 9.42378 15.2479C9.64561 15.4646 9.93643 15.573 10.2273 15.573C10.5181 15.573 10.8089 15.4647 11.0308 15.2478L22.7273 3.82077V10.0221C22.7273 10.6352 23.2361 11.1323 23.8637 11.1323C24.4913 11.1323 25.0001 10.6352 25.0001 10.0221V1.14054C25 0.527406 24.4912 0.0303345 23.8636 0.0303345Z" fill="black"/><path d="M19.3182 11.1322C18.6906 11.1322 18.1818 11.6293 18.1818 12.2424V22.2342H2.27271V6.69143H12.5C13.1276 6.69143 13.6364 6.19436 13.6364 5.58123C13.6364 4.96809 13.1276 4.47107 12.5 4.47107H1.13638C0.508789 4.47107 0 4.96814 0 5.58128V23.3444C0 23.9575 0.508789 24.4545 1.13638 24.4545H19.3182C19.9458 24.4545 20.4546 23.9575 20.4546 23.3443V12.2424C20.4545 11.6293 19.9458 11.1322 19.3182 11.1322Z" fill="black"/></svg>
-                </div>
-                        `)
+                                   <div class="article-box">
+                                <div>
+                                    <div class="text_nume_articol "> ${evaluare.titlu} </div>
+                                    <div class="text-secundar-articol">Evaluat in ${evaluare.data}</div>
+                                </div>
+                                <a href="./contributie/evaluare.html?ID=${id}&PUB=${PUB}&EV=${EV}"><svg class="redirect-svg" viewBox="0 0 25 25" fill="none"><path d="M23.8636 0.0303345H14.7727C14.1451 0.0303345 13.6363 0.527406 13.6363 1.14054C13.6363 1.75367 14.1451 2.25075 14.7727 2.25075H21.1202L9.42378 13.6779C8.97999 14.1114 8.97999 14.8143 9.42378 15.2479C9.64561 15.4646 9.93643 15.573 10.2273 15.573C10.5181 15.573 10.8089 15.4647 11.0308 15.2478L22.7273 3.82077V10.0221C22.7273 10.6352 23.2361 11.1323 23.8637 11.1323C24.4913 11.1323 25.0001 10.6352 25.0001 10.0221V1.14054C25 0.527406 24.4912 0.0303345 23.8636 0.0303345Z" fill="black"/><path d="M19.3182 11.1322C18.6906 11.1322 18.1818 11.6293 18.1818 12.2424V22.2342H2.27271V6.69143H12.5C13.1276 6.69143 13.6364 6.19436 13.6364 5.58123C13.6364 4.96809 13.1276 4.47107 12.5 4.47107H1.13638C0.508789 4.47107 0 4.96814 0 5.58128V23.3444C0 23.9575 0.508789 24.4545 1.13638 24.4545H19.3182C19.9458 24.4545 20.4546 23.9575 20.4546 23.3443V12.2424C20.4545 11.6293 19.9458 11.1322 19.3182 11.1322Z" fill="black"/></svg></a>
+                            </div>
+                                    `)
                         })
                     })
             }
             else
-                document.getElementById("articole_evaluate_lista").insertAdjacentHTML("beforeend",`
-                    <p>Nu exista momentan</p>`)
+                document.getElementById("articole_evaluate_lista").insertAdjacentHTML("beforeend",`<p>${ProfileErrors["no-art-eval"]}</p>`)
             }
 
             // articole de evaluat
-
             if(RIGHTS[my_rank]["articole-de-evaluat-panel"] === true){
                 document.getElementById("container-contributii").insertAdjacentHTML("beforeend",`
                      <div class="panel">
@@ -153,19 +147,30 @@ database.ref("users").once('value')
                          </div>
                     </div>
                 `)
-
-                document.getElementById("articole_de_evaluat_lista").insertAdjacentHTML("beforeend", `
-                      <div class="article-box">
-                    <div>
-                        <div class="text_nume_articol "> Nume articol</div>
-                        <div class="text-secundar-articol">Propus in 14/05/2021</div>
-                    </div>
-                    <svg class="redirect-svg" viewBox="0 0 25 25" fill="none"><path d="M23.8636 0.0303345H14.7727C14.1451 0.0303345 13.6363 0.527406 13.6363 1.14054C13.6363 1.75367 14.1451 2.25075 14.7727 2.25075H21.1202L9.42378 13.6779C8.97999 14.1114 8.97999 14.8143 9.42378 15.2479C9.64561 15.4646 9.93643 15.573 10.2273 15.573C10.5181 15.573 10.8089 15.4647 11.0308 15.2478L22.7273 3.82077V10.0221C22.7273 10.6352 23.2361 11.1323 23.8637 11.1323C24.4913 11.1323 25.0001 10.6352 25.0001 10.0221V1.14054C25 0.527406 24.4912 0.0303345 23.8636 0.0303345Z" fill="black"/><path d="M19.3182 11.1322C18.6906 11.1322 18.1818 11.6293 18.1818 12.2424V22.2342H2.27271V6.69143H12.5C13.1276 6.69143 13.6364 6.19436 13.6364 5.58123C13.6364 4.96809 13.1276 4.47107 12.5 4.47107H1.13638C0.508789 4.47107 0 4.96814 0 5.58128V23.3444C0 23.9575 0.508789 24.4545 1.13638 24.4545H19.3182C19.9458 24.4545 20.4546 23.9575 20.4546 23.3443V12.2424C20.4545 11.6293 19.9458 11.1322 19.3182 11.1322Z" fill="black"/></svg>
-                </div>
-                        `)
-
+                if(USER.to_evaluate){
+                    database.ref(`${PUB}/propuneri`).once('value')
+                        .then((snap)=>{
+                            const propuneri = snap.val()
+                            USER.to_evaluate.forEach((prop)=>{
+                                const id = prop.split('-')[0]
+                                const ev = prop.split('-')[1]
+                                document.getElementById("articole_de_evaluat_lista").insertAdjacentHTML("beforeend", `
+                                      <div class="article-box">
+                                    <div>
+                                        <div class="text_nume_articol ">${propuneri[id].titlu}</div>
+                                        <div class="text-secundar-articol">Propus in ${propuneri[id].data}</div>
+                                    </div>
+                                    <a href="./contributie/evaluare.html?ID=${id}&PUB=${PUB}&EV=${ev}"><svg class="redirect-svg" viewBox="0 0 25 25" fill="none"><path d="M23.8636 0.0303345H14.7727C14.1451 0.0303345 13.6363 0.527406 13.6363 1.14054C13.6363 1.75367 14.1451 2.25075 14.7727 2.25075H21.1202L9.42378 13.6779C8.97999 14.1114 8.97999 14.8143 9.42378 15.2479C9.64561 15.4646 9.93643 15.573 10.2273 15.573C10.5181 15.573 10.8089 15.4647 11.0308 15.2478L22.7273 3.82077V10.0221C22.7273 10.6352 23.2361 11.1323 23.8637 11.1323C24.4913 11.1323 25.0001 10.6352 25.0001 10.0221V1.14054C25 0.527406 24.4912 0.0303345 23.8636 0.0303345Z" fill="black"/><path d="M19.3182 11.1322C18.6906 11.1322 18.1818 11.6293 18.1818 12.2424V22.2342H2.27271V6.69143H12.5C13.1276 6.69143 13.6364 6.19436 13.6364 5.58123C13.6364 4.96809 13.1276 4.47107 12.5 4.47107H1.13638C0.508789 4.47107 0 4.96814 0 5.58128V23.3444C0 23.9575 0.508789 24.4545 1.13638 24.4545H19.3182C19.9458 24.4545 20.4546 23.9575 20.4546 23.3443V12.2424C20.4545 11.6293 19.9458 11.1322 19.3182 11.1322Z" fill="black"/></svg></a>
+                                </div>
+                                        `)
+                            })
+                        })
+                }
+                else{
+                    //nu exista nimic
+                    document.getElementById("articole_de_evaluat_lista").insertAdjacentHTML('beforeend',`<p>${ProfileErrors["no-art-to-eval"]}</p>`)
+                }
             }
-
 
             // ARTICOLE CE TREBUIE ATRIBUITE EVALUATORILOR-
             if(RIGHTS[my_rank][`${pub}-articole-assign-panel`] === true){
@@ -232,6 +237,7 @@ database.ref("users").once('value')
 
                     })
             }
+
             //Contributii in curs de procesare
              if(RIGHTS[my_rank][`${pub}-contributii-wip-panel`]){
                  document.getElementById("container-contributii").insertAdjacentHTML("beforeend",`
@@ -356,9 +362,7 @@ function finalizeazaFaraEvaluare(id){
             updates[PUB+"/propuneri/"+id] = propunere
             database.ref().update(updates)
 
-
             $("#assign-article-"+id).html("Propunerea a fost finalizata")
-            
             }
         )
 
@@ -371,11 +375,52 @@ function finalizeazaFaraEvaluare(id){
 
 function trimiteSpreEvaluare(id){
     console.log(id)
+
     //fac referinta in db catre publicatia id
-    //schimb stadiul publicatiei in 2
-    //iau id-urile evaluatorilor din html
-    //pun id-urile evaluatorilor la evaluare_1.evaluator si evaluare_2.evaluator
-    //pun inapoi obiectul in db(salvez)
+    database.ref(PUB+"/propuneri/"+id).once("value")
+        .then((snapshot)=>{
+            let propunere = snapshot.val()
+            propunere.stadiu = 2
+
+            const eval1 = $(`#${propunere.id}-assign-evaluatori-1`).val()
+            const eval2 = $(`#${propunere.id}-assign-evaluatori-2`).val()
+
+            if(eval1 === "none" || eval2 === "none")
+                return
+
+            propunere.evaluare_1.evaluator = eval1
+            propunere.evaluare_2.evaluator = eval2
+
+            let updates = {}
+            updates[PUB+"/propuneri/"+id] = propunere
+            database.ref().update(updates)
+
+            database.ref(`users/${eval1}`).once('value')
+                .then((snap)=>{
+                    let user = snap.val()
+                    if(user.to_evaluate)
+                        user.to_evaluate.push(`${id}-1`)
+                    else
+                        user.to_evaluate = [`${id}-1`]
+                    updates = {}
+                    updates[`users/${eval1}`] = user
+                    database.ref().update(updates)
+                })
+
+            database.ref(`users/${eval2}`).once('value')
+                .then((snap)=>{
+                    let user = snap.val()
+                    if(user.to_evaluate)
+                        user.to_evaluate.push(`${id}-2`)
+                    else
+                        user.to_evaluate = [`${id}-2`]
+                    updates = {}
+                    updates[`users/${eval2}`] = user
+                    database.ref().update(updates)
+
+                    $("#assign-article-"+id).html("Propunerea a fost trimisa catre evaluare.")
+                })
+        })
 
     //fac referinta in db catre evaluatorul 1, ii adaug la array-ul to_evaluate un string de forma `${publicatie.id}-1`, salvez obiectul in db (update)
     //fac referinta in db catre evaluatorul 2, ii adaug la array-ul to_evaluate un string de forma `${publicatie.id}-2`, salvez obiectul in db (update)

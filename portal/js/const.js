@@ -74,6 +74,12 @@ const GeneralErrors = {
     "TBA":"Aici trebuie sa facem in caz ca e deja completat si are si acces"
 }
 
+const ProfileErrors = {
+    "no-cotrib-prop": "Nu exista nicio contributie propusa",
+    "no-art-eval":"Nu exista niciun articol evaluat",
+    "no-art-to-eval":"Nu exista niciun articol de evaluat"
+}
+
 const RIGHTS =  {
     admin:{
         "to-eval": true,

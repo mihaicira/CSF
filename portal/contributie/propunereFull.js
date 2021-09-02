@@ -3,8 +3,8 @@ let PROP_ID = "", PUB = "";
 
 try{
 
-    PUB = location.search.slice(1).split("&")[1].split("=")[1]
     PROP_ID = location.search.slice(1).split("&")[0].split("=")[1]
+    PUB = location.search.slice(1).split("&")[1].split("=")[1]
 
 
 }
@@ -31,6 +31,7 @@ if(!CORRECT_URL){
     document.getElementById("propunere-container").insertAdjacentHTML("afterbegin",`<h2>${GeneralErrors["doesnt-exist"]}</h2>`)
 }
 else {
+    console.log(PUB.toUpperCase()+"/propuneri/"+ PROP_ID)
     database.ref(PUB.toUpperCase()+"/propuneri/"+ PROP_ID).once('value')
         .then((snapshot) => {
             let dbObj = snapshot.val()
@@ -137,7 +138,7 @@ else {
 
         <div class="propunere-pair">
             <span>Stadiu propunere</span>
-            <span>${dbObj.stadiu}</span>
+            <span>${dbObj.stadiu} (${CONTRIBUTION_STATUS[dbObj.stadiu]})</span>
         </div>`
                     document.getElementById("propunere-container").insertAdjacentHTML("beforeend", HTML)
 
