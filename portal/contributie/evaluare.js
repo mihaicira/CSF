@@ -90,7 +90,7 @@ const FORMULAR = `
    <p>Încărcați fișierul .word care conține adnotările necesare</p>
    <input type="file" name="adnot" id="adnot-fisier">        
    <h3>FINALIZARE PROCES DE EVALUARE </h3>
-   <h4>Redacția revistei Dialogues francophones vă mulțumește pentru că ați acceptat să faceți evaluarea acestui articol.</h4>   
+    
    <input type="submit" id="submit" value="Trimite">    
 </form>
 `
@@ -232,11 +232,11 @@ else
                                 .then((snap)=>{
                                     let user = snap.val()
                                     if(user.evaluations)
-                                        user.evaluations.push(propunere.id+'-'+EV)
+                                        user.evaluations.push(propunere.id+'-'+EV+'-'+PUB.toLowerCase())
                                     else
-                                        user.evaluations = [propunere.id+'-'+EV]
+                                        user.evaluations = [propunere.id+'-'+EV+'-'+PUB.toLowerCase()]
 
-                                    const current_eval_id = user.to_evaluate.findIndex(element => element===`${propunere.id}-${EV}`)
+                                    const current_eval_id = user.to_evaluate.findIndex(element => element===`${propunere.id}-${EV}-${PUB.toLowerCase()}`)
 
                                     console.log(user.to_evaluate)
                                     user.to_evaluate.splice(current_eval_id,1)
@@ -258,7 +258,7 @@ else
                                             pass = false
 
                                     if(pass){
-                                        $("#formular-container").html(`<h2>Congrats, u are done.</h2>`)
+                                        $("#formular-container").html(`<h2>${FormEnds["eval"]}</h2>`)
                                         requestFinished = true
                                     }
                                 }

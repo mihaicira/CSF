@@ -7,53 +7,7 @@ var FISIER_NOTABIBLIOGRAFICA_DOC = {
     extension: "n/a"
 };
 
-var autor,autori;
-
-
-function scrollToAutori(){
-    $('html, body').animate({
-        scrollTop: ($("#persons-table").offset().top-200)
-    }, 100);
-}
-
-function autoriCorespondentiCheck(){
-    var rows = document.getElementById("persons-table").querySelectorAll("tr");
-    var Autori =[];
-
-    for (var i = 1; i < rows.length; i+=1) {
-        var DATA = rows[i].querySelectorAll("td");
-        Autori.push([DATA[0].innerText,DATA[1].innerText,DATA[2].innerText,DATA[3].firstChild.checked ])
-    }
-    if(Autori.length === 0) {
-        scrollToAutori()
-        alert("Vă rugăm adăugați autori.")
-        return false;
-    }
-    var autoriCorespondenti = 0
-    Autori.forEach((each)=>{
-        if(each[3] === true){
-            autoriCorespondenti += 1
-            autor = each[0]
-        }
-
-    })
-
-    if(autoriCorespondenti === 0){
-        scrollToAutori()
-        alert("Vă rugăm bifați un autor ca fiind corespondent.")
-        return false;
-    }
-
-    if(autoriCorespondenti > 1){
-        scrollToAutori()
-        alert("O singura persoana poate fi autor corespondent.")
-        return false;
-    }
-
-    autori = Autori
-    console.log(autori)
-    return true;
-}
+var autor;
 
 document.getElementById('articol-fisier').addEventListener('change', function (e){
     const extension = e.target.files[0].name.split(".")[1]
@@ -144,9 +98,11 @@ $("#formular-container>form").submit(function(e) {
         .then((snapshot)=>{
             let user = snapshot.val()
             if(user.contributions)
-                user.contributions.push(propunereID)
+                user.contributions.push(propunereID+'-df')
             else
-                user.contributions = [propunereID]
+                user.contributions = [propunereID+'-df']
+
+            if(!user.ranks["adf"]) user.ranks["adf"] = true
 
             let updates = {}
             updates[`users/${getUserId()}`] = user
@@ -154,10 +110,8 @@ $("#formular-container>form").submit(function(e) {
         })
 });
 
-
 function deleteId(id){
     $("#"+id).remove()
-
     if(document.querySelector("#persons-table>tr") === null)
         $("#persons-table").css("opacity","0")
 
@@ -216,7 +170,7 @@ function uploadDataToDF(object) {
     var ref = database.ref("DF/propuneri/"+object.id)
     ref.set(object)
         .then((snapshot)=>{
-            $("#formular-container").html("<h1>Votre formulaire a été transmis</h1>")
+            $("#formular-container").html("<h1>${FormEnds['prop']}</h1>")
         })
         .catch((e)=>{
             console.log("Error: ",e)

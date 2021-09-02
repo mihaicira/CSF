@@ -75,9 +75,14 @@ const GeneralErrors = {
 }
 
 const ProfileErrors = {
-    "no-cotrib-prop": "Nu exista nicio contributie propusa",
+    "no-contrib-prop": "Nu exista nicio contributie propusa",
     "no-art-eval":"Nu exista niciun articol evaluat",
     "no-art-to-eval":"Nu exista niciun articol de evaluat"
+}
+
+const FormEnds = {
+    "eval":"Redacția revistei Dialogues francophones vă mulțumește pentru că ați acceptat să faceți evaluarea acestui articol.",
+    "prop":"Votre formulaire a été transmis."
 }
 
 const RIGHTS =  {
