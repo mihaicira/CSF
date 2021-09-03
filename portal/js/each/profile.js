@@ -47,19 +47,19 @@ database.ref("users").once('value')
                      <div class="form-popup">
                     <div>
                         <b>Nume</b>
-                        <input type="nume" placeholder="Introdu nume" name="nume" value="${USER.nume.split(' ')[0]}">
+                        <input id="camp_nume" type="nume" placeholder="Introdu nume" name="nume" value="${USER.nume.split(' ')[0]}">
                     </div>
         
                     <div>
                         <b>Prenume</b>
-                        <input type="prenume" placeholder="Introdu prenume" name="prenume" value="${USER.nume.split(' ')[1]}">
+                        <input id="camp_prenume" type="prenume" placeholder="Introdu prenume" name="prenume" value="${USER.nume.split(' ')[1]}">
                     </div>
         
                     <div>
                         <b>Email</b>
-                        <input type="email" placeholder="Introdu email" name="email" value="${USER.email}">
+                        <input id="camp_email" type="email" placeholder="Introdu email" name="email" value="${USER.email}">
                     </div>
-                    <button  class="btn">Schimba date </button>
+                    <button  class="btn" onclick="changePersonalData(USER.id)">Schimba date </button>
                     <button type="button" class="btn cancel" onclick="closePopup()">Inchide</button>
                 </div>`)
             }
@@ -228,8 +228,14 @@ database.ref("users").once('value')
                 database.ref(PUB + "/propuneri").once("value")
                     .then((snap) => {
                         const propuneri = snap.val()
+
+                        nothing_here = true
+
                         for(const [key,contributie] of Object.entries(propuneri)){
                             if( contributie.stadiu === 1){
+
+                                nothing_here = false
+
                                 document.getElementById("trebuie_atribuite_lista").insertAdjacentHTML("beforeend", `
                              <div class="assign-article-container" id="assign-article-${contributie.id}">
                             <div>
@@ -251,7 +257,7 @@ database.ref("users").once('value')
                         </div>
                     </div>
                     <div>
-                        <button onclick="finalizeazaFaraEvaluare('${contributie.id}')">Finalizeaza fara evaluare</button>
+                        <button onclick="finalizeazaContributie('${contributie.id}')">Finalizeaza fara evaluare</button>
                         <button onclick="trimiteSpreEvaluare('${contributie.id}')">Trimite spre evaluare</button>
                     </div>
 
@@ -268,11 +274,15 @@ database.ref("users").once('value')
                             }
                         }
 
+                        if(nothing_here)
+                            document.getElementById("trebuie_atribuite_lista").insertAdjacentHTML('beforeend',`<p>${ProfileErrors["no-art-to-assign"]}</p>`)
+
                     })
             }
 
             //Contributii in curs de procesare
              if(RIGHTS[my_rank][`${pub}-contributii-wip-panel`]){
+
                  document.getElementById("container-contributii").insertAdjacentHTML("beforeend",`
                    <div class="panel">
                     <h2 class="titlu-panel" id="contributii_in_procesare_titlu">Contributii in curs de procesare</h2>
@@ -282,19 +292,28 @@ database.ref("users").once('value')
                 </div>
                 `)
 
+                 database.ref(PUB + "/propuneri").once("value")
+                     .then((snap) => {
+                         const propuneri = snap.val()
 
+                         nothing_here = true
 
-                    document.getElementById("contributii_in_procesare_lista").insertAdjacentHTML("beforeend", `
-                        <div class="article-box wip-container">
+                         for (const [key, contributie] of Object.entries(propuneri)) {
+                             if (contributie.stadiu !== 1 && contributie.stadiu !== 5) {
+
+                                 nothing_here = false
+
+                                 document.getElementById("contributii_in_procesare_lista").insertAdjacentHTML("beforeend", `
+                        <div class="article-box wip-container" id="wip-${contributie.id}-container">
                     <div class="flex">
                         <div class="flex-col">
-                            <p class="wip-title">Titlu contributie &emsp; <svg class="redirect-svg" viewBox="0 0 25 25" fill="none"><path d="M23.8636 0.0303345H14.7727C14.1451 0.0303345 13.6363 0.527406 13.6363 1.14054C13.6363 1.75367 14.1451 2.25075 14.7727 2.25075H21.1202L9.42378 13.6779C8.97999 14.1114 8.97999 14.8143 9.42378 15.2479C9.64561 15.4646 9.93643 15.573 10.2273 15.573C10.5181 15.573 10.8089 15.4647 11.0308 15.2478L22.7273 3.82077V10.0221C22.7273 10.6352 23.2361 11.1323 23.8637 11.1323C24.4913 11.1323 25.0001 10.6352 25.0001 10.0221V1.14054C25 0.527406 24.4912 0.0303345 23.8636 0.0303345Z" fill="black"/><path d="M19.3182 11.1322C18.6906 11.1322 18.1818 11.6293 18.1818 12.2424V22.2342H2.27271V6.69143H12.5C13.1276 6.69143 13.6364 6.19436 13.6364 5.58123C13.6364 4.96809 13.1276 4.47107 12.5 4.47107H1.13638C0.508789 4.47107 0 4.96814 0 5.58128V23.3444C0 23.9575 0.508789 24.4545 1.13638 24.4545H19.3182C19.9458 24.4545 20.4546 23.9575 20.4546 23.3443V12.2424C20.4545 11.6293 19.9458 11.1322 19.3182 11.1322Z" fill="black"/></svg></p>
-                            <p>Jon Bovi</p>
-                            <p>23 August 2323, 14:29</p>
+                            <p class="wip-title">${contributie.titlu} &emsp; <svg class="redirect-svg" viewBox="0 0 25 25" fill="none"><path d="M23.8636 0.0303345H14.7727C14.1451 0.0303345 13.6363 0.527406 13.6363 1.14054C13.6363 1.75367 14.1451 2.25075 14.7727 2.25075H21.1202L9.42378 13.6779C8.97999 14.1114 8.97999 14.8143 9.42378 15.2479C9.64561 15.4646 9.93643 15.573 10.2273 15.573C10.5181 15.573 10.8089 15.4647 11.0308 15.2478L22.7273 3.82077V10.0221C22.7273 10.6352 23.2361 11.1323 23.8637 11.1323C24.4913 11.1323 25.0001 10.6352 25.0001 10.0221V1.14054C25 0.527406 24.4912 0.0303345 23.8636 0.0303345Z" fill="black"/><path d="M19.3182 11.1322C18.6906 11.1322 18.1818 11.6293 18.1818 12.2424V22.2342H2.27271V6.69143H12.5C13.1276 6.69143 13.6364 6.19436 13.6364 5.58123C13.6364 4.96809 13.1276 4.47107 12.5 4.47107H1.13638C0.508789 4.47107 0 4.96814 0 5.58128V23.3444C0 23.9575 0.508789 24.4545 1.13638 24.4545H19.3182C19.9458 24.4545 20.4546 23.9575 20.4546 23.3443V12.2424C20.4545 11.6293 19.9458 11.1322 19.3182 11.1322Z" fill="black"/></svg></p>
+                            <p>${contributie.autor}</p>
+                            <p>${contributie.data}</p>
                         </div>
                         <div class="wip-status">
                             <p>Status contributie:</p>
-                            <p>(1) - Trimis pentru evaluare</p>
+                            <p>${CONTRIBUTION_STATUS[contributie.stadiu]}</p>
                         </div>
                     </div>
                     <hr>
@@ -302,22 +321,31 @@ database.ref("users").once('value')
                         <div class="wip-eval-container flex">
                                 <div>
                                     <p>Evaluator 1:</p>
-                                    <p>Frida Kahlo</p>
+                                    <p>${USERS[contributie.evaluare_1.evaluator].nume}</p>
                                 </div>
-                            <svg viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">                    <g clip-path="url(#clip0)">                        <path d="M10.9181 5.09851L9.67517 3.90836C9.5037 3.74414 9.22529 3.74403 9.0537 3.90836L7.5 5.39603L5.94629 3.90836C5.77482 3.74414 5.49641 3.74403 5.32482 3.90836L4.08187 5.09851C3.91025 5.26281 3.91025 5.52924 4.08187 5.69357L5.63554 7.18124L4.08184 8.6689C3.91022 8.8332 3.91022 9.09964 4.08184 9.26396L5.32479 10.4541C5.49627 10.6183 5.77467 10.6184 5.94627 10.4541L7.5 8.96645L9.0537 10.4541C9.22517 10.6183 9.50358 10.6184 9.67517 10.4541L10.9181 9.26396C11.0897 9.09967 11.0897 8.83323 10.9181 8.6689L9.36445 7.18124L10.9182 5.69357C11.0897 5.52924 11.0897 5.26281 10.9181 5.09851ZM8.43222 6.88372C8.2606 7.04802 8.2606 7.31445 8.43222 7.47878L9.98593 8.96645L9.36445 9.56154L7.81075 8.07387C7.63913 7.90954 7.3609 7.90954 7.18927 8.07387L5.63557 9.56154L5.0141 8.96645L6.5678 7.47878C6.73942 7.31448 6.73942 7.04805 6.5678 6.88372L5.0141 5.39605L5.63557 4.80096L7.18927 6.28863C7.36087 6.45293 7.63913 6.45293 7.81075 6.28863L9.36445 4.80096L9.98593 5.39605L8.43222 6.88372Z" fill="black"/>                        <path d="M7.5 0C3.37034 0 0 3.22732 0 7.18124C0 11.1354 3.37058 14.3625 7.5 14.3625C11.6297 14.3625 15 11.1352 15 7.18124C15 3.2271 11.6294 0 7.5 0ZM7.5 13.5209C3.84911 13.5209 0.878906 10.677 0.878906 7.18124C0.878906 3.68552 3.84911 0.841551 7.5 0.841551C11.1509 0.841551 14.1211 3.68552 14.1211 7.18124C14.1211 10.677 11.1509 13.5209 7.5 13.5209Z" fill="black"/>                    </g>                    <defs>                        <clipPath id="clip0">                            <rect width="15" height="14.3625" fill="white"/>                        </clipPath>                    </defs>                </svg>
+                            ${contributie.evaluare_1.completed ? '<a href="./contributie/evaluare.html?ID='+contributie.id+'&PUB='+contributie.publicatie+'&EV=1"><svg class="redirect-svg" viewBox="0 0 25 25" fill="none"><path d="M23.8636 0.0303345H14.7727C14.1451 0.0303345 13.6363 0.527406 13.6363 1.14054C13.6363 1.75367 14.1451 2.25075 14.7727 2.25075H21.1202L9.42378 13.6779C8.97999 14.1114 8.97999 14.8143 9.42378 15.2479C9.64561 15.4646 9.93643 15.573 10.2273 15.573C10.5181 15.573 10.8089 15.4647 11.0308 15.2478L22.7273 3.82077V10.0221C22.7273 10.6352 23.2361 11.1323 23.8637 11.1323C24.4913 11.1323 25.0001 10.6352 25.0001 10.0221V1.14054C25 0.527406 24.4912 0.0303345 23.8636 0.0303345Z" fill="black"/><path d="M19.3182 11.1322C18.6906 11.1322 18.1818 11.6293 18.1818 12.2424V22.2342H2.27271V6.69143H12.5C13.1276 6.69143 13.6364 6.19436 13.6364 5.58123C13.6364 4.96809 13.1276 4.47107 12.5 4.47107H1.13638C0.508789 4.47107 0 4.96814 0 5.58128V23.3444C0 23.9575 0.508789 24.4545 1.13638 24.4545H19.3182C19.9458 24.4545 20.4546 23.9575 20.4546 23.3443V12.2424C20.4545 11.6293 19.9458 11.1322 19.3182 11.1322Z" fill="black"/></svg> </a>' : '<svg viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">       <g clip-path="url(#clip0)">                        <path d="M10.9181 5.09851L9.67517 3.90836C9.5037 3.74414 9.22529 3.74403 9.0537 3.90836L7.5 5.39603L5.94629 3.90836C5.77482 3.74414 5.49641 3.74403 5.32482 3.90836L4.08187 5.09851C3.91025 5.26281 3.91025 5.52924 4.08187 5.69357L5.63554 7.18124L4.08184 8.6689C3.91022 8.8332 3.91022 9.09964 4.08184 9.26396L5.32479 10.4541C5.49627 10.6183 5.77467 10.6184 5.94627 10.4541L7.5 8.96645L9.0537 10.4541C9.22517 10.6183 9.50358 10.6184 9.67517 10.4541L10.9181 9.26396C11.0897 9.09967 11.0897 8.83323 10.9181 8.6689L9.36445 7.18124L10.9182 5.69357C11.0897 5.52924 11.0897 5.26281 10.9181 5.09851ZM8.43222 6.88372C8.2606 7.04802 8.2606 7.31445 8.43222 7.47878L9.98593 8.96645L9.36445 9.56154L7.81075 8.07387C7.63913 7.90954 7.3609 7.90954 7.18927 8.07387L5.63557 9.56154L5.0141 8.96645L6.5678 7.47878C6.73942 7.31448 6.73942 7.04805 6.5678 6.88372L5.0141 5.39605L5.63557 4.80096L7.18927 6.28863C7.36087 6.45293 7.63913 6.45293 7.81075 6.28863L9.36445 4.80096L9.98593 5.39605L8.43222 6.88372Z" fill="black"/>                        <path d="M7.5 0C3.37034 0 0 3.22732 0 7.18124C0 11.1354 3.37058 14.3625 7.5 14.3625C11.6297 14.3625 15 11.1352 15 7.18124C15 3.2271 11.6294 0 7.5 0ZM7.5 13.5209C3.84911 13.5209 0.878906 10.677 0.878906 7.18124C0.878906 3.68552 3.84911 0.841551 7.5 0.841551C11.1509 0.841551 14.1211 3.68552 14.1211 7.18124C14.1211 10.677 11.1509 13.5209 7.5 13.5209Z" fill="black"/>                    </g>                    <defs>                        <clipPath id="clip0">                            <rect width="15" height="14.3625" fill="white"/>                        </clipPath>                    </defs>                </svg>'}
+                            
+                        
                         </div>
                         <div class="wip-eval-container flex">
                                 <div>
                                     <p>Evaluator 2:</p>
-                                    <p>Freddy Mercury</p>
+                                    <p>${USERS[contributie.evaluare_2.evaluator].nume}</p>
                                 </div>
-                            <svg viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">                    <g clip-path="url(#clip0)">                        <path d="M10.9181 5.09851L9.67517 3.90836C9.5037 3.74414 9.22529 3.74403 9.0537 3.90836L7.5 5.39603L5.94629 3.90836C5.77482 3.74414 5.49641 3.74403 5.32482 3.90836L4.08187 5.09851C3.91025 5.26281 3.91025 5.52924 4.08187 5.69357L5.63554 7.18124L4.08184 8.6689C3.91022 8.8332 3.91022 9.09964 4.08184 9.26396L5.32479 10.4541C5.49627 10.6183 5.77467 10.6184 5.94627 10.4541L7.5 8.96645L9.0537 10.4541C9.22517 10.6183 9.50358 10.6184 9.67517 10.4541L10.9181 9.26396C11.0897 9.09967 11.0897 8.83323 10.9181 8.6689L9.36445 7.18124L10.9182 5.69357C11.0897 5.52924 11.0897 5.26281 10.9181 5.09851ZM8.43222 6.88372C8.2606 7.04802 8.2606 7.31445 8.43222 7.47878L9.98593 8.96645L9.36445 9.56154L7.81075 8.07387C7.63913 7.90954 7.3609 7.90954 7.18927 8.07387L5.63557 9.56154L5.0141 8.96645L6.5678 7.47878C6.73942 7.31448 6.73942 7.04805 6.5678 6.88372L5.0141 5.39605L5.63557 4.80096L7.18927 6.28863C7.36087 6.45293 7.63913 6.45293 7.81075 6.28863L9.36445 4.80096L9.98593 5.39605L8.43222 6.88372Z" fill="black"/>                        <path d="M7.5 0C3.37034 0 0 3.22732 0 7.18124C0 11.1354 3.37058 14.3625 7.5 14.3625C11.6297 14.3625 15 11.1352 15 7.18124C15 3.2271 11.6294 0 7.5 0ZM7.5 13.5209C3.84911 13.5209 0.878906 10.677 0.878906 7.18124C0.878906 3.68552 3.84911 0.841551 7.5 0.841551C11.1509 0.841551 14.1211 3.68552 14.1211 7.18124C14.1211 10.677 11.1509 13.5209 7.5 13.5209Z" fill="black"/>                    </g>                    <defs>                        <clipPath id="clip0">                            <rect width="15" height="14.3625" fill="white"/>                        </clipPath>                    </defs>                </svg>
+                            ${contributie.evaluare_2.completed ? '<a href="./contributie/evaluare.html?ID='+contributie.id+'&PUB='+contributie.publicatie+'&EV=2"><svg class="redirect-svg" viewBox="0 0 25 25" fill="none"><path d="M23.8636 0.0303345H14.7727C14.1451 0.0303345 13.6363 0.527406 13.6363 1.14054C13.6363 1.75367 14.1451 2.25075 14.7727 2.25075H21.1202L9.42378 13.6779C8.97999 14.1114 8.97999 14.8143 9.42378 15.2479C9.64561 15.4646 9.93643 15.573 10.2273 15.573C10.5181 15.573 10.8089 15.4647 11.0308 15.2478L22.7273 3.82077V10.0221C22.7273 10.6352 23.2361 11.1323 23.8637 11.1323C24.4913 11.1323 25.0001 10.6352 25.0001 10.0221V1.14054C25 0.527406 24.4912 0.0303345 23.8636 0.0303345Z" fill="black"/><path d="M19.3182 11.1322C18.6906 11.1322 18.1818 11.6293 18.1818 12.2424V22.2342H2.27271V6.69143H12.5C13.1276 6.69143 13.6364 6.19436 13.6364 5.58123C13.6364 4.96809 13.1276 4.47107 12.5 4.47107H1.13638C0.508789 4.47107 0 4.96814 0 5.58128V23.3444C0 23.9575 0.508789 24.4545 1.13638 24.4545H19.3182C19.9458 24.4545 20.4546 23.9575 20.4546 23.3443V12.2424C20.4545 11.6293 19.9458 11.1322 19.3182 11.1322Z" fill="black"/></svg> </a>' : '<svg viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">       <g clip-path="url(#clip0)">                        <path d="M10.9181 5.09851L9.67517 3.90836C9.5037 3.74414 9.22529 3.74403 9.0537 3.90836L7.5 5.39603L5.94629 3.90836C5.77482 3.74414 5.49641 3.74403 5.32482 3.90836L4.08187 5.09851C3.91025 5.26281 3.91025 5.52924 4.08187 5.69357L5.63554 7.18124L4.08184 8.6689C3.91022 8.8332 3.91022 9.09964 4.08184 9.26396L5.32479 10.4541C5.49627 10.6183 5.77467 10.6184 5.94627 10.4541L7.5 8.96645L9.0537 10.4541C9.22517 10.6183 9.50358 10.6184 9.67517 10.4541L10.9181 9.26396C11.0897 9.09967 11.0897 8.83323 10.9181 8.6689L9.36445 7.18124L10.9182 5.69357C11.0897 5.52924 11.0897 5.26281 10.9181 5.09851ZM8.43222 6.88372C8.2606 7.04802 8.2606 7.31445 8.43222 7.47878L9.98593 8.96645L9.36445 9.56154L7.81075 8.07387C7.63913 7.90954 7.3609 7.90954 7.18927 8.07387L5.63557 9.56154L5.0141 8.96645L6.5678 7.47878C6.73942 7.31448 6.73942 7.04805 6.5678 6.88372L5.0141 5.39605L5.63557 4.80096L7.18927 6.28863C7.36087 6.45293 7.63913 6.45293 7.81075 6.28863L9.36445 4.80096L9.98593 5.39605L8.43222 6.88372Z" fill="black"/>                        <path d="M7.5 0C3.37034 0 0 3.22732 0 7.18124C0 11.1354 3.37058 14.3625 7.5 14.3625C11.6297 14.3625 15 11.1352 15 7.18124C15 3.2271 11.6294 0 7.5 0ZM7.5 13.5209C3.84911 13.5209 0.878906 10.677 0.878906 7.18124C0.878906 3.68552 3.84911 0.841551 7.5 0.841551C11.1509 0.841551 14.1211 3.68552 14.1211 7.18124C14.1211 10.677 11.1509 13.5209 7.5 13.5209Z" fill="black"/>                    </g>                    <defs>                        <clipPath id="clip0">                            <rect width="15" height="14.3625" fill="white"/>                        </clipPath>                    </defs>                </svg>'}
                         </div>
                     </div>
-                    <button disabled>Finalizeaza</button>
+                    
+                    <button onclick="finalizeazaContributie('${contributie.id}',true)" ${(contributie.evaluare_1.completed && contributie.evaluare_2.completed)?'':'disabled'}>Finalizeaza</button>
                 </div>
                           
                         `)
+                             }
+                         }
+                         if(nothing_here)
+                             document.getElementById("trebuie_atribuite_lista").insertAdjacentHTML('beforeend',`<p>${ProfileErrors["no-wip-art"]}</p>`)
+
+                     })
         }
 
             //contributii finalizate de mine
@@ -332,36 +360,34 @@ database.ref("users").once('value')
                 </div>
                 `)
 
+                database.ref(PUB + "/propuneri").once("value")
+                    .then((snap) => {
+                        const propuneri = snap.val()
 
-                document.getElementById("articole_finalizate_lista").insertAdjacentHTML("beforeend", `
+                        nothing_here = true
+
+                        for (const [key, contributie] of Object.entries(propuneri)) {
+
+                            if (contributie.stadiu === 5 && contributie.finalizatDe.user_id === getUserId()) {
+                                nothing_here = false
+                                document.getElementById("articole_finalizate_lista").insertAdjacentHTML("beforeend", `
                       <div class="article-box fbm-container flex-col">
                     <div class="flex-col fbm-top">
-                        <p class="fbm-title">Nume articol &emsp; <svg class="redirect-svg" viewBox="0 0 25 25" fill="none"><path d="M23.8636 0.0303345H14.7727C14.1451 0.0303345 13.6363 0.527406 13.6363 1.14054C13.6363 1.75367 14.1451 2.25075 14.7727 2.25075H21.1202L9.42378 13.6779C8.97999 14.1114 8.97999 14.8143 9.42378 15.2479C9.64561 15.4646 9.93643 15.573 10.2273 15.573C10.5181 15.573 10.8089 15.4647 11.0308 15.2478L22.7273 3.82077V10.0221C22.7273 10.6352 23.2361 11.1323 23.8637 11.1323C24.4913 11.1323 25.0001 10.6352 25.0001 10.0221V1.14054C25 0.527406 24.4912 0.0303345 23.8636 0.0303345Z" fill="black"/><path d="M19.3182 11.1322C18.6906 11.1322 18.1818 11.6293 18.1818 12.2424V22.2342H2.27271V6.69143H12.5C13.1276 6.69143 13.6364 6.19436 13.6364 5.58123C13.6364 4.96809 13.1276 4.47107 12.5 4.47107H1.13638C0.508789 4.47107 0 4.96814 0 5.58128V23.3444C0 23.9575 0.508789 24.4545 1.13638 24.4545H19.3182C19.9458 24.4545 20.4546 23.9575 20.4546 23.3443V12.2424C20.4545 11.6293 19.9458 11.1322 19.3182 11.1322Z" fill="black"/></svg></p>
-                        <p>Autor: Adi Minune</p>
-                        <p>Propus in 13 Aprilie 2021, 21:21</p>
+                        <p class="fbm-title">${contributie.titlu} &emsp; <svg class="redirect-svg" viewBox="0 0 25 25" fill="none"><path d="M23.8636 0.0303345H14.7727C14.1451 0.0303345 13.6363 0.527406 13.6363 1.14054C13.6363 1.75367 14.1451 2.25075 14.7727 2.25075H21.1202L9.42378 13.6779C8.97999 14.1114 8.97999 14.8143 9.42378 15.2479C9.64561 15.4646 9.93643 15.573 10.2273 15.573C10.5181 15.573 10.8089 15.4647 11.0308 15.2478L22.7273 3.82077V10.0221C22.7273 10.6352 23.2361 11.1323 23.8637 11.1323C24.4913 11.1323 25.0001 10.6352 25.0001 10.0221V1.14054C25 0.527406 24.4912 0.0303345 23.8636 0.0303345Z" fill="black"/><path d="M19.3182 11.1322C18.6906 11.1322 18.1818 11.6293 18.1818 12.2424V22.2342H2.27271V6.69143H12.5C13.1276 6.69143 13.6364 6.19436 13.6364 5.58123C13.6364 4.96809 13.1276 4.47107 12.5 4.47107H1.13638C0.508789 4.47107 0 4.96814 0 5.58128V23.3444C0 23.9575 0.508789 24.4545 1.13638 24.4545H19.3182C19.9458 24.4545 20.4546 23.9575 20.4546 23.3443V12.2424C20.4545 11.6293 19.9458 11.1322 19.3182 11.1322Z" fill="black"/></svg></p>
+                        <p>Autor: ${contributie.autor}</p>
+                        <p>Propus in ${contributie.data}</p>
                     </div>
-                    <div class="flex fbm-btm">
-                        <div class="flex">
-                            <div>
-                                <p>Evaluator 1:</p>
-                                <p>John Jo</p>
-                            </div>
-                            <svg class="redirect-svg" viewBox="0 0 25 25" fill="none"><path d="M23.8636 0.0303345H14.7727C14.1451 0.0303345 13.6363 0.527406 13.6363 1.14054C13.6363 1.75367 14.1451 2.25075 14.7727 2.25075H21.1202L9.42378 13.6779C8.97999 14.1114 8.97999 14.8143 9.42378 15.2479C9.64561 15.4646 9.93643 15.573 10.2273 15.573C10.5181 15.573 10.8089 15.4647 11.0308 15.2478L22.7273 3.82077V10.0221C22.7273 10.6352 23.2361 11.1323 23.8637 11.1323C24.4913 11.1323 25.0001 10.6352 25.0001 10.0221V1.14054C25 0.527406 24.4912 0.0303345 23.8636 0.0303345Z" fill="black"/><path d="M19.3182 11.1322C18.6906 11.1322 18.1818 11.6293 18.1818 12.2424V22.2342H2.27271V6.69143H12.5C13.1276 6.69143 13.6364 6.19436 13.6364 5.58123C13.6364 4.96809 13.1276 4.47107 12.5 4.47107H1.13638C0.508789 4.47107 0 4.96814 0 5.58128V23.3444C0 23.9575 0.508789 24.4545 1.13638 24.4545H19.3182C19.9458 24.4545 20.4546 23.9575 20.4546 23.3443V12.2424C20.4545 11.6293 19.9458 11.1322 19.3182 11.1322Z" fill="black"/></svg>
-                        </div>
-
-                        <div class="flex">
-                            <div>
-                                <p>Evaluator 2:</p>
-                                <p>Bo Burghnam</p>
-                            </div>
-                            <svg class="redirect-svg" viewBox="0 0 25 25" fill="none"><path d="M23.8636 0.0303345H14.7727C14.1451 0.0303345 13.6363 0.527406 13.6363 1.14054C13.6363 1.75367 14.1451 2.25075 14.7727 2.25075H21.1202L9.42378 13.6779C8.97999 14.1114 8.97999 14.8143 9.42378 15.2479C9.64561 15.4646 9.93643 15.573 10.2273 15.573C10.5181 15.573 10.8089 15.4647 11.0308 15.2478L22.7273 3.82077V10.0221C22.7273 10.6352 23.2361 11.1323 23.8637 11.1323C24.4913 11.1323 25.0001 10.6352 25.0001 10.0221V1.14054C25 0.527406 24.4912 0.0303345 23.8636 0.0303345Z" fill="black"/><path d="M19.3182 11.1322C18.6906 11.1322 18.1818 11.6293 18.1818 12.2424V22.2342H2.27271V6.69143H12.5C13.1276 6.69143 13.6364 6.19436 13.6364 5.58123C13.6364 4.96809 13.1276 4.47107 12.5 4.47107H1.13638C0.508789 4.47107 0 4.96814 0 5.58128V23.3444C0 23.9575 0.508789 24.4545 1.13638 24.4545H19.3182C19.9458 24.4545 20.4546 23.9575 20.4546 23.3443V12.2424C20.4545 11.6293 19.9458 11.1322 19.3182 11.1322Z" fill="black"/></svg>
-                        </div>
-                    </div>
+                    
                 </div>
                         `)
 
-            }
+                            }
+                        }
+                        if(nothing_here)
+                            document.getElementById("articole_finalizate_lista").insertAdjacentHTML('beforeend',`<p>${ProfileErrors["no-art-finalized"]}</p>`)
+                    })
 
+            }
         }
         else{
             //SUPERVISOR RANK-CHANGE
@@ -388,6 +414,7 @@ database.ref("users").once('value')
 })
 
 
+
 function raiseUserNotFound(){
     document.getElementsByClassName("profile_box")[0].innerHTML = `
                     <img src="./media/profile_page_top.jpg" id="top_imag">
@@ -398,8 +425,8 @@ function raiseUserNotFound(){
                         </div>`
 }
 
-function finalizeazaFaraEvaluare(id){
-    console.log(id)
+
+function finalizeazaContributie(id,inCursDeProcesare=false){
     //fac referinta in db catre publicatia id
     //schimb stadiul publicatiei in 5
     //pun inapoi obiectul in db (salvez)
@@ -407,21 +434,29 @@ function finalizeazaFaraEvaluare(id){
         .then((snapshot)=>{
             let propunere = snapshot.val()
             propunere.stadiu = 5
-
+            propunere.finalizatDe = {
+                user_id : getUserId(),
+                user_nume : JSON.parse(window.sessionStorage.getItem("accountStatus")).account.nume,
+                data : DateToString(new Date())
+            }
             let updates = {}
             updates[PUB+"/propuneri/"+id] = propunere
             database.ref().update(updates)
 
-            $("#assign-article-"+id).html("Propunerea a fost finalizata")
-            }
+            if (!inCursDeProcesare)
+                $("#assign-article-"+id).html("Propunerea a fost finalizata")
+            else
+                $(`#wip-${id}-container`).html("Propunerea a fost finalizata")
+
+
+
+             }
         )
 
 
 
-
-    //
-    // contributie.stadiu=5
 }
+
 
 function trimiteSpreEvaluare(id){
     console.log(id)
@@ -475,6 +510,23 @@ function trimiteSpreEvaluare(id){
     //fac referinta in db catre evaluatorul 1, ii adaug la array-ul to_evaluate un string de forma `${publicatie.id}-1`, salvez obiectul in db (update)
     //fac referinta in db catre evaluatorul 2, ii adaug la array-ul to_evaluate un string de forma `${publicatie.id}-2`, salvez obiectul in db (update)
 
+}
+
+function changePersonalData(id) {
+    database.ref("users/" + id).once("value")
+        .then((snapshot) => {
+            let persoana = snapshot.val()
+            persoana.nume = document.getElementById("camp_nume").value + " " + document.getElementById("camp_prenume").value
+            persoana.email = document.getElementById("camp_email").value
+
+            let updates = {}
+            updates["users/" + id] = persoana
+            database.ref().update(updates)
+                .then(() => {
+                        location.reload()
+                    }
+                )
+        })
 }
 
 function updateRanks(){

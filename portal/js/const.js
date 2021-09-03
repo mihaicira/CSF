@@ -76,7 +76,11 @@ const GeneralErrors = {
 const ProfileErrors = {
     "no-contrib-prop": "Nu exista nicio contributie propusa",
     "no-art-eval":"Nu exista niciun articol evaluat",
-    "no-art-to-eval":"Nu exista niciun articol de evaluat"
+    "no-art-to-eval":"Nu exista niciun articol de evaluat",
+    "no-art-to-assign":"Nu exista niciun articol ce trebuie atribuit",
+    "no-wip-art":"Nu exista articole in procesare",
+    "no-art-finalized":"Nu exista articole finalizate"
+
 }
 
 const FormEnds = {
