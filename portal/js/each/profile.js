@@ -351,7 +351,7 @@ database.ref("users").once('value')
                              }
                          }
                          if(nothing_here)
-                             document.getElementById("trebuie_atribuite_lista").insertAdjacentHTML('beforeend',`<p>${ProfileErrors["no-wip-art"]}</p>`)
+                             document.getElementById("contributii_in_procesare_lista").insertAdjacentHTML('beforeend',`<p>${ProfileErrors["no-wip-art"]}</p>`)
 
                      })
         }
@@ -468,8 +468,6 @@ function finalizeazaContributie(id,inCursDeProcesare=false){
 }
 
 function trimiteSpreEvaluare(id){
-    console.log(id)
-
     //fac referinta in db catre publicatia id
     database.ref(PUB+"/propuneri/"+id).once("value")
         .then((snapshot)=>{

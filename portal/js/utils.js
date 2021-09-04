@@ -177,7 +177,12 @@ function getTextValue(elem){
     return value
 }
 
+function deleteItemFromArray(item,array){
+    const index = array.findIndex(element => element===item)
 
+    array.splice(index,1)
+    return array
+}
 
 if(!verifyIfUserHasRank()){
     redirect(chooserank)

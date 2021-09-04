@@ -184,6 +184,9 @@ function deleteContribution(pub,id){
     database.ref(`${pub.toUpperCase()}/propuneri/${id}`).once('value')
         .then((snapshot)=>{
             const contributie = snapshot.val()
+
+             //de_evaluat de la cei doi evaluatori
+
             //FILES
             firebase.storage().ref(pub.toUpperCase()+'/'+contributie.fisier_nota).delete()
             firebase.storage().ref(pub.toUpperCase()+'/'+contributie.fisier_propunere).delete()
@@ -214,28 +217,35 @@ function deleteContribution(pub,id){
                 })
 
             //de_evaluat de la cei doi evaluatori
-            database.ref(`users/${contributie.evaluare_1.evaluator}`).once('value')
-                .then((snap)=>{
-                    let user = snap.val()
-                    if(user.to_evaluate) {
-                        user.to_evaluate = deleteItemFromArray(`${id}-1-${pub.toLowerCase()}`, user.to_evaluate)
-                        user.evaluations = deleteItemFromArray(`${id}-1-${pub.toLowerCase()}`,user.evaluations)
+            if(contributie.evaluare_1.evaluator!=="none")
+                database.ref(`users/${contributie.evaluare_1.evaluator}`).once('value')
+                    .then((snap)=>{
+                        let user = snap.val()
+                        if(user.to_evaluate) {
+                            user.to_evaluate = deleteItemFromArray(`${id}-1-${pub.toLowerCase()}`, user.to_evaluate)
+                        }
+                        if(user.evaluations){
+                            user.evaluations = deleteItemFromArray(`${id}-1-${pub.toLowerCase()}`,user.evaluations)
+                        }
                         let updates = {}
                         updates[`users/${contributie.evaluare_1.evaluator}`] = user
                         database.ref().update(updates)
-                    }
-                })
-            database.ref(`users/${contributie.evaluare_2.evaluator}`).once('value')
-                .then((snap)=>{
-                    let user = snap.val()
-                    if(user.to_evaluate){
-                        user.to_evaluate = deleteItemFromArray(`${id}-2-${pub.toLowerCase()}`, user.to_evaluate)
-                        user.evaluations = deleteItemFromArray(`${id}-2-${pub.toLowerCase()}`,user.evaluations)
+                    })
+            if(contributie.evaluare_2.evaluator!=="none")
+                database.ref(`users/${contributie.evaluare_2.evaluator}`).once('value')
+                    .then((snap)=>{
+                        let user = snap.val()
+                        if(user.to_evaluate) {
+                            user.to_evaluate = deleteItemFromArray(`${id}-2-${pub.toLowerCase()}`, user.to_evaluate)
+                        }
+                        if(user.evaluations){
+                            user.evaluations = deleteItemFromArray(`${id}-2-${pub.toLowerCase()}`,user.evaluations)
+                        }
                         let updates = {}
-                        updates[`users/${contributie.evaluare_1.evaluator}`] = user
+                        updates[`users/${contributie.evaluare_2.evaluator}`] = user
                         database.ref().update(updates)
-                    }
-                })
+
+                    })
 
             //evaluarile
             database.ref(`${pub.toUpperCase()}/evaluari/${id}`).remove()
@@ -251,10 +261,3 @@ function deleteContribution(pub,id){
         })
 }
 
-
-function deleteItemFromArray(item,array){
-    const index = array.findIndex(element => element===item)
-
-    array.splice(index,1)
-    return array
-}

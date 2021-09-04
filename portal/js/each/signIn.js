@@ -8,6 +8,8 @@ function signIn(){
         rank:null
     }
 
+
+
     document.getElementById("loadingAnimation").style.opacity="1"
 
     logIn(accountData)
