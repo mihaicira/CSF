@@ -68,3 +68,31 @@ body{
 .propunere-pair>span:nth-of-type(1)::after{
     content: ":";
 }
+
+.effacer{
+    background: url(../../media/icons/trashcan.png);
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    border: 2px solid black;
+    border-radius: 100%;
+
+    margin-left: 50%;
+    transform: translateX(-50%);
+
+    height: 3vw;
+    width: 3vw;
+
+    cursor: pointer;
+
+    transition: 800ms;
+    -o-transition: 800ms;
+    -webkit-transition: 800ms;
+    -moz-transition: 800ms;
+}
+
+.effacer:hover{
+    transform: translateX(-50%) rotateZ(360deg) scale(.7);
+    box-shadow: 0 0 2vh 2vh #D86058;
+}

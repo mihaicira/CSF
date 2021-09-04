@@ -1,6 +1,6 @@
 function changeButton(){
     if(isUserLoggedIn()){
-        document.getElementById("header-second-line").insertAdjacentHTML("beforeend",`<p id='connected-as' ">Conectat ca ${RANKS[getUserRank()].nume} </button>` )
+        document.getElementById("header-second-line").insertAdjacentHTML("beforeend",`<p id='connected-as' ">Connexion en tant que  ${RANKS[getUserRank()].nume} </button>` )
         document.getElementById("header-second-line").insertAdjacentHTML("beforeend",'<button onclick="LogOut()">Déconnexion </button>' )
     }
 
@@ -11,8 +11,8 @@ function changeButton(){
 if(RIGHTS[getUserRank()]["access-cieft-page"]){
     $(".cieft-members").html(`<h1>Inscrieri CIEFT</h1>
                                 <div class="panel">
-                                    <h2>Numar participanti: <span id="numberOfMembers"></span></h2>
-                                    <button onclick="DeleteList()">Sterge lista</button>
+                                    <h2>Nombre de participants: <span id="numberOfMembers"></span></h2>
+                                    <button onclick="DeleteList()">Effacer la liste</button>
                                 </div>                                
                                 <div id="list"></div>
                                 `)
@@ -51,7 +51,7 @@ else{
 
 
 function DeleteList(){
-    var r = confirm("Sunteti pe cale sa stergeti intreaga lista de participanti la colocviu. Continuati?")
+    var r = confirm("Vous allez effacer toute la liste des participants au colloque. Continuer?")
     if(r){
         let updates = {}
         updates["cieft"] = null

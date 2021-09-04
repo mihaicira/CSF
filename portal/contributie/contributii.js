@@ -1,8 +1,8 @@
 function changeButton(){
     if(isUserLoggedIn()){
-        document.getElementById("header-second-line").insertAdjacentHTML('beforeend',`<button onclick='window.location.href="../profile.html?user=${getUserId()}"'>Pagina de profil</button>`)
+        document.getElementById("header-second-line").insertAdjacentHTML('beforeend',`<button onclick='window.location.href="../profile.html?user=${getUserId()}"'>Page de profile</button>`)
 
-        document.getElementById("header-second-line").insertAdjacentHTML("beforeend",`<p id='connected-as' ">Conectat ca ${RANKS[getUserRank()].nume} </button>` )
+        document.getElementById("header-second-line").insertAdjacentHTML("beforeend",`<p id='connected-as' ">Connexion en tant que  ${RANKS[getUserRank()].nume} </button>` )
         document.getElementById("header-second-line").insertAdjacentHTML("beforeend",'<button onclick="LogOut()">Déconnexion</button>' )
     }
 
@@ -58,11 +58,13 @@ function insertObjects(objects){
 
     objects.forEach((obj)=>{
 
+        if(obj.stadiu == 5)
+            console.log(obj.finalizatDe)
 
         //finalizat_de
         let finalizat_de = X_SVG
-        if(obj.finalizat_de)
-            finalizat_de = USERS[obj.finalizat_de]
+        if(obj.finalizatDe)
+            finalizat_de = obj.finalizatDe.user_nume + ' (' +obj.finalizatDe.data  +')'
         //finalizat_de
 
         //eval
@@ -93,7 +95,7 @@ function insertObjects(objects){
                             <td>${obj.stadiu}</td>
                             <td>${obj.data}</td>
                             <td>${finalizat_de}</td>
-                            <td><a href="./propunereFull.html?pub=${obj.publicatie}&id=${obj.id}">${LINK_SVG}</a></td>
+                            <td><a href="./propunereFull.html?id=${obj.id}&pub=${obj.publicatie}">${LINK_SVG}</a></td>
                         </tr>
                         `)
     })

@@ -1,8 +1,10 @@
 function changeButton(){
-    if(isUserLoggedIn())
-        document.getElementById("header-second-line").insertAdjacentHTML("beforeend",'<button onclick="LogOut()">Deconecteaza-te </button>' )
+    if(isUserLoggedIn()){
+        document.getElementById("header-second-line").insertAdjacentHTML("beforeend",`<p id='connected-as' ">Connexion en tant que  ${RANKS[getUserRank()].nume} </button>` )
+        document.getElementById("header-second-line").insertAdjacentHTML("beforeend",'<button onclick="LogOut()">Déconnexion </button>' )
+    }
     else
-        document.getElementById("header-second-line").insertAdjacentHTML("beforeend",'<button onclick="window.location.href=\'login.html\'">Conecteaza-te </button>' )
+        document.getElementById("header-second-line").insertAdjacentHTML("beforeend",'<button onclick="window.location.href=\'login.html\'">Connexion </button>' )
 }
 changeButton()
 
@@ -12,10 +14,16 @@ let USER_RANKS;
 let nothing_here
 
 var PUB = "admin"
-if (RANKS[getUserRank()].id.includes("df"))
-    PUB = "DF"
-if (RANKS[getUserRank()].id.includes("af"))
-    PUB = "AF"
+try{
+    if (RANKS[getUserRank()].id.includes("df"))
+        PUB = "DF"
+    if (RANKS[getUserRank()].id.includes("af"))
+        PUB = "AF"
+}
+catch{
+    PUB="guest"
+}
+
 
 
 database.ref("users").once('value')
@@ -23,7 +31,7 @@ database.ref("users").once('value')
     USERS = snapshot.val()
     USER = USERS[USER_ID]
     if(USER === undefined){
-        // raiseUserNotFound()
+        raiseUserNotFound()
     }
     else{
 
@@ -76,22 +84,22 @@ database.ref("users").once('value')
 
             //members link
             if(RIGHTS[my_rank]["access-members-page"])
-                document.getElementById("container-contributii").insertAdjacentHTML('beforeend',`<a href="./members.html">Accesează pagina cu membrii platformei</a>`)
+                document.getElementById("container-contributii").insertAdjacentHTML('beforeend',`<a href="./members.html">Accéder à la page des membres de la plateforme</a>`)
 
             //cieft link
             if(RIGHTS[my_rank]["access-cieft-page"])
-                document.getElementById("container-contributii").insertAdjacentHTML('beforeend',`<a href="./cieft.html">Accesează pagina cu membrii înscriși la colocviu</a>`)
+                document.getElementById("container-contributii").insertAdjacentHTML('beforeend',`<a href="./cieft.html">Accéder à la page des membres inscrits au colloque</a>`)
 
             //contrib panel
             if(RIGHTS[my_rank]["access-contrib-page-af"] || RIGHTS[my_rank]["access-contrib-page-df"])
-                document.getElementById("container-contributii").insertAdjacentHTML('beforeend',`<a href="./contributie/contributii.html">Accesează panoul cu contribuțiile</a>`)
+                document.getElementById("container-contributii").insertAdjacentHTML('beforeend',`<a href="./contributie/contributii.html">Accéder au panneau des contributions</a>`)
 
 
             //contributiile mele
             if(RIGHTS[my_rank]["contributii-propuse-panel"] === true ) {
                 document.getElementById("container-contributii").insertAdjacentHTML("beforeend",`
                 <div class="panel" >
-                <h2 class="titlu-panel" >Contributii propuse</h2>
+                <h2 class="titlu-panel" >Propositions de contribution</h2>
                 <div class="list" id="contributii_propuse_lista">
                 </div>
                 </div>`)
@@ -130,7 +138,7 @@ database.ref("users").once('value')
             if(RIGHTS[my_rank]["articole-evaluate-panel"] === true){
                 document.getElementById("container-contributii").insertAdjacentHTML("beforeend",`
                  <div class="panel">
-                 <h2 class="titlu-panel" id="articole_evaluate_titlu">Articole evaluate</h2>
+                 <h2 class="titlu-panel" id="articole_evaluate_titlu">Articles évalués</h2>
                  <div class="list" id="articole_evaluate_lista">
                     </div>
                     </div>`)
@@ -171,7 +179,7 @@ database.ref("users").once('value')
             if(RIGHTS[my_rank]["articole-de-evaluat-panel"] === true){
                 document.getElementById("container-contributii").insertAdjacentHTML("beforeend",`
                      <div class="panel">
-                        <h2 class="titlu-panel" id="articole_de_evluat_titlu">Articole de evaluat</h2>
+                        <h2 class="titlu-panel" id="articole_de_evluat_titlu">Articles à évaluer</h2>
                         <div class="list" id="articole_de_evaluat_lista">
 
                          </div>
@@ -218,7 +226,7 @@ database.ref("users").once('value')
 
                 document.getElementById("container-contributii").insertAdjacentHTML("beforeend",`
                       <div class="panel">
-                    <h2 class="titlu-panel" id="trebuie_atribuite_titlu">Articole ce trebuie atribuite evaluatorilor</h2>
+                    <h2 class="titlu-panel" id="trebuie_atribuite_titlu">Articles à distribuer aux évaluateurs</h2>
                     <div class="list" id="trebuie_atribuite_lista">
         
                     </div>
@@ -285,7 +293,7 @@ database.ref("users").once('value')
 
                  document.getElementById("container-contributii").insertAdjacentHTML("beforeend",`
                    <div class="panel">
-                    <h2 class="titlu-panel" id="contributii_in_procesare_titlu">Contributii in curs de procesare</h2>
+                    <h2 class="titlu-panel" id="contributii_in_procesare_titlu">Contributions en traitement </h2>
                     <div class="list" id="contributii_in_procesare_lista">
         
                     </div>
@@ -353,7 +361,7 @@ database.ref("users").once('value')
 
                 document.getElementById("container-contributii").insertAdjacentHTML("beforeend",`
                     <div class="panel">
-                    <h2 class="titlu-panel" id="articole_finalizate_titlu">Contributii finalizate de mine</h2>
+                    <h2 class="titlu-panel" id="articole_finalizate_titlu">Mes contributions finalisées</h2>
                     <div class="list" id="articole_finalizate_lista">
         
                     </div>
@@ -390,6 +398,11 @@ database.ref("users").once('value')
             }
         }
         else{
+            if(PUB==="guest"){
+                //guest!!
+                return;
+            }
+
             //SUPERVISOR RANK-CHANGE
             if(RIGHTS[getUserRank()]["change-ranks"])
             {
@@ -413,8 +426,6 @@ database.ref("users").once('value')
     }
 })
 
-
-
 function raiseUserNotFound(){
     document.getElementsByClassName("profile_box")[0].innerHTML = `
                     <img src="./media/profile_page_top.jpg" id="top_imag">
@@ -424,7 +435,6 @@ function raiseUserNotFound(){
                             </div>
                         </div>`
 }
-
 
 function finalizeazaContributie(id,inCursDeProcesare=false){
     //fac referinta in db catre publicatia id
@@ -456,7 +466,6 @@ function finalizeazaContributie(id,inCursDeProcesare=false){
 
 
 }
-
 
 function trimiteSpreEvaluare(id){
     console.log(id)

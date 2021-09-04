@@ -1,9 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
+<!-- in caz ca nu are date in session storage, i se vor pune niste date default, ca sa poata rula scripturile de mai jos -->
+<script>const userSessionStorage = ()=>{if(JSON.parse(window.sessionStorage.getItem("accountStatus"))=== null ){let data = {isLogged: false, account:null};window.sessionStorage.setItem("accountStatus",JSON.stringify(data))}};userSessionStorage()</script>
+<!-- in caz ca nu e logat, va fi redirectionat la pagina de login -->
+<script>function notLoggedIn(){if(!JSON.parse(window.sessionStorage.getItem("accountStatus")).isLogged)window.location.href="../login.html"}notLoggedIn()</script>
 <!-- scriptul asta verifica daca userul este logat si nu are rank selectat-->
-<script>function loggedInWithoutRank(){    if(JSON.parse(window.sessionStorage.getItem("accountStatus")).isLogged)         if(JSON.parse(window.sessionStorage.getItem("accountStatus")).account.rank == null)             window.location.href="chooserank.html"}loggedInWithoutRank()</script>
+<script>function loggedInWithoutRank(){    if(JSON.parse(window.sessionStorage.getItem("accountStatus")).isLogged)         if(JSON.parse(window.sessionStorage.getItem("accountStatus")).account.rank == null) window.location.href="chooserank.html"}loggedInWithoutRank()</script>
+
 
 <head>
     <meta charset="UTF-8">
@@ -21,8 +25,8 @@
 </section>
 
 <div id="formular-container">
-    <h1>Merci de votre proposition de communication. Vous serez contacté.e par le, la secrétaire du colloque.</h1>
     <h2>Formulaire d’inscription au Colloque international d’études francophones à Timişoara (CIEFT)</h2>
+    <br><br>
     <form>
 <!--        afilierea-->
         <div>
@@ -75,7 +79,7 @@
 
         <br><br>
 
-        <input type="submit" id="submit">
+        <input type="submit" id="submit" value="Envoyer">
     </form>
 </div>
 <!-- The core Firebase JS SDK is always required and must be listed first -->
@@ -92,8 +96,6 @@
 <script src="js/headerChange.js"></script>
 <script src="js/each/inscriere.js"></script>
 
-<!-- in caz ca nu are date in sessionStorage, va fi redirectionat la pagina de login -->
-<script>function notLoggedIn(){if(!JSON.parse(window.sessionStorage.getItem("accountStatus")).isLogged)window.location.href="login.html"}notLoggedIn()</script>
 
 </body>
 </html>

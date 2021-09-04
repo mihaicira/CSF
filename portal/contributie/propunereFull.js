@@ -16,7 +16,8 @@ catch{
 
 function changeButton(){
     if(isUserLoggedIn()){
-        document.getElementById("header-second-line").insertAdjacentHTML('beforeend',`<button onclick='window.location.href="../profile.html?user=${getUserId()}"'>Pagina de profil</button>`)
+        document.getElementById("header-second-line").insertAdjacentHTML('beforeend',`<button onclick='window.location.href="../profile.html?user=${getUserId()}"'>Page de profile</button>`)
+        document.getElementById("header-second-line").insertAdjacentHTML("beforeend",`<p id='connected-as' ">Connexion en tant que  ${RANKS[getUserRank()].nume} </button>` )
         document.getElementById("header-second-line").insertAdjacentHTML("beforeend",'<button onclick="LogOut()">Déconnexion</button>' )
     }
 
@@ -138,7 +139,7 @@ else {
 
         <div class="propunere-pair">
             <span>Stadiu propunere</span>
-            <span>${dbObj.stadiu} (${CONTRIBUTION_STATUS[dbObj.stadiu]})</span>
+            <span>(${dbObj.stadiu}) - ${CONTRIBUTION_STATUS[dbObj.stadiu]}</span>
         </div>`
                     document.getElementById("propunere-container").insertAdjacentHTML("beforeend", HTML)
 
@@ -162,6 +163,12 @@ else {
 
                     if(PUB==="DF") document.getElementById("publicatie").insertAdjacentHTML("afterbegin","Dialogues Francophones")
                     if(PUB==="AF") document.getElementById("publicatie").insertAdjacentHTML("afterbegin","Agapes Francophones")
+                    document.getElementById("propunere-container").insertAdjacentHTML('beforeend',`
+                    <p>Ștergere</p>
+                    <div class="propunere-pair">
+                        <button onclick="deleteContribution('${PUB}','${dbObj.id}')" class="effacer"></button>
+                        </div>
+                    `)
                 }
                 else{
                     document.getElementById("propunere-container").insertAdjacentHTML("afterbegin",`<h2>${GeneralErrors["not-authorized"]}</h2>`)
@@ -172,3 +179,82 @@ else {
         })
 }
 
+
+function deleteContribution(pub,id){
+    database.ref(`${pub.toUpperCase()}/propuneri/${id}`).once('value')
+        .then((snapshot)=>{
+            const contributie = snapshot.val()
+            //FILES
+            firebase.storage().ref(pub.toUpperCase()+'/'+contributie.fisier_nota).delete()
+            firebase.storage().ref(pub.toUpperCase()+'/'+contributie.fisier_propunere).delete()
+            database.ref(`${pub.toUpperCase()}/evaluari/${id}`).once('value')
+                .then((snap)=>{
+                    try{
+                        firebase.storage().ref(pub.toUpperCase()+'/'+snap.val()[0].fisier_adnotari).delete()
+                    }
+                    catch{
+                        //pass
+                    }
+                    try{
+                        firebase.storage().ref(pub.toUpperCase()+'/'+snap.val()[1].fisier_adnotari).delete()
+                    }
+                    catch{
+                        //pass
+                    }
+                })
+
+            //contributia autorului
+            database.ref(`users/${contributie.id_autor}`).once('value')
+                .then((snap)=>{
+                    let user = snap.val()
+                    user.contributions = deleteItemFromArray(`${id}-${pub.toLowerCase()}`,user.contributions)
+                    let updates = {}
+                    updates[`users/${contributie.id_autor}`] = user
+                    database.ref().update(updates)
+                })
+
+            //de_evaluat de la cei doi evaluatori
+            database.ref(`users/${contributie.evaluare_1.evaluator}`).once('value')
+                .then((snap)=>{
+                    let user = snap.val()
+                    if(user.to_evaluate) {
+                        user.to_evaluate = deleteItemFromArray(`${id}-1-${pub.toLowerCase()}`, user.to_evaluate)
+                        user.evaluations = deleteItemFromArray(`${id}-1-${pub.toLowerCase()}`,user.evaluations)
+                        let updates = {}
+                        updates[`users/${contributie.evaluare_1.evaluator}`] = user
+                        database.ref().update(updates)
+                    }
+                })
+            database.ref(`users/${contributie.evaluare_2.evaluator}`).once('value')
+                .then((snap)=>{
+                    let user = snap.val()
+                    if(user.to_evaluate){
+                        user.to_evaluate = deleteItemFromArray(`${id}-2-${pub.toLowerCase()}`, user.to_evaluate)
+                        user.evaluations = deleteItemFromArray(`${id}-2-${pub.toLowerCase()}`,user.evaluations)
+                        let updates = {}
+                        updates[`users/${contributie.evaluare_1.evaluator}`] = user
+                        database.ref().update(updates)
+                    }
+                })
+
+            //evaluarile
+            database.ref(`${pub.toUpperCase()}/evaluari/${id}`).remove()
+            database.ref(`${pub.toUpperCase()}/propuneri/${id}`).remove()
+
+            //contributia
+            database.ref(`${pub.toUpperCase()}/propuneri/${id}`).remove()
+                .then(()=>{
+                    $("#propunere-container").html(`<h1>Contributia a fost stearsa.</h1>`)
+                    window.scrollTo(0,0)
+                })
+
+        })
+}
+
+
+function deleteItemFromArray(item,array){
+    const index = array.findIndex(element => element===item)
+
+    array.splice(index,1)
+    return array
+}

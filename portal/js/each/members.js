@@ -35,14 +35,9 @@ function fetch_logs(){
         })
 }
 
-
-
-
-
-
 function changeButton(){
     if(isUserLoggedIn()){
-        document.getElementById("header-second-line").insertAdjacentHTML("beforeend",`<p id='connected-as' ">Conectat ca ${RANKS[getUserRank()].nume} </button>` )
+        document.getElementById("header-second-line").insertAdjacentHTML("beforeend",`<p id='connected-as' ">Connexion en tant que ${RANKS[getUserRank()].nume} </button>` )
         document.getElementById("header-second-line").insertAdjacentHTML("beforeend",'<button onclick="LogOut()">Déconnexion </button>' )
     }
 
@@ -51,7 +46,16 @@ function changeButton(){
 }
 
 
-
-fetch_members()
+if(RIGHTS[getUserRank()]["access-members-page"]){
+    fetch_members()
+    if(RIGHTS[getUserRank()]["edit-view-logs"]){
+        document.getElementsByClassName("members-container-box")[0].insertAdjacentHTML('afterend',`<section id="logs-container">
+                                                                                                                            <h1>Istoric schimbări funcții</h1>
+                                                                                                                            <div id="logs"></div>
+                                                                                                                        </section>`)
+        fetch_logs()
+    }
+}
+else
+    $(".members-container-box").html(`<h1>${GeneralErrors["not-authorized"]}</h1>`)
 changeButton()
-fetch_logs()

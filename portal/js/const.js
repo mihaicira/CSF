@@ -1,52 +1,52 @@
 const RANKS = {
     admin:{
         id: "admin",
-        nume: "Administrator",
+        nume: "Administrateur",
         weight: 1
     },
     rsdf:{
         id: "rsdf",
-        nume: "Redactor șef Dialogues Francophones",
+        nume: "Rédacteur-en-chef Dialogues francophones",
         weight: 2
     },
     redresdf:{
         id: "redresdf",
-        nume: "Redactor responsabil Dialogues Francophones",
+        nume: "Rédacteur responsable Dialogues francophones",
         weight: 3
     },
     redresaf:{
         id: "redresaf",
-        nume: "Redactor responsabil Agapes Francophones",
+        nume: "Rédacteur responsable Agapes francophones",
         weight: 3
     },
     mcaf:{
         id: "mcaf",
-        nume: "Membru în comitetul de redacție Agapes Francophones",
+        nume: "Membre comité de rédaction Agapes francophones",
         weight: 4
     },
     mcdf:{
         id: "mcdf",
-        nume: "Membru în comitetul de redacție Dialogues Francophones",
+        nume: "Membre comité de rédaction Dialogues francophones",
         weight: 4
     },
     evdf:{
         id: "evdf",
-        nume: "Evaluator Dialogues Francophones",
+        nume: "Évaluateur Dialogues francophones",
         weight: 5
     },
     evaf:{
         id: "evaf",
-        nume: "Evaluator Agapes Francophones",
+        nume: "Évaluateur Agapes francophones",
         weight: 5
     },
     adf:{
         id: "adf",
-        nume: "Autor Dialogues Francophones",
+        nume: "Auteur Dialogues francophones",
         weight: 6
     },
     aaf:{
         id: "aaf",
-        nume: "Autor Agapes Francophones",
+        nume: "Auteur Agapes francophones",
         weight: 6
     }
 }
@@ -60,36 +60,38 @@ const LoginSignupErrors = {
 }
 
 const CONTRIBUTION_STATUS = {
-    1: "Contributia a fost trimisa",
-    2: "Contributia a fost asignata evaluatorilor",
-    3: "Contributia a fost evaluata de un evaluator",
-    4: "Contributia a fost evaluata de doi evaluatori",
-    5: "Procesul contributiei a fost finalizat"
+    1: "L’article a été envoyé",
+    2: "L’article a été assigne aux évaluateurs",
+    3: "L’article a été évalué par un évaluateur",
+    4: "L’article a été évalué par deux évaluateurs",
+    5: "Le processus d’évaluation est terminé"
 }
 
 const GeneralErrors = {
-    "not-authorized":"Nu sunteti autorizat pentru aceasta actiune",
-    "doesnt-exist":"Aceasta propunere nu exista",
-    "not-completed":"Aceasta propunere nu a fost inca evaluata"
+    "not-authorized":"Vous n’êtes pas autorisé pour cette action.",
+    "doesnt-exist":"Cette proposition d’article n’existe pas",
+    "not-completed":"Cette proposition d’article n’est pas encore évaluée"
 }
 
 const ProfileErrors = {
-    "no-contrib-prop": "Nu exista nicio contributie propusa",
-    "no-art-eval":"Nu exista niciun articol evaluat",
-    "no-art-to-eval":"Nu exista niciun articol de evaluat",
-    "no-art-to-assign":"Nu exista niciun articol ce trebuie atribuit",
-    "no-wip-art":"Nu exista articole in procesare",
-    "no-art-finalized":"Nu exista articole finalizate"
+    "no-contrib-prop": "Aucune proposition de contribution",
+    "no-art-eval":"Aucun article évalué",
+    "no-art-to-eval":"Aucun article à évaluer",
+    "no-art-to-assign":"Aucun article à assigner",
+    "no-wip-art":"Aucun article en traitement",
+    "no-art-finalized":"Aucun article finalisé"
 
 }
 
 const FormEnds = {
-    "eval":"Redacția revistei Dialogues francophones vă mulțumește pentru că ați acceptat să faceți evaluarea acestui articol.",
+    "eval-df":"La rédaction de la revue Dialogues francophones vous remercie d’avoir accepté d’évaluer cet article.",
+    "eval-af":"Le comité de rédaction du volume Agapes francophones vous remercie d’avoir accepté d’évaluer cet article.",
+    "cieft":"Merci de votre proposition de communication. Vous serez contacté.e par le, la secrétaire du colloque.",
     "prop":"Votre formulaire a été transmis."
 }
 
 const RIGHTS =  {
-    admin:{
+    "admin":{
         "to-eval": false,
         "change-ranks": true,
         "change-to-rsdf": true,
@@ -114,9 +116,10 @@ const RIGHTS =  {
         "access-members-page": true,
         "access-eval-pages": false,
         "df-access-contributii-page": true,
-        "af-access-contributii-page": true
+        "af-access-contributii-page": true,
+        "edit-view-logs":true
     },
-    rsdf:{
+    "rsdf":{
         "to-eval": false,
         "change-ranks": true,
         "change-to-rsdf": false,
@@ -141,9 +144,10 @@ const RIGHTS =  {
         "access-members-page": true,
         "access-eval-pages": true,
         "df-access-contributii-page": true,
-        "af-access-contributii-page": false
+        "af-access-contributii-page": false,
+        "edit-view-logs":false
     },
-    redresdf: {
+    "redresdf": {
         "to-eval": false,
         "change-ranks": true,
         "change-to-rsdf": false,
@@ -168,9 +172,10 @@ const RIGHTS =  {
         "access-members-page": true,
         "access-eval-pages": true,
         "df-access-contributii-page": true,
-        "af-access-contributii-page": false
+        "af-access-contributii-page": false,
+        "edit-view-logs":false
     },
-    redresaf:{
+    "redresaf":{
         "to-eval": false,
         "change-ranks": true,
         "change-to-rsdf": false,
@@ -195,9 +200,10 @@ const RIGHTS =  {
         "access-members-page": true,
         "access-eval-pages": true,
         "df-access-contributii-page": false,
-        "af-access-contributii-page": true
+        "af-access-contributii-page": true,
+        "edit-view-logs":false
     },
-    mcdf:{
+    "mcdf":{
         "to-eval": false,
         "change-ranks": true,
         "change-to-rsdf": false,
@@ -219,12 +225,13 @@ const RIGHTS =  {
         "access-cieft-page": false,
         "access-contrib-page-df": true,
         "access-contrib-page-af":false,
-        "access-members-page": false,
+        "access-members-page": true,
         "access-eval-pages": false,
         "df-access-contributii-page": false,
-        "af-access-contributii-page": false
+        "af-access-contributii-page": false,
+        "edit-view-logs":false
     },
-    mcaf:{
+    "mcaf":{
         "to-eval": false,
         "change-ranks": true,
         "change-to-rsdf": false,
@@ -246,12 +253,13 @@ const RIGHTS =  {
         "access-cieft-page": false,
         "access-contrib-page-df": false,
         "access-contrib-page-af":true,
-        "access-members-page": false,
+        "access-members-page": true,
         "access-eval-pages": false,
         "df-access-contributii-page": false,
-        "af-access-contributii-page": false
+        "af-access-contributii-page": false,
+        "edit-view-logs":false
     },
-    evdf:{
+    "evdf":{
         "to-eval": true,
         "change-ranks": false,
         "change-to-rsdf": false,
@@ -276,9 +284,10 @@ const RIGHTS =  {
         "access-members-page": false,
         "access-eval-pages": false,
         "df-access-contributii-page": false,
-        "af-access-contributii-page": false
+        "af-access-contributii-page": false,
+        "edit-view-logs":false
     },
-    evaf:{
+    "evaf":{
         "to-eval": true,
         "change-ranks": false,
         "change-to-rsdf": false,
@@ -303,9 +312,10 @@ const RIGHTS =  {
         "access-members-page": false,
         "access-eval-pages": false,
         "df-access-contributii-page": false,
-        "af-access-contributii-page": false
+        "af-access-contributii-page": false,
+        "edit-view-logs":false
     },
-    aaf:{
+    "aaf":{
         "to-eval": false,
         "change-ranks": false,
         "change-to-rsdf": false,
@@ -330,9 +340,10 @@ const RIGHTS =  {
         "access-members-page": false,
         "access-eval-pages": false,
         "df-access-contributii-page": false,
-        "af-access-contributii-page": false
+        "af-access-contributii-page": false,
+        "edit-view-logs":false
     },
-    adf:{
+    "adf":{
         "to-eval": false,
         "change-ranks": false,
         "change-to-rsdf": false,
@@ -357,7 +368,8 @@ const RIGHTS =  {
         "access-members-page": false,
         "access-eval-pages": false,
         "df-access-contributii-page": false,
-        "af-access-contributii-page": false
+        "af-access-contributii-page": false,
+        "edit-view-logs":false
     }
 }
 

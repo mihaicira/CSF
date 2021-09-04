@@ -15,7 +15,7 @@ catch{
 
 function changeButton(){
     if(isUserLoggedIn()){
-        document.getElementById("header-second-line").insertAdjacentHTML('beforeend',`<button onclick='window.location.href="../profile.html?user=${getUserId()}"'>Pagina de profil</button>`)
+        document.getElementById("header-second-line").insertAdjacentHTML('beforeend',`<button onclick='window.location.href="../profile.html?user=${getUserId()}"'>Page de profile</button>`)
         document.getElementById("header-second-line").insertAdjacentHTML("beforeend",'<button onclick="LogOut()">Déconnexion</button>' )
     }
 
@@ -374,9 +374,7 @@ else
 
                                     const current_eval_id = user.to_evaluate.findIndex(element => element===`${propunere.id}-${EV}-${PUB.toLowerCase()}`)
 
-                                    console.log(user.to_evaluate)
                                     user.to_evaluate.splice(current_eval_id,1)
-                                    console.log(user.to_evaluate)
 
                                     let updates = {}
                                     updates[`users/${getUserId()}`] = user
@@ -394,7 +392,7 @@ else
                                             pass = false
 
                                     if(pass){
-                                        $("#formular-container").html(`<h2>${FormEnds["eval"]}</h2>`)
+                                        $("#formular-container").html(`<h2>${FormEnds[PUB.toUpperCase() === "DF" ? "eval-df" : "eval-af"]}</h2>`)
                                         requestFinished = true
                                     }
                                 }

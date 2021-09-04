@@ -5,6 +5,14 @@
     <title>Title</title>
     <link rel="stylesheet" href="css/global.css">
     <link rel="stylesheet" href="css/profile.css">
+
+    <!-- in caz ca nu are date in session storage, i se vor pune niste date default, ca sa poata rula scripturile de mai jos -->
+    <script>const userSessionStorage = ()=>{if(JSON.parse(window.sessionStorage.getItem("accountStatus"))=== null ){let data = {isLogged: false, account:null};window.sessionStorage.setItem("accountStatus",JSON.stringify(data))}};userSessionStorage()</script>
+
+    <!-- scriptul asta verifica daca userul este logat si nu are rank selectat-->
+    <script>function loggedInWithoutRank(){    if(JSON.parse(window.sessionStorage.getItem("accountStatus")).isLogged)         if(JSON.parse(window.sessionStorage.getItem("accountStatus")).account.rank == null) window.location.href="chooserank.html"}loggedInWithoutRank()</script>
+
+
 </head>
 <body>
 <section class="header-container">

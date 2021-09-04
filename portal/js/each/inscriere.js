@@ -30,6 +30,20 @@ $("form").submit(function (e){
             let updates = {}
             updates['/cieft'] = users
             database.ref().update(updates)
+                .then(()=>{
+                    $("#formular-container").html(`<h1>${FormEnds["cieft"]}</h1>`)
+                })
         })
 
 })
+
+function changeButton(){
+    if(isUserLoggedIn()){
+        document.getElementById("header-second-line").insertAdjacentHTML("beforeend",`<p id='connected-as' ">Connexion en tant que  ${RANKS[getUserRank()].nume} </button>` )
+        document.getElementById("header-second-line").insertAdjacentHTML("beforeend",'<button onclick="LogOut()">Déconnexion </button>' )
+    }
+
+    else
+        document.getElementById("header-second-line").insertAdjacentHTML("beforeend",'<button onclick="window.location.href=\'login.html\'">Connexion </button>' )
+}
+changeButton()

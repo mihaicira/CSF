@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
-
+<!-- in caz ca nu are date in session storage, i se vor pune niste date default, ca sa poata rula scripturile de mai jos -->
+<script>const userSessionStorage = ()=>{if(JSON.parse(window.sessionStorage.getItem("accountStatus"))=== null ){let data = {isLogged: false, account:null};window.sessionStorage.setItem("accountStatus",JSON.stringify(data))}};userSessionStorage()</script>
+<!-- in caz ca nu e logat, va fi redirectionat la pagina de login -->
+<script>function notLoggedIn(){if(!JSON.parse(window.sessionStorage.getItem("accountStatus")).isLogged)window.location.href="../login.html"}notLoggedIn()</script>
 <!-- scriptul asta verifica daca userul este logat si nu are rank selectat-->
-<script>function loggedInWithoutRank(){    if(JSON.parse(window.sessionStorage.getItem("accountStatus")).isLogged)         if(JSON.parse(window.sessionStorage.getItem("accountStatus")).account.rank == null)             window.location.href="chooserank.html"}loggedInWithoutRank()</script>
+<script>function loggedInWithoutRank(){    if(JSON.parse(window.sessionStorage.getItem("accountStatus")).isLogged)         if(JSON.parse(window.sessionStorage.getItem("accountStatus")).account.rank == null) window.location.href="chooserank.html"}loggedInWithoutRank()</script>
+
 
 
 <head>
@@ -51,10 +55,7 @@
 
 </section>
 
-<section id="logs-container">
-    <h1>Istoric schimbări funcții</h1>
-    <div id="logs"></div>
-</section>
+
 
 <!-- The core Firebase JS SDK is always required and must be listed first -->
 <script src="https://www.gstatic.com/firebasejs/8.8.1/firebase-app.js"></script>

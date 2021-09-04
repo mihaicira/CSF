@@ -36,10 +36,9 @@
 }
 
 .member{
-
     display: flex;
     align-items: center;
-    justify-content: right;
+    justify-content: flex-start;
     gap: 2vh;
     margin: 0;
     padding: 0;
