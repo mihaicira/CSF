@@ -34,7 +34,6 @@ database.ref("users").once('value')
         raiseUserNotFound()
     }
     else{
-
         document.getElementById("text_nume").innerText = USER.nume
         if(PUB !== "admin")
             document.getElementById("text_nume").insertAdjacentHTML("afterend",`<a id="text_email" href="mailto:${USER.email}">${USER.email}</a>`)
@@ -194,7 +193,10 @@ database.ref("users").once('value')
                                 const id = prop.split('-')[0]
                                 const ev = prop.split('-')[1]
                                 const pubname = prop.split('-')[2]
+
                                 if(pubname === pub){
+
+                                    console.log("here")
                                     document.getElementById("articole_de_evaluat_lista").insertAdjacentHTML("beforeend", `
                                       <div class="article-box">
                                     <div>
@@ -503,9 +505,9 @@ function trimiteSpreEvaluare(id){
                 .then((snap)=>{
                     let user = snap.val()
                     if(user.to_evaluate)
-                        user.to_evaluate.push(`${id}-2`)
+                        user.to_evaluate.push(`${id}-2-${PUB.toLowerCase()}`)
                     else
-                        user.to_evaluate = [`${id}-2`]
+                        user.to_evaluate = [`${id}-2-${PUB.toLowerCase()}`]
                     updates = {}
                     updates[`users/${eval2}`] = user
                     database.ref().update(updates)

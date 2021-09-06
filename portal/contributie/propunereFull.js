@@ -184,79 +184,82 @@ function deleteContribution(pub,id){
     database.ref(`${pub.toUpperCase()}/propuneri/${id}`).once('value')
         .then((snapshot)=>{
             const contributie = snapshot.val()
-
-             //de_evaluat de la cei doi evaluatori
-
             //FILES
             firebase.storage().ref(pub.toUpperCase()+'/'+contributie.fisier_nota).delete()
             firebase.storage().ref(pub.toUpperCase()+'/'+contributie.fisier_propunere).delete()
             database.ref(`${pub.toUpperCase()}/evaluari/${id}`).once('value')
-                .then((snap)=>{
+                .then((snaps)=>{
+                    let evaluari = snaps.val()
                     try{
-                        firebase.storage().ref(pub.toUpperCase()+'/'+snap.val()[0].fisier_adnotari).delete()
+                        if(contributie.evaluare_1.completed)
+                            firebase.storage().ref(pub.toUpperCase()+'/'+evaluari[1].fisier_adnotari).delete()
+                        if(contributie.evaluare_2.completed)
+                            firebase.storage().ref(pub.toUpperCase()+'/'+evaluari[2].fisier_adnotari).delete()
                     }
                     catch{
-                        //pass
+                        console.log("failed")
                     }
-                    try{
-                        firebase.storage().ref(pub.toUpperCase()+'/'+snap.val()[1].fisier_adnotari).delete()
-                    }
-                    catch{
-                        //pass
-                    }
+
+                    //contributia autorului
+                    database.ref(`users/${contributie.id_autor}`).once('value')
+                        .then((snap)=>{
+                            let user = snap.val()
+                            console.log("b4 contrib: ",user.contributions )
+                            console.log(`${id}-${pub.toLowerCase()}`)
+                            user.contributions = deleteItemFromArray(`${id}-${pub.toLowerCase()}`,user.contributions)
+                            console.log("after contrib: ",user.contributions )
+                            let updates = {}
+                            updates[`users/${contributie.id_autor}`] = user
+                            database.ref().update(updates)
+                        })
+
+                    //de_evaluat de la cei doi evaluatori
+                    if(contributie.evaluare_1.evaluator!=="none")
+                        database.ref(`users/${contributie.evaluare_1.evaluator}`).once('value')
+                            .then((snap)=>{
+                                let user = snap.val()
+                                if(user.to_evaluate) {
+                                    console.log("array: ",user.to_evaluate)
+                                    console.log("string: ",`${id}-1-${pub.toLowerCase()}`)
+                                    user.to_evaluate = deleteItemFromArray(`${id}-1-${pub.toLowerCase()}`, user.to_evaluate)
+                                    console.log("array after: ",user.to_evaluate)
+                                }
+                                if(user.evaluations){
+                                    user.evaluations = deleteItemFromArray(`${id}-1-${pub.toLowerCase()}`,user.evaluations)
+                                }
+                                let updates = {}
+                                updates[`users/${contributie.evaluare_1.evaluator}`] = user
+                                database.ref().update(updates)
+                            })
+                    if(contributie.evaluare_2.evaluator!=="none")
+                        database.ref(`users/${contributie.evaluare_2.evaluator}`).once('value')
+                            .then((snap)=>{
+                                let user = snap.val()
+                                if(user.to_evaluate) {
+                                    user.to_evaluate = deleteItemFromArray(`${id}-2-${pub.toLowerCase()}`, user.to_evaluate)
+                                }
+                                if(user.evaluations){
+                                    user.evaluations = deleteItemFromArray(`${id}-2-${pub.toLowerCase()}`,user.evaluations)
+                                }
+                                let updates = {}
+                                updates[`users/${contributie.evaluare_2.evaluator}`] = user
+                                database.ref().update(updates)
+
+                            })
+
+                    //evaluarile
+                    database.ref(`${pub.toUpperCase()}/evaluari/${id}`).remove()
+                    database.ref(`${pub.toUpperCase()}/propuneri/${id}`).remove()
+
+                    //contributia
+                    database.ref(`${pub.toUpperCase()}/propuneri/${id}`).remove()
+                        .then(()=>{
+                            $("#propunere-container").html(`<h1>Contributia a fost stearsa.</h1>`)
+                            window.scrollTo(0,0)
+                        })
                 })
 
-            //contributia autorului
-            database.ref(`users/${contributie.id_autor}`).once('value')
-                .then((snap)=>{
-                    let user = snap.val()
-                    user.contributions = deleteItemFromArray(`${id}-${pub.toLowerCase()}`,user.contributions)
-                    let updates = {}
-                    updates[`users/${contributie.id_autor}`] = user
-                    database.ref().update(updates)
-                })
 
-            //de_evaluat de la cei doi evaluatori
-            if(contributie.evaluare_1.evaluator!=="none")
-                database.ref(`users/${contributie.evaluare_1.evaluator}`).once('value')
-                    .then((snap)=>{
-                        let user = snap.val()
-                        if(user.to_evaluate) {
-                            user.to_evaluate = deleteItemFromArray(`${id}-1-${pub.toLowerCase()}`, user.to_evaluate)
-                        }
-                        if(user.evaluations){
-                            user.evaluations = deleteItemFromArray(`${id}-1-${pub.toLowerCase()}`,user.evaluations)
-                        }
-                        let updates = {}
-                        updates[`users/${contributie.evaluare_1.evaluator}`] = user
-                        database.ref().update(updates)
-                    })
-            if(contributie.evaluare_2.evaluator!=="none")
-                database.ref(`users/${contributie.evaluare_2.evaluator}`).once('value')
-                    .then((snap)=>{
-                        let user = snap.val()
-                        if(user.to_evaluate) {
-                            user.to_evaluate = deleteItemFromArray(`${id}-2-${pub.toLowerCase()}`, user.to_evaluate)
-                        }
-                        if(user.evaluations){
-                            user.evaluations = deleteItemFromArray(`${id}-2-${pub.toLowerCase()}`,user.evaluations)
-                        }
-                        let updates = {}
-                        updates[`users/${contributie.evaluare_2.evaluator}`] = user
-                        database.ref().update(updates)
-
-                    })
-
-            //evaluarile
-            database.ref(`${pub.toUpperCase()}/evaluari/${id}`).remove()
-            database.ref(`${pub.toUpperCase()}/propuneri/${id}`).remove()
-
-            //contributia
-            database.ref(`${pub.toUpperCase()}/propuneri/${id}`).remove()
-                .then(()=>{
-                    $("#propunere-container").html(`<h1>Contributia a fost stearsa.</h1>`)
-                    window.scrollTo(0,0)
-                })
 
         })
 }

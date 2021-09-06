@@ -72,14 +72,17 @@ function insertObjects(objects){
         let eval1svg = X_SVG
         let eval2name= "n/a"
         let eval2svg = X_SVG
+        if(obj.evaluare_1.completed) {
+            eval1svg = `<a href="./evaluare.html?ID=${obj.id}&PUB=${obj.publicatie}&EV=1">${LINK_SVG}</a>`
+        }
         if(obj.evaluare_1.evaluator!=="none"){
             eval1name = USERS[obj.evaluare_1.evaluator].nume;
-            eval1svg = `<a href="./evaluare.html?ID=${obj.id}&PUB=${obj.publicatie}&EV=1">${LINK_SVG}</a>`
+        }
+        if(obj.evaluare_2.completed) {
+            eval2svg =  `<a href="./evaluare.html?ID=${obj.id}&PUB=${obj.publicatie}&EV=2">${LINK_SVG}</a>`
         }
         if(obj.evaluare_2.evaluator!=="none"){
             eval2name = USERS[obj.evaluare_2.evaluator].nume;
-
-            eval2svg =  `<a href="./evaluare.html?ID=${obj.id}&PUB=${obj.publicatie}&EV=2">${LINK_SVG}</a>`
         }
         //eval
 
