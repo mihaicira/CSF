@@ -176,7 +176,7 @@ function uploadDataToDF(object) {
     var ref = database.ref("DF/propuneri/"+object.id)
     ref.set(object)
         .then((snapshot)=>{
-            // $("#formular-container").html(`<h1>${FormEnds['prop']}</h1>`)
+            $("#formular-container").html(`<h1>${FormEnds['prop']}</h1>`)
         })
         .catch((e)=>{
             console.log("Error: ",e)
