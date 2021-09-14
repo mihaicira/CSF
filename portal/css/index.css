@@ -98,6 +98,7 @@
     color: #4c90c3;
     font-style: italic;
     cursor: pointer;
+    text-decoration: none;
 
     transition: 400ms;
     -o-transition: 400ms;

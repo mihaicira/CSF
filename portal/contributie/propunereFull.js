@@ -62,83 +62,83 @@ else {
 
                     var HTML = `
         <h1 id="publicatie"></h1>
-         <p> Propunere contribuție</p>
+         <p> Proposition de contribution</p>
         
         <div class="propunere-pair">
-            <span>Autorul articolului</span>
+            <span>Auteur de l'article</span>
             <span>${dbObj.autor}</span>
         </div>
         
         <div class="propunere-pair">
-            <span>Toti autorii (nume, email, rol)</span>
+            <span>Tous les auteurs (noms, email, rôle)</span>
             <span>${autoriHTML}</span>
         </div>
         
         <div class="propunere-pair">
-            <span>Limba în care este scris articolul</span>
+            <span>Langue d'écriture:</span>
             <span>${dbObj.limba_articol}</span>
         </div>
         
         <div class="propunere-pair">
-            <span>Rubrica</span>
+            <span>Section</span>
             <span>${dbObj.rubrica}</span>
         </div>
         
         <div class="propunere-pair">
-            <span>Calitatea celui care face propunerea</span>
+            <span>Rôle</span>
             <span>${dbObj.calitate}</span>
         </div>
         
         <div class="propunere-pair">
-            <span>Articolul propus</span>
+            <span>Contribution</span>
             <span id="articol-link"></span>
         </div>
         
         <div class="propunere-pair">
-            <span>Nota biobibliografica</span>
+            <span>Notice biobibliographique</span>
             <span id="nota-bio"></span>
         </div>
         
       
-       <p>Metadate</p>
+       <p>Métadonnées</p>
         
        <div class="propunere-pair">
-            <span>Articol inițial</span>
+            <span>Article initial</span>
             <span>${dbObj.articol_initial}</span>
         </div>
         
          <div class="propunere-pair">
-            <span>Titlu</span>
+            <span>Titre</span>
             <span>${dbObj.titlu}</span>
         </div>
         
          <div class="propunere-pair">
-            <span>Sub-titlu</span>
+            <span>Sous-titre</span>
             <span>${dbObj.subtitlu}</span>
         </div>
         
          <div class="propunere-pair">
-            <span>Rezumat</span>
+            <span>Résumé</span>
             <span>${dbObj.rezumat}</span>
         </div>
         
         <div class="propunere-pair">
-            <span>Limba</span>
+            <span>Langue</span>
             <span>${dbObj.limba}</span>
         </div>
         
         <div class="propunere-pair">
-            <span>Cuvinte cheie</span>
+            <span>Mots-clés</span>
             <span>${dbObj.cuvinte_cheie}</span>
         </div>
         
         <div class="propunere-pair">
-            <span>Referințe bibliografice</span>
+            <span>Références bibliographiques</span>
             <span>${dbObj.referinte}</span>
         </div>
 
         <div class="propunere-pair">
-            <span>Stadiu propunere</span>
+            <span>Status contribution</span>
             <span>(${dbObj.stadiu}) - ${CONTRIBUTION_STATUS[dbObj.stadiu]}</span>
         </div>`
                     document.getElementById("propunere-container").insertAdjacentHTML("beforeend", HTML)

@@ -9,7 +9,7 @@ function changeButton(){
 }
 
 if(RIGHTS[getUserRank()]["access-cieft-page"]){
-    $(".cieft-members").html(`<h1>Inscrieri CIEFT</h1>
+    $(".cieft-members").html(`<h1>Inscriptions CIEFT</h1>
                                 <div class="panel">
                                     <h2>Nombre de participants: <span id="numberOfMembers"></span></h2>
                                     <button onclick="DeleteList()">Effacer la liste</button>

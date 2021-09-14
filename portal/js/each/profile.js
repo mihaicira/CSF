@@ -52,13 +52,14 @@ database.ref("users").once('value')
                 //adaug formularul pt schimbare date
                 document.getElementById("myForm").insertAdjacentHTML("afterbegin",`
                      <div class="form-popup">
+                     <h1 style="text-align: center">Données de connexion</h1>
                     <div>
-                        <b>Nume</b>
+                        <b>Nom</b>
                         <input id="camp_nume" type="nume" placeholder="Introdu nume" name="nume" value="${USER.nume.split(' ')[0]}">
                     </div>
         
                     <div>
-                        <b>Prenume</b>
+                        <b>Prénom</b>
                         <input id="camp_prenume" type="prenume" placeholder="Introdu prenume" name="prenume" value="${USER.nume.split(' ')[1]}">
                     </div>
         
@@ -66,8 +67,8 @@ database.ref("users").once('value')
                         <b>Email</b>
                         <input id="camp_email" type="email" placeholder="Introdu email" name="email" value="${USER.email}">
                     </div>
-                    <button  class="btn" onclick="changePersonalData(USER.id)">Schimba date </button>
-                    <button type="button" class="btn cancel" onclick="closePopup()">Inchide</button>
+                    <button  class="btn" onclick="changePersonalData(USER.id)">Modifier</button>
+                    <button type="button" class="btn cancel" onclick="closePopup()">Fermer</button>
                 </div>`)
             }
 
@@ -116,7 +117,7 @@ database.ref("users").once('value')
                                 <div class="article-box">
                                 <div>
                                 <div class="text_nume_articol "> ${propunere.titlu}</div>
-                                <div class="text-secundar-articol">Propus in ${propunere.data}</div>
+                                <div class="text-secundar-articol">Soumis le ${propunere.data}</div>
                                 </div>
                                 <a href="./contributie/propunereFull.html?ID=${propunere.id}&PUB=${PUB}"><svg class="redirect-svg" viewBox="0 0 25 25" fill="none"><path d="M23.8636 0.0303345H14.7727C14.1451 0.0303345 13.6363 0.527406 13.6363 1.14054C13.6363 1.75367 14.1451 2.25075 14.7727 2.25075H21.1202L9.42378 13.6779C8.97999 14.1114 8.97999 14.8143 9.42378 15.2479C9.64561 15.4646 9.93643 15.573 10.2273 15.573C10.5181 15.573 10.8089 15.4647 11.0308 15.2478L22.7273 3.82077V10.0221C22.7273 10.6352 23.2361 11.1323 23.8637 11.1323C24.4913 11.1323 25.0001 10.6352 25.0001 10.0221V1.14054C25 0.527406 24.4912 0.0303345 23.8636 0.0303345Z" fill="black"/><path d="M19.3182 11.1322C18.6906 11.1322 18.1818 11.6293 18.1818 12.2424V22.2342H2.27271V6.69143H12.5C13.1276 6.69143 13.6364 6.19436 13.6364 5.58123C13.6364 4.96809 13.1276 4.47107 12.5 4.47107H1.13638C0.508789 4.47107 0 4.96814 0 5.58128V23.3444C0 23.9575 0.508789 24.4545 1.13638 24.4545H19.3182C19.9458 24.4545 20.4546 23.9575 20.4546 23.3443V12.2424C20.4545 11.6293 19.9458 11.1322 19.3182 11.1322Z" fill="black"/></svg></a>
                                 </div>
@@ -158,7 +159,7 @@ database.ref("users").once('value')
                                        <div class="article-box">
                                     <div>
                                         <div class="text_nume_articol "> ${evaluare.titlu} </div>
-                                        <div class="text-secundar-articol">Evaluat in ${evaluare.data}</div>
+                                        <div class="text-secundar-articol">Évalué le ${evaluare.data}</div>
                                     </div>
                                     <a href="./contributie/evaluare.html?ID=${id}&PUB=${PUB}&EV=${EV}"><svg class="redirect-svg" viewBox="0 0 25 25" fill="none"><path d="M23.8636 0.0303345H14.7727C14.1451 0.0303345 13.6363 0.527406 13.6363 1.14054C13.6363 1.75367 14.1451 2.25075 14.7727 2.25075H21.1202L9.42378 13.6779C8.97999 14.1114 8.97999 14.8143 9.42378 15.2479C9.64561 15.4646 9.93643 15.573 10.2273 15.573C10.5181 15.573 10.8089 15.4647 11.0308 15.2478L22.7273 3.82077V10.0221C22.7273 10.6352 23.2361 11.1323 23.8637 11.1323C24.4913 11.1323 25.0001 10.6352 25.0001 10.0221V1.14054C25 0.527406 24.4912 0.0303345 23.8636 0.0303345Z" fill="black"/><path d="M19.3182 11.1322C18.6906 11.1322 18.1818 11.6293 18.1818 12.2424V22.2342H2.27271V6.69143H12.5C13.1276 6.69143 13.6364 6.19436 13.6364 5.58123C13.6364 4.96809 13.1276 4.47107 12.5 4.47107H1.13638C0.508789 4.47107 0 4.96814 0 5.58128V23.3444C0 23.9575 0.508789 24.4545 1.13638 24.4545H19.3182C19.9458 24.4545 20.4546 23.9575 20.4546 23.3443V12.2424C20.4545 11.6293 19.9458 11.1322 19.3182 11.1322Z" fill="black"/></svg></a>
                                 </div>
@@ -201,7 +202,7 @@ database.ref("users").once('value')
                                       <div class="article-box">
                                     <div>
                                         <div class="text_nume_articol ">${propuneri[id].titlu}</div>
-                                        <div class="text-secundar-articol">Propus in ${propuneri[id].data}</div>
+                                        <div class="text-secundar-articol">Soumis le ${propuneri[id].data}</div>
                                     </div>
                                     <a href="./contributie/evaluare.html?ID=${id}&PUB=${PUB}&EV=${ev}"><svg class="redirect-svg" viewBox="0 0 25 25" fill="none"><path d="M23.8636 0.0303345H14.7727C14.1451 0.0303345 13.6363 0.527406 13.6363 1.14054C13.6363 1.75367 14.1451 2.25075 14.7727 2.25075H21.1202L9.42378 13.6779C8.97999 14.1114 8.97999 14.8143 9.42378 15.2479C9.64561 15.4646 9.93643 15.573 10.2273 15.573C10.5181 15.573 10.8089 15.4647 11.0308 15.2478L22.7273 3.82077V10.0221C22.7273 10.6352 23.2361 11.1323 23.8637 11.1323C24.4913 11.1323 25.0001 10.6352 25.0001 10.0221V1.14054C25 0.527406 24.4912 0.0303345 23.8636 0.0303345Z" fill="black"/><path d="M19.3182 11.1322C18.6906 11.1322 18.1818 11.6293 18.1818 12.2424V22.2342H2.27271V6.69143H12.5C13.1276 6.69143 13.6364 6.19436 13.6364 5.58123C13.6364 4.96809 13.1276 4.47107 12.5 4.47107H1.13638C0.508789 4.47107 0 4.96814 0 5.58128V23.3444C0 23.9575 0.508789 24.4545 1.13638 24.4545H19.3182C19.9458 24.4545 20.4546 23.9575 20.4546 23.3443V12.2424C20.4545 11.6293 19.9458 11.1322 19.3182 11.1322Z" fill="black"/></svg></a>
                                 </div>
@@ -251,24 +252,24 @@ database.ref("users").once('value')
                             <div>
                             <div class="assign-article-info-container">
                                 <p>${contributie.titlu} &emsp; <svg class="redirect-svg" viewBox="0 0 25 25" fill="none"><path d="M23.8636 0.0303345H14.7727C14.1451 0.0303345 13.6363 0.527406 13.6363 1.14054C13.6363 1.75367 14.1451 2.25075 14.7727 2.25075H21.1202L9.42378 13.6779C8.97999 14.1114 8.97999 14.8143 9.42378 15.2479C9.64561 15.4646 9.93643 15.573 10.2273 15.573C10.5181 15.573 10.8089 15.4647 11.0308 15.2478L22.7273 3.82077V10.0221C22.7273 10.6352 23.2361 11.1323 23.8637 11.1323C24.4913 11.1323 25.0001 10.6352 25.0001 10.0221V1.14054C25 0.527406 24.4912 0.0303345 23.8636 0.0303345Z" fill="black"/><path d="M19.3182 11.1322C18.6906 11.1322 18.1818 11.6293 18.1818 12.2424V22.2342H2.27271V6.69143H12.5C13.1276 6.69143 13.6364 6.19436 13.6364 5.58123C13.6364 4.96809 13.1276 4.47107 12.5 4.47107H1.13638C0.508789 4.47107 0 4.96814 0 5.58128V23.3444C0 23.9575 0.508789 24.4545 1.13638 24.4545H19.3182C19.9458 24.4545 20.4546 23.9575 20.4546 23.3443V12.2424C20.4545 11.6293 19.9458 11.1322 19.3182 11.1322Z" fill="black"/></svg></p>
-                                <p>Autor: ${contributie.autor}</p>
-                                <p>Propus in ${contributie.data}</p>
+                                <p>Auteur: ${contributie.autor}</p>
+                                <p>Soumis le ${contributie.data}</p>
                              </div>
                         <div class="assign-article-evals-container">
-                            <p>Selecteaza evaluatori</p>
+                            <p>Sélectionner les évaluateurs</p>
                             <div>
-                                <label>Evaluator 1</label>
+                                <label>Évaluateur 1</label>
                                 <select id="${contributie.id}-assign-evaluatori-1"><option value="none" selected>None</option> </select>
                             </div>
                             <div>
-                                <label>Evaluator 2</label>
+                                <label>Évaluateur 2</label>
                                 <select id="${contributie.id}-assign-evaluatori-2"><option value="none" selected>None</option></select>
                             </div>
                         </div>
                     </div>
                     <div>
-                        <button onclick="finalizeazaContributie('${contributie.id}')">Finalizeaza fara evaluare</button>
-                        <button onclick="trimiteSpreEvaluare('${contributie.id}')">Trimite spre evaluare</button>
+                        <button onclick="finalizeazaContributie('${contributie.id}')">Finaliser sans évaluation </button>
+                        <button onclick="trimiteSpreEvaluare('${contributie.id}')">Envoyer aux évaluateurs</button>
                     </div>
 
                 </div>
@@ -322,7 +323,7 @@ database.ref("users").once('value')
                             <p>${contributie.data}</p>
                         </div>
                         <div class="wip-status">
-                            <p>Status contributie:</p>
+                            <p>Status contribution:</p>
                             <p>${CONTRIBUTION_STATUS[contributie.stadiu]}</p>
                         </div>
                     </div>
@@ -330,7 +331,7 @@ database.ref("users").once('value')
                     <div class="flex">
                         <div class="wip-eval-container flex">
                                 <div>
-                                    <p>Evaluator 1:</p>
+                                    <p>Evaluateur 1:</p>
                                     <p>${USERS[contributie.evaluare_1.evaluator].nume}</p>
                                 </div>
                             ${contributie.evaluare_1.completed ? '<a href="./contributie/evaluare.html?ID='+contributie.id+'&PUB='+contributie.publicatie+'&EV=1"><svg class="redirect-svg" viewBox="0 0 25 25" fill="none"><path d="M23.8636 0.0303345H14.7727C14.1451 0.0303345 13.6363 0.527406 13.6363 1.14054C13.6363 1.75367 14.1451 2.25075 14.7727 2.25075H21.1202L9.42378 13.6779C8.97999 14.1114 8.97999 14.8143 9.42378 15.2479C9.64561 15.4646 9.93643 15.573 10.2273 15.573C10.5181 15.573 10.8089 15.4647 11.0308 15.2478L22.7273 3.82077V10.0221C22.7273 10.6352 23.2361 11.1323 23.8637 11.1323C24.4913 11.1323 25.0001 10.6352 25.0001 10.0221V1.14054C25 0.527406 24.4912 0.0303345 23.8636 0.0303345Z" fill="black"/><path d="M19.3182 11.1322C18.6906 11.1322 18.1818 11.6293 18.1818 12.2424V22.2342H2.27271V6.69143H12.5C13.1276 6.69143 13.6364 6.19436 13.6364 5.58123C13.6364 4.96809 13.1276 4.47107 12.5 4.47107H1.13638C0.508789 4.47107 0 4.96814 0 5.58128V23.3444C0 23.9575 0.508789 24.4545 1.13638 24.4545H19.3182C19.9458 24.4545 20.4546 23.9575 20.4546 23.3443V12.2424C20.4545 11.6293 19.9458 11.1322 19.3182 11.1322Z" fill="black"/></svg> </a>' : '<svg viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">       <g clip-path="url(#clip0)">                        <path d="M10.9181 5.09851L9.67517 3.90836C9.5037 3.74414 9.22529 3.74403 9.0537 3.90836L7.5 5.39603L5.94629 3.90836C5.77482 3.74414 5.49641 3.74403 5.32482 3.90836L4.08187 5.09851C3.91025 5.26281 3.91025 5.52924 4.08187 5.69357L5.63554 7.18124L4.08184 8.6689C3.91022 8.8332 3.91022 9.09964 4.08184 9.26396L5.32479 10.4541C5.49627 10.6183 5.77467 10.6184 5.94627 10.4541L7.5 8.96645L9.0537 10.4541C9.22517 10.6183 9.50358 10.6184 9.67517 10.4541L10.9181 9.26396C11.0897 9.09967 11.0897 8.83323 10.9181 8.6689L9.36445 7.18124L10.9182 5.69357C11.0897 5.52924 11.0897 5.26281 10.9181 5.09851ZM8.43222 6.88372C8.2606 7.04802 8.2606 7.31445 8.43222 7.47878L9.98593 8.96645L9.36445 9.56154L7.81075 8.07387C7.63913 7.90954 7.3609 7.90954 7.18927 8.07387L5.63557 9.56154L5.0141 8.96645L6.5678 7.47878C6.73942 7.31448 6.73942 7.04805 6.5678 6.88372L5.0141 5.39605L5.63557 4.80096L7.18927 6.28863C7.36087 6.45293 7.63913 6.45293 7.81075 6.28863L9.36445 4.80096L9.98593 5.39605L8.43222 6.88372Z" fill="black"/>                        <path d="M7.5 0C3.37034 0 0 3.22732 0 7.18124C0 11.1354 3.37058 14.3625 7.5 14.3625C11.6297 14.3625 15 11.1352 15 7.18124C15 3.2271 11.6294 0 7.5 0ZM7.5 13.5209C3.84911 13.5209 0.878906 10.677 0.878906 7.18124C0.878906 3.68552 3.84911 0.841551 7.5 0.841551C11.1509 0.841551 14.1211 3.68552 14.1211 7.18124C14.1211 10.677 11.1509 13.5209 7.5 13.5209Z" fill="black"/>                    </g>                    <defs>                        <clipPath id="clip0">                            <rect width="15" height="14.3625" fill="white"/>                        </clipPath>                    </defs>                </svg>'}
@@ -339,14 +340,14 @@ database.ref("users").once('value')
                         </div>
                         <div class="wip-eval-container flex">
                                 <div>
-                                    <p>Evaluator 2:</p>
+                                    <p>Evaluateur 2:</p>
                                     <p>${USERS[contributie.evaluare_2.evaluator].nume}</p>
                                 </div>
-                            ${contributie.evaluare_2.completed ? '<a href="./contributie/evaluare.html?ID='+contributie.id+'&PUB='+contributie.publicatie+'&EV=2"><svg class="redirect-svg" viewBox="0 0 25 25" fill="none"><path d="M23.8636 0.0303345H14.7727C14.1451 0.0303345 13.6363 0.527406 13.6363 1.14054C13.6363 1.75367 14.1451 2.25075 14.7727 2.25075H21.1202L9.42378 13.6779C8.97999 14.1114 8.97999 14.8143 9.42378 15.2479C9.64561 15.4646 9.93643 15.573 10.2273 15.573C10.5181 15.573 10.8089 15.4647 11.0308 15.2478L22.7273 3.82077V10.0221C22.7273 10.6352 23.2361 11.1323 23.8637 11.1323C24.4913 11.1323 25.0001 10.6352 25.0001 10.0221V1.14054C25 0.527406 24.4912 0.0303345 23.8636 0.0303345Z" fill="black"/><path d="M19.3182 11.1322C18.6906 11.1322 18.1818 11.6293 18.1818 12.2424V22.2342H2.27271V6.69143H12.5C13.1276 6.69143 13.6364 6.19436 13.6364 5.58123C13.6364 4.96809 13.1276 4.47107 12.5 4.47107H1.13638C0.508789 4.47107 0 4.96814 0 5.58128V23.3444C0 23.9575 0.508789 24.4545 1.13638 24.4545H19.3182C19.9458 24.4545 20.4546 23.9575 20.4546 23.3443V12.2424C20.4545 11.6293 19.9458 11.1322 19.3182 11.1322Z" fill="black"/></svg> </a>' : '<svg viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">       <g clip-path="url(#clip0)">                        <path d="M10.9181 5.09851L9.67517 3.90836C9.5037 3.74414 9.22529 3.74403 9.0537 3.90836L7.5 5.39603L5.94629 3.90836C5.77482 3.74414 5.49641 3.74403 5.32482 3.90836L4.08187 5.09851C3.91025 5.26281 3.91025 5.52924 4.08187 5.69357L5.63554 7.18124L4.08184 8.6689C3.91022 8.8332 3.91022 9.09964 4.08184 9.26396L5.32479 10.4541C5.49627 10.6183 5.77467 10.6184 5.94627 10.4541L7.5 8.96645L9.0537 10.4541C9.22517 10.6183 9.50358 10.6184 9.67517 10.4541L10.9181 9.26396C11.0897 9.09967 11.0897 8.83323 10.9181 8.6689L9.36445 7.18124L10.9182 5.69357C11.0897 5.52924 11.0897 5.26281 10.9181 5.09851ZM8.43222 6.88372C8.2606 7.04802 8.2606 7.31445 8.43222 7.47878L9.98593 8.96645L9.36445 9.56154L7.81075 8.07387C7.63913 7.90954 7.3609 7.90954 7.18927 8.07387L5.63557 9.56154L5.0141 8.96645L6.5678 7.47878C6.73942 7.31448 6.73942 7.04805 6.5678 6.88372L5.0141 5.39605L5.63557 4.80096L7.18927 6.28863C7.36087 6.45293 7.63913 6.45293 7.81075 6.28863L9.36445 4.80096L9.98593 5.39605L8.43222 6.88372Z" fill="black"/>                        <path d="M7.5 0C3.37034 0 0 3.22732 0 7.18124C0 11.1354 3.37058 14.3625 7.5 14.3625C11.6297 14.3625 15 11.1352 15 7.18124C15 3.2271 11.6294 0 7.5 0ZM7.5 13.5209C3.84911 13.5209 0.878906 10.677 0.878906 7.18124C0.878906 3.68552 3.84911 0.841551 7.5 0.841551C11.1509 0.841551 14.1211 3.68552 14.1211 7.18124C14.1211 10.677 11.1509 13.5209 7.5 13.5209Z" fill="black"/>                    </g>                    <defs>                        <clipPath id="clip0">                            <rect width="15" height="14.3625" fill="white"/>                        </clipPath>                    </defs>                </svg>'}
+                            ${contributie.evaluare_2.completed ? '<a href="./contributie/propunereFull.html?ID='+contributie.id+'&PUB='+contributie.publicatie+'&EV=2"><svg class="redirect-svg" viewBox="0 0 25 25" fill="none"><path d="M23.8636 0.0303345H14.7727C14.1451 0.0303345 13.6363 0.527406 13.6363 1.14054C13.6363 1.75367 14.1451 2.25075 14.7727 2.25075H21.1202L9.42378 13.6779C8.97999 14.1114 8.97999 14.8143 9.42378 15.2479C9.64561 15.4646 9.93643 15.573 10.2273 15.573C10.5181 15.573 10.8089 15.4647 11.0308 15.2478L22.7273 3.82077V10.0221C22.7273 10.6352 23.2361 11.1323 23.8637 11.1323C24.4913 11.1323 25.0001 10.6352 25.0001 10.0221V1.14054C25 0.527406 24.4912 0.0303345 23.8636 0.0303345Z" fill="black"/><path d="M19.3182 11.1322C18.6906 11.1322 18.1818 11.6293 18.1818 12.2424V22.2342H2.27271V6.69143H12.5C13.1276 6.69143 13.6364 6.19436 13.6364 5.58123C13.6364 4.96809 13.1276 4.47107 12.5 4.47107H1.13638C0.508789 4.47107 0 4.96814 0 5.58128V23.3444C0 23.9575 0.508789 24.4545 1.13638 24.4545H19.3182C19.9458 24.4545 20.4546 23.9575 20.4546 23.3443V12.2424C20.4545 11.6293 19.9458 11.1322 19.3182 11.1322Z" fill="black"/></svg> </a>' : '<svg viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg">       <g clip-path="url(#clip0)">                        <path d="M10.9181 5.09851L9.67517 3.90836C9.5037 3.74414 9.22529 3.74403 9.0537 3.90836L7.5 5.39603L5.94629 3.90836C5.77482 3.74414 5.49641 3.74403 5.32482 3.90836L4.08187 5.09851C3.91025 5.26281 3.91025 5.52924 4.08187 5.69357L5.63554 7.18124L4.08184 8.6689C3.91022 8.8332 3.91022 9.09964 4.08184 9.26396L5.32479 10.4541C5.49627 10.6183 5.77467 10.6184 5.94627 10.4541L7.5 8.96645L9.0537 10.4541C9.22517 10.6183 9.50358 10.6184 9.67517 10.4541L10.9181 9.26396C11.0897 9.09967 11.0897 8.83323 10.9181 8.6689L9.36445 7.18124L10.9182 5.69357C11.0897 5.52924 11.0897 5.26281 10.9181 5.09851ZM8.43222 6.88372C8.2606 7.04802 8.2606 7.31445 8.43222 7.47878L9.98593 8.96645L9.36445 9.56154L7.81075 8.07387C7.63913 7.90954 7.3609 7.90954 7.18927 8.07387L5.63557 9.56154L5.0141 8.96645L6.5678 7.47878C6.73942 7.31448 6.73942 7.04805 6.5678 6.88372L5.0141 5.39605L5.63557 4.80096L7.18927 6.28863C7.36087 6.45293 7.63913 6.45293 7.81075 6.28863L9.36445 4.80096L9.98593 5.39605L8.43222 6.88372Z" fill="black"/>                        <path d="M7.5 0C3.37034 0 0 3.22732 0 7.18124C0 11.1354 3.37058 14.3625 7.5 14.3625C11.6297 14.3625 15 11.1352 15 7.18124C15 3.2271 11.6294 0 7.5 0ZM7.5 13.5209C3.84911 13.5209 0.878906 10.677 0.878906 7.18124C0.878906 3.68552 3.84911 0.841551 7.5 0.841551C11.1509 0.841551 14.1211 3.68552 14.1211 7.18124C14.1211 10.677 11.1509 13.5209 7.5 13.5209Z" fill="black"/>                    </g>                    <defs>                        <clipPath id="clip0">                            <rect width="15" height="14.3625" fill="white"/>                        </clipPath>                    </defs>                </svg>'}
                         </div>
                     </div>
                     
-                    <button onclick="finalizeazaContributie('${contributie.id}',true)" ${(contributie.evaluare_1.completed && contributie.evaluare_2.completed)?'':'disabled'}>Finalizeaza</button>
+                    <button onclick="finalizeazaContributie('${contributie.id}',true)" ${(contributie.evaluare_1.completed && contributie.evaluare_2.completed)?'':'disabled'}>Finaliser</button>
                 </div>
                           
                         `)
@@ -456,12 +457,9 @@ function finalizeazaContributie(id,inCursDeProcesare=false){
             database.ref().update(updates)
 
             if (!inCursDeProcesare)
-                $("#assign-article-"+id).html("Propunerea a fost finalizata")
+                $("#assign-article-"+id).html("Contribution finalisée")
             else
-                $(`#wip-${id}-container`).html("Propunerea a fost finalizata")
-
-
-
+                $(`#wip-${id}-container`).html("Contribution finalisée")
              }
         )
 
@@ -512,7 +510,7 @@ function trimiteSpreEvaluare(id){
                     updates[`users/${eval2}`] = user
                     database.ref().update(updates)
 
-                    $("#assign-article-"+id).html("Propunerea a fost trimisa catre evaluare.")
+                    $("#assign-article-"+id).html("La proposition d'article a été envoyée aux évaluateurs.")
                 })
         })
 

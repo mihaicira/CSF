@@ -61,7 +61,7 @@ const LoginSignupErrors = {
 
 const CONTRIBUTION_STATUS = {
     1: "L’article a été envoyé",
-    2: "L’article a été assigne aux évaluateurs",
+    2: "L’article a été assigné aux évaluateurs",
     3: "L’article a été évalué par un évaluateur",
     4: "L’article a été évalué par deux évaluateurs",
     5: "Le processus d’évaluation est terminé"
@@ -374,18 +374,18 @@ const RIGHTS =  {
 }
 
 const months_short = {
-    'Jan': 'January',
-    'Feb':'February',
-    'Mar':'March',
-    'Apr':'April',
-    'May':'May',
-    'Jun':'June',
-    'Jul':'July',
-    'Aug':'August',
-    'Sep':'September',
-    'Oct':'October',
-    'Nov':'November',
-    'Dec':'December'
+    'Jan': 'Janvier',
+    'Feb':'Février',
+    'Mar':'Mars',
+    'Apr':'Avril',
+    'May':'Mai',
+    'Jun':'Juin',
+    'Jul':'Juillet',
+    'Aug':'Août',
+    'Sep':'Septembre',
+    'Oct':'Octobre',
+    'Nov':'Novembre',
+    'Dec':'Décembre'
 }
 
 const months_num = {
@@ -402,13 +402,3 @@ const months_num = {
     'November': 10,
     'December': 11
 }
-
-const days = [
-    'Sun',
-    'Mon',
-    'Tue',
-    'Wed',
-    'Thu',
-    'Fri',
-    'Sat'
-]

@@ -81,8 +81,8 @@ Le comité de rédaction du volume d’actes Agapes francophones se charge d’i
    <input type="radio" id="Da1"  name="arie_competenta" value="Oui" required>        <label for="Da1">Oui</label>        <br>        <input type="radio" id="Nu1" name="arie_competenta" value="Non">        <label for="Nu1">Non</label>        
    <h4>Le titre de l’article est-il clair, informatif et conforme à la proposition qu’il annonce ? </h4>
    <input type="radio" id="Da2"  name="conformitate_titlu" value="Oui" required>        <label for="Da2">Oui</label>        <br>        <input type="radio" id="Nu2" name="conformitate_titlu" value="Non">        <label for="Nu2">Non</label>        
-   <h4>Rezumatul poate fi considerat complet?</h4>
-   <input type="radio" id="Da3"  name="completitudine_rezumat" value="Oui" required>        <label for="Da3">Da</label>        <br>        <input type="radio" id="Nu3" name="completitudine_rezumat" value="Non">        <label for="Nu3">Nu</label>        
+   <h4>Le resumé est complét?</h4>
+   <input type="radio" id="Da3"  name="completitudine_rezumat" value="Oui" required>        <label for="Da3">Oui</label>        <br>        <input type="radio" id="Nu3" name="completitudine_rezumat" value="Non">        <label for="Nu3">Non</label>        
    <h4>Les mots clés sont-ils adéquats à la proposition d’article ?</h4>
    <input type="radio" id="Perfect adecvate"  name="cuv_cheie_adecvate" value="Parfaitement adéquats" required>        <label for="Perfect adecvate">Parfaitement adéquats</label>        <br>        <input type="radio" id="Suficient de adecvate" name="cuv_cheie_adecvate" value="Suffisamment adéquats">        <label for="Suficient de adecvate">Suffisamment adéquats</label>        <br>        <input type="radio" id="Parțial adecvate"  name="cuv_cheie_adecvate" value="Partiellement adéquats">        <label for="Parțial adecvate">Partiellement adéquats</label>        <br>        <input type="radio" id="Insuficient adecvate" name="cuv_cheie_adecvate" value="Insuffisamment adéquats">        <label for="Insuficient adecvate">Insuffisamment adéquats</label>        <br>        
    <h4>S’agit-il d’une recherche originale ?</h4>
@@ -183,8 +183,8 @@ Le comité de rédaction de la revue Dialogues francophones se charge d’inform
    <input type="radio" id="Da1"  name="arie_competenta" value="Oui" required>        <label for="Da1">Oui</label>        <br>        <input type="radio" id="Nu1" name="arie_competenta" value="Non">        <label for="Nu1">Non</label>        
    <h4>Le titre de l’article est-il clair, informatif et conforme à la proposition qu’il annonce ? </h4>
    <input type="radio" id="Da2"  name="conformitate_titlu" value="Oui" required>        <label for="Da2">Oui</label>        <br>        <input type="radio" id="Nu2" name="conformitate_titlu" value="Non">        <label for="Nu2">Non</label>        
-   <h4>Rezumatul poate fi considerat complet?</h4>
-   <input type="radio" id="Da3"  name="completitudine_rezumat" value="Oui" required>        <label for="Da3">Da</label>        <br>        <input type="radio" id="Nu3" name="completitudine_rezumat" value="Non">        <label for="Nu3">Nu</label>        
+   <h4>Le resumé est complét?</h4>
+   <input type="radio" id="Da3"  name="completitudine_rezumat" value="Oui" required>        <label for="Da3">Oui</label>        <br>        <input type="radio" id="Nu3" name="completitudine_rezumat" value="Non">        <label for="Nu3">Non</label>        
    <h4>Les mots clés sont-ils adéquats à la proposition d’article ?</h4>
    <input type="radio" id="Perfect adecvate"  name="cuv_cheie_adecvate" value="Parfaitement adéquats" required>        <label for="Perfect adecvate">Parfaitement adéquats</label>        <br>        <input type="radio" id="Suficient de adecvate" name="cuv_cheie_adecvate" value="Suffisamment adéquats">        <label for="Suficient de adecvate">Suffisamment adéquats</label>        <br>        <input type="radio" id="Parțial adecvate"  name="cuv_cheie_adecvate" value="Partiellement adéquats">        <label for="Parțial adecvate">Partiellement adéquats</label>        <br>        <input type="radio" id="Insuficient adecvate" name="cuv_cheie_adecvate" value="Insuffisamment adéquats">        <label for="Insuficient adecvate">Insuffisamment adéquats</label>        <br>        
    <h4>S’agit-il d’une recherche originale ?</h4>
