@@ -120,7 +120,7 @@ Le comité de rédaction du volume d’actes Agapes francophones se charge d’i
    <br><br><br><br>        
    <h4>Article évalué et annoté</h4>
    <p>Télécharger l’article éventuellement annoté, sous format .word (doc, docx). </p>
-   <input type="file" name="adnot" id="adnot-fisier">        
+   <input type="file" name="adnot" id="adnot-fisier" required>        
    <h3>TERMINER</h3>
     
    <input type="submit" id="submit" value="Envoyer">    
@@ -222,7 +222,7 @@ Le comité de rédaction de la revue Dialogues francophones se charge d’inform
    <br><br><br><br>        
    <h4>Article évalué et annoté</h4>
    <p>Télécharger l’article éventuellement annoté, sous format .word (doc, docx). </p>
-   <input type="file" name="adnot" id="adnot-fisier">        
+   <input type="file" name="adnot" id="adnot-fisier" required>        
    <h3>TERMINER</h3>
     
    <input type="submit" id="submit" value="Envoyer">    
