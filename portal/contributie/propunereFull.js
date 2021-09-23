@@ -163,12 +163,13 @@ else {
 
                     if(PUB==="DF") document.getElementById("publicatie").insertAdjacentHTML("afterbegin","Dialogues Francophones")
                     if(PUB==="AF") document.getElementById("publicatie").insertAdjacentHTML("afterbegin","Agapes Francophones")
+                    if(["admin"].includes(userRank)){
                     document.getElementById("propunere-container").insertAdjacentHTML('beforeend',`
                     <p>Ștergere</p>
                     <div class="propunere-pair">
                         <button onclick="deleteContribution('${PUB}','${dbObj.id}')" class="effacer"></button>
                         </div>
-                    `)
+                    `)}
                 }
                 else{
                     document.getElementById("propunere-container").insertAdjacentHTML("afterbegin",`<h2>${GeneralErrors["not-authorized"]}</h2>`)
