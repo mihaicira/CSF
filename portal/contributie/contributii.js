@@ -53,13 +53,9 @@ else{
 
 
 function insertObjects(objects){
-
-    objects.sort((obj1,obj2)=>StringToDate(obj2.data) - StringToDate(obj1.data))
+    objects.sort((obj1,obj2)=>(StringToDate(obj1.data) < StringToDate(obj2.data)) ? 1 : -1)
 
     objects.forEach((obj)=>{
-
-        if(obj.stadiu == 5)
-            console.log(obj.finalizatDe)
 
         //finalizat_de
         let finalizat_de = X_SVG

@@ -389,16 +389,16 @@ const months_short = {
 }
 
 const months_num = {
-    'January': 0 ,
-    'February': 1,
-    'March': 2,
-    'April': 3,
-    'May': 4,
-    'June': 5,
-    'July': 6,
-    'August': 7,
-    'September': 8,
-    'October': 9,
-    'November': 10,
-    'December': 11
+    'Janvier': 0 ,
+    'Février': 1,
+    'Mars': 2,
+    'Avril': 3,
+    'Mai': 4,
+    'Juin': 5,
+    'Juillet': 6,
+    'Août': 7,
+    'Septembre': 8,
+    'Octobre': 9,
+    'Novembre': 10,
+    'Décembre': 11
 }

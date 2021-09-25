@@ -32,7 +32,6 @@ if(!CORRECT_URL){
     document.getElementById("propunere-container").insertAdjacentHTML("afterbegin",`<h2>${GeneralErrors["doesnt-exist"]}</h2>`)
 }
 else {
-    console.log(PUB.toUpperCase()+"/propuneri/"+ PROP_ID)
     database.ref(PUB.toUpperCase()+"/propuneri/"+ PROP_ID).once('value')
         .then((snapshot) => {
             let dbObj = snapshot.val()
