@@ -5,7 +5,7 @@
     ["publicatii.html","Publicatii"],
     ["cercetare.html","Cercetare"],
     ["parteneri.html","Parteneri"],
-    ["asociatia.html","Asociatia de studii francofone DF"],
+    ["../portal/index.html","Portal"],
     ["contact.html","Contact"]
   ],
   "ndNavbar":
@@ -27,7 +27,8 @@
     "publicatii": [
       ["#dialogues francophones","Dialogues francophones"],
       ["#agapes francophones","Agapes francophones"],
-      ["#colloques de linguistique publications","Colocviile franco-române de lingvistică"],
+      ["#actele colocviilor franco romane","Actele colocviilor franco-române de lingvistică"],
+      ["#traduceri","Traduceri"],
       ["#publicatii ale membrilor","Publicatii ale membrilor"]
     ],
     "cercetare": [
@@ -38,17 +39,21 @@
     "parteneri": [
       ["#test","testing !!"]
     ],
-    "asociatia": [
-      ["#descriere si obiective","Descriere si obiective"],
-      ["#statut","Statut"],
-      ["#formular de inscriere","Formular de inscriere"]
-    ],
     "contact": [
       ["#contact","Contact"]
     ],
     "propunere": ["prev","Înapoi"],
     "dbobj": "Panel"
   },
-  "footer": "none"
+  "footer": [
+    ["index.html","Despre noi"],
+    ["evenimente.html","Evenimente"],
+    ["publicatii.html","Publicatii"],
+    ["cercetare.html","Cercetare"],
+    ["parteneri.html","Parteneri"],
+    ["../portal/index.html","Portal CSF"],
+    ["contact.html","Contact"],
+    ["credits.html","Credite"]
+  ]
 
 }

@@ -1,20 +1,20 @@
 {
   "stNavbar": [
-    ["../","About us"],
-    ["evenimente.html","Events"],
-    ["publicatii.html","Publications"],
-    ["cercetare.html","Research"],
-    ["parteneri.html","Partners"],
-    ["asociatia.html","Association of DF francophone studies"],
+    ["../","Despre noi"],
+    ["evenimente.html","Evenimente"],
+    ["publicatii.html","Publicatii"],
+    ["cercetare.html","Cercetare"],
+    ["parteneri.html","Parteneri"],
+    ["../portal/index.html","Portal"],
     ["contact.html","Contact"]
   ],
   "ndNavbar":
   {
     "index": [
-      ["#istoric","History"],
-      ["#descriere si obiective","Outline and objectives"],
-      ["#membri","Members"],
-      ["#statut","Statute"]
+      ["#istoric","Istoric"],
+      ["#descriere si obiective","Descriere si obiective"],
+      ["#membri","Membri"],
+      ["#statut","Statut"]
     ],
     "evenimente": [
       ["#CIEFT","CIEFT"],
@@ -39,9 +39,6 @@
     "parteneri": [
       ["#test","testing !!"]
     ],
-    "asociatia": [
-      ["#descriere si obiective","Descriere si obiective"]
-    ],
     "contact": [
       ["#contact","Contact"]
     ],
@@ -54,9 +51,9 @@
     ["publicatii.html","Publicatii"],
     ["cercetare.html","Cercetare"],
     ["parteneri.html","Parteneri"],
-    ["asociatia.html","Asociatia de studii francofone DF"],
+    ["../portal/index.html","Portal CSF"],
     ["contact.html","Contact"],
-    ["credite.html","Credite"]
+    ["credits.html","Credite"]
   ]
 
 }
